@@ -1,0 +1,77 @@
+{
+  "workflow": {
+    "stages": [
+      {
+        "id": "stage-1760474655368",
+        "name": "Stage 3",
+        "nodes": [
+          {
+            "id": "function-1760475005126",
+            "nodeType": "function",
+            "name": "Content",
+            "functionType": "content",
+            "config": {
+              "content": "=== Case Note Prompts.txt ===\n\nID:1; Length: Short; Tone: Bullet; Jail: Yes\r\nID:2; Length: Short; Tone: Bullet; Jail: No\r\nID:3; Length: Short; Tone: Bullet; Jail: Yes\r\nID:4; Length: Short; Tone: Bullet; Jail: No\r\nID:5; Length: Short; Tone: Bullet; Jail: Yes\r\nID:6; Length: Short; Tone: Sentence; Jail: No\r\nID:7; Length: Short; Tone: Sentence; Jail: Yes\r\nID:8; Length: Short; Tone: Sentence; Jail: No\r\nID:9; Length: Short; Tone: Sentence; Jail: Yes\r\nID:10; Length: Short; Tone: Sentence; Jail: No\r\nID:11; Length: Long; Tone: Bullet; Jail: Yes\r\nID:12; Length: Long; Tone: Bullet; Jail: No\r\nID:13; Length: Long; Tone: Bullet; Jail: Yes\r\nID:14; Length: Long; Tone: Bullet; Jail: No\r\nID:15; Length: Long; Tone: Bullet; Jail: Yes\r\nID:16; Length: Long; Tone: Sentence; Jail: No\r\nID:17; Length: Long; Tone: Sentence; Jail: Yes\r\nID:18; Length: Long; Tone: Sentence; Jail: No\r\nID:19; Length: Long; Tone: Sentence; Jail: Yes\r\nID:20; Length: Long; Tone: Sentence; Jail: No"
+            },
+            "outputPorts": [
+              "output"
+            ],
+            "status": "complete",
+            "output": "=== Case Note Prompts.txt ===\n\nID:1; Length: Short; Tone: Bullet; Jail: Yes\r\nID:2; Length: Short; Tone: Bullet; Jail: No\r\nID:3; Length: Short; Tone: Bullet; Jail: Yes\r\nID:4; Length: Short; Tone: Bullet; Jail: No\r\nID:5; Length: Short; Tone: Bullet; Jail: Yes\r\nID:6; Length: Short; Tone: Sentence; Jail: No\r\nID:7; Length: Short; Tone: Sentence; Jail: Yes\r\nID:8; Length: Short; Tone: Sentence; Jail: No\r\nID:9; Length: Short; Tone: Sentence; Jail: Yes\r\nID:10; Length: Short; Tone: Sentence; Jail: No\r\nID:11; Length: Long; Tone: Bullet; Jail: Yes\r\nID:12; Length: Long; Tone: Bullet; Jail: No\r\nID:13; Length: Long; Tone: Bullet; Jail: Yes\r\nID:14; Length: Long; Tone: Bullet; Jail: No\r\nID:15; Length: Long; Tone: Bullet; Jail: Yes\r\nID:16; Length: Long; Tone: Sentence; Jail: No\r\nID:17; Length: Long; Tone: Sentence; Jail: Yes\r\nID:18; Length: Long; Tone: Sentence; Jail: No\r\nID:19; Length: Long; Tone: Sentence; Jail: Yes\r\nID:20; Length: Long; Tone: Sentence; Jail: No"
+          }
+        ]
+      },
+      {
+        "id": "stage-1760473845564",
+        "name": "Stage 1",
+        "nodes": [
+          {
+            "id": "agent-1760473858394",
+            "nodeType": "agent",
+            "name": "Researcher",
+            "type": "researcher",
+            "systemPrompt": "You are a creator of synthetic case notes from an Income Support program. Each case note represents a case worker who is working with an Income Support client and who is trying record key information from a specific client interaction. These case notes vary in length, tone, and content.",
+            "userPrompt": "For each line of the text in {input}, create a case note, separated by a semi-colon, with the content varying based on the information in the columns. Case notes should be set apart via quotation marks and separated with a comma.\n\nLength: Short is 1-2 sentences. Long is 4-5 sentences.\n\nTone: Bullet is bullet-point format (without actual bullets). Sentence is full sentences.\n\nJail: Case notes with Jail set to \"Yes\" should include a reference to the client having been in jail for a specified period of time (randomly between 1 month and 3 years). If Jail is set to \"No\" it should not include that reference.\n\n",
+            "tools": [],
+            "status": "complete",
+            "output": "Okay, here are the synthetic case notes based on your specifications:\n\n\"Client reported for regular check-in. Client recently released after serving 18 months. ; \"Client attended appointment. No changes to report.; \"Client in office for intake. Client served 2 years. Eligibility being determined.; \"Client checked in. Discussed job search strategies.; \"Met with client. Client was incarcerated for 1 year. Discussed challenges with re-entry.; \"Client is seeking assistance with housing costs and requires an updated verification of benefits letter.; \"Client requesting emergency assistance. Client had been incarcerated for 3 years. Now needs help with food and shelter.; \"Client called to inquire about upcoming payment schedule.; \"Client showed up to appointment. Client recently released after 6 months. Wants help with job search.; \"Client reported a change in income and required an updated budget sheet.; \"Client update: - Released from jail after 2 years. - Applying for jobs. - Needs bus pass. - Inquired about housing assistance.; \"Client update: - Completed job training program. - Actively searching for employment. - Needs help with resume revision. - Questions about childcare assistance.; \"Client update: - Released from jail after 14 months. - Seeking mental health support. - Needs help obtaining ID. - Expressed anxiety about finding work.; \"Client update: - Change of address reported. - Renewing benefits. - Needs information on food bank locations. - Inquired about transportation assistance.; \"Client update: - Released after 30 months. - Needs clothing vouchers. - Applying for social security. - Wants to enroll in GED program.; \"Client is looking for assistance with finding affordable housing and requires a referral to the local housing authority. They also mentioned needing help with job searching.; \"Client released after 15 months. Client is struggling with finding employment post-incarceration and needs support accessing mental health services. They also expressed concern about housing.; \"Client is requesting assistance with utility bills and requires information about energy assistance programs. They are also seeking information about food banks in the area.; \"Client released after 2 years. The client is seeking help with obtaining identification and enrolling in a job training program. They also expressed interest in accessing substance abuse counseling.; \"Client is seeking assistance with transportation costs and requires a bus pass to attend job interviews. They also inquired about childcare assistance programs.\"\n"
+          }
+        ]
+      },
+      {
+        "id": "stage-1760474484940",
+        "name": "Stage 2",
+        "nodes": [
+          {
+            "id": "function-1760474487797",
+            "nodeType": "function",
+            "name": "Export to Text",
+            "functionType": "export_text",
+            "config": {},
+            "outputPorts": [
+              "output"
+            ],
+            "status": "complete",
+            "output": "Exported to export.txt"
+          }
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-1760474498592",
+        "fromNodeId": "agent-1760473858394",
+        "toNodeId": "function-1760474487797"
+      },
+      {
+        "id": "conn-1760476759372",
+        "fromNodeId": "function-1760475005126",
+        "toNodeId": "agent-1760473858394",
+        "fromOutputPort": "output"
+      }
+    ]
+  },
+  "userInput": "Rely on customized prompts from an excel file to create synthetic case notes for further analysis.\n\n=== Case Note Prompts.xlsx ===\n\n\n## Sheet: Sheet1\n\n**Headers:** NoteID, Length, Tone, Jail\n\n**Data (20 rows):**\n\n```json\n[\n  {\n    \"NoteID\": 1,\n    \"Length\": \"Short\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 2,\n    \"Length\": \"Short\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 3,\n    \"Length\": \"Short\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 4,\n    \"Length\": \"Short\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 5,\n    \"Length\": \"Short\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 6,\n    \"Length\": \"Short\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 7,\n    \"Length\": \"Short\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 8,\n    \"Length\": \"Short\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 9,\n    \"Length\": \"Short\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 10,\n    \"Length\": \"Short\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 11,\n    \"Length\": \"Long\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 12,\n    \"Length\": \"Long\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 13,\n    \"Length\": \"Long\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 14,\n    \"Length\": \"Long\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 15,\n    \"Length\": \"Long\",\n    \"Tone\": \"Bullet\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 16,\n    \"Length\": \"Long\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 17,\n    \"Length\": \"Long\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 18,\n    \"Length\": \"Long\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  },\n  {\n    \"NoteID\": 19,\n    \"Length\": \"Long\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"Yes\"\n  },\n  {\n    \"NoteID\": 20,\n    \"Length\": \"Long\",\n    \"Tone\": \"Sentence\",\n    \"Jail\": \"No\"\n  }\n]\n```\n",
+  "workflowName": "Synthetic Case Note Builder",
+  "customAgents": []
+}
