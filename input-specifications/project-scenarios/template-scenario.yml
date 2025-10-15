@@ -1,0 +1,210 @@
+# Project Scenario Template
+# ===============================================================================
+# Template for creating new project-specific synthetic data configurations
+# Copy this file and customize for specific SDA analytical testing needs
+# 
+# Instructions:
+# 1. Replace all [PLACEHOLDER] values with project-specific information
+# 2. Adjust population parameters based on testing requirements
+# 3. Define validation targets based on algorithm performance goals
+# 4. Specify required patterns for thorough testing coverage
+# 5. Set quality assurance criteria appropriate for the analytical goals
+# ===============================================================================
+
+scenario_metadata:
+  scenario_name: "[PROJECT_NAME]"
+  project_code: "[SDA_PROJECT_CODE]"
+  created_date: "[YYYY-MM-DD]"
+  created_by: "[DOMAIN_EXPERT_NAME]"
+  purpose: "[DETAILED_PURPOSE_DESCRIPTION]"
+  target_algorithms: ["[ALGORITHM_1]", "[ALGORITHM_2]", "[ALGORITHM_3]"]
+
+# ===============================================================================
+# SYNTHETIC POPULATION SPECIFICATIONS
+# Define the characteristics of the synthetic client population
+# ===============================================================================
+population_parameters:
+  total_clients: [NUMBER]
+  observation_period_months: [MONTHS]
+  
+  risk_distribution:
+    low_risk: [0.XX]      # Proportion of low-risk clients
+    moderate_risk: [0.XX] # Proportion of moderate-risk clients  
+    high_risk: [0.XX]     # Proportion of high-risk clients
+  
+  archetype_override:
+    # Optional: Force specific client archetype distributions
+    stable_employment_seeker: [0.XX]
+    moderate_complexity_multi_barrier: [0.XX]
+    high_complexity_intensive: [0.XX]
+    elderly_support_needs: [0.XX]
+
+# ===============================================================================
+# ALGORITHM VALIDATION TARGETS
+# Expected performance benchmarks for the target algorithms
+# ===============================================================================
+validation_targets:
+  
+  primary_algorithm_accuracy:
+    [ALGORITHM_NAME]: [0.XX]  # Expected accuracy for primary algorithm
+    [SECONDARY_ALGORITHM]: [0.XX]  # Expected accuracy for secondary algorithm
+    
+  specific_detection_targets:
+    [RISK_FACTOR_1]_detection: [0.XX]  # Detection accuracy for specific risk factors
+    [RISK_FACTOR_2]_identification: [0.XX]
+    [RISK_FACTOR_3]_flagging: [0.XX]
+    
+  false_positive_tolerance:
+    [ALGORITHM_NAME]_false_positive: [0.XX]  # Maximum acceptable false positive rate
+    overall_false_positive_threshold: [0.XX]
+
+# ===============================================================================
+# SYNTHETIC DATA REQUIREMENTS
+# Specific patterns and characteristics needed for testing
+# ===============================================================================
+required_patterns:
+  
+  confirmed_positive_cases:
+    [PATTERN_TYPE_1]: [NUMBER]  # Cases with confirmed presence of target pattern
+    [PATTERN_TYPE_2]: [NUMBER]
+    [PATTERN_TYPE_3]: [NUMBER]
+    
+  control_cases:
+    negative_control_cases: [NUMBER]  # Cases without target patterns
+    successful_outcome_cases: [NUMBER]  # Cases with positive outcomes
+    
+  edge_cases:
+    subtle_indicator_cases: [NUMBER]  # Cases with subtle or indirect indicators
+    ambiguous_cases: [NUMBER]         # Cases where classification is unclear
+
+# ===============================================================================
+# CASE NOTE REQUIREMENTS  
+# Documentation patterns needed for algorithm testing
+# ===============================================================================
+note_generation_requirements:
+  
+  content_pattern_requirements:
+    explicit_mentions: [0.XX]    # Proportion with direct mentions of target factors
+    implied_indicators: [0.XX]   # Proportion with indirect indicators
+    contextual_clues: [0.XX]     # Proportion with embedded contextual information
+    
+  documentation_style_requirements:
+    formal_documentation: [0.XX]      # Proportion using formal writing style
+    bullet_point_notes: [0.XX]        # Proportion using bullet-point format
+    conversational_notes: [0.XX]      # Proportion using conversational style
+    clinical_documentation: [0.XX]    # Proportion using clinical terminology
+
+# ===============================================================================
+# TEMPORAL PATTERNS
+# Time-based patterns for longitudinal algorithm validation
+# ===============================================================================
+temporal_requirements:
+  
+  case_progression_patterns:
+    stable_cases: [NUMBER]           # Cases maintaining consistent status
+    improving_cases: [NUMBER]        # Cases showing positive progression
+    deteriorating_cases: [NUMBER]    # Cases showing negative progression
+    cyclical_pattern_cases: [NUMBER] # Cases with recurring patterns
+    
+  documentation_frequency:
+    high_frequency_cases: [NUMBER]   # Cases with frequent documentation
+    standard_frequency_cases: [NUMBER] # Cases with typical documentation frequency
+    low_frequency_cases: [NUMBER]    # Cases with sparse documentation
+
+# ===============================================================================
+# EXPORT SPECIFICATIONS
+# Requirements for integration with SDA analytical workflows
+# ===============================================================================
+export_requirements:
+  
+  ground_truth_labels:
+    include_target_labels: [true/false]     # Include known target classifications
+    include_outcome_labels: [true/false]    # Include case outcome information
+    include_progression_labels: [true/false] # Include progression pattern labels
+    
+  data_format:
+    client_id_format: "[ID_FORMAT]"        # Format for synthetic client IDs
+    note_id_format: "[NOTE_ID_FORMAT]"     # Format for case note IDs
+    date_range: ["[START_DATE]", "[END_DATE]"] # Date range for synthetic data
+    
+  dataset_splits:
+    training_split: [0.XX]      # Proportion for algorithm training
+    validation_split: [0.XX]    # Proportion for validation during development
+    testing_split: [0.XX]       # Proportion for final algorithm testing
+
+# ===============================================================================
+# QUALITY ASSURANCE REQUIREMENTS
+# Validation checks to ensure synthetic data meets project needs
+# ===============================================================================
+quality_checks:
+  
+  distribution_validation:
+    [FACTOR_1]_prevalence: [[MIN], [MAX]]  # Expected prevalence range
+    [FACTOR_2]_prevalence: [[MIN], [MAX]]
+    [FACTOR_3]_prevalence: [[MIN], [MAX]]
+    
+  authenticity_checks:
+    terminology_appropriateness: [true/false]  # Verify realistic terminology
+    writing_style_variation: [true/false]      # Ensure diverse writing styles
+    temporal_pattern_realism: [true/false]     # Check realistic timing patterns
+    
+  completeness_validation:
+    required_pattern_coverage: [true/false]    # Verify all required patterns present
+    demographic_representation: [true/false]   # Check demographic diversity
+    sufficient_sample_size: [true/false]       # Verify adequate sample sizes
+
+# ===============================================================================
+# SUCCESS CRITERIA
+# Benchmarks for determining project success
+# ===============================================================================
+success_criteria:
+  
+  algorithm_performance:
+    primary_accuracy_target: [0.XX]         # Minimum acceptable accuracy
+    consistency_across_groups: [true/false] # Consistent performance across demographics
+    false_positive_control: [true/false]    # Acceptable false positive rates
+    
+  synthetic_data_quality:
+    realistic_documentation: [true/false]    # Passes authenticity review
+    complete_fictional_status: [true/false]  # Maintains fictional status
+    pattern_diversity: [true/false]          # Sufficient diversity for robust testing
+
+# ===============================================================================
+# EXPERT NOTES AND CUSTOMIZATION GUIDANCE
+# Instructions for domain experts customizing this template
+# ===============================================================================
+customization_notes: |
+  Instructions for adapting this template:
+  
+  1. Population Parameters:
+     - Set total_clients based on statistical power needs for your algorithms
+     - Adjust risk_distribution to match your testing requirements
+     - Use archetype_override only if you need specific population structures
+  
+  2. Validation Targets:
+     - Set accuracy targets based on algorithm maturity and performance expectations
+     - Consider false positive tolerance based on operational constraints
+     - Define specific detection targets for each risk factor or outcome of interest
+  
+  3. Required Patterns:
+     - Ensure sufficient positive cases for reliable algorithm training
+     - Include adequate control cases for baseline comparison  
+     - Add edge cases to test algorithm robustness
+  
+  4. Quality Checks:
+     - Define prevalence ranges based on real-world data when available
+     - Set authenticity requirements appropriate for your algorithms
+     - Ensure completeness validation matches your analytical needs
+  
+  5. Success Criteria:
+     - Align performance targets with operational requirements
+     - Set quality standards that ensure synthetic data serves testing purposes
+     - Define clear benchmarks for determining project completion
+
+expert_calibration_notes: |
+  [DOMAIN EXPERT SHOULD FILL THIS SECTION WITH:]
+  - Data sources used for calibrating synthetic data parameters
+  - Key assumptions made about population characteristics  
+  - Validation approaches planned for ensuring realism
+  - Specific domain knowledge applied to pattern requirements
+  - Any known limitations or considerations for synthetic data use

@@ -1,0 +1,208 @@
+# Client Profile Specifications
+# ===============================================================================
+# Expert-authored specifications for synthetic client generation
+# Defines demographic patterns, risk factor combinations, and service engagement
+# characteristics for realistic but fictional social services clients
+# 
+# Last updated: 2025-10-15
+# Domain expert: [TO BE FILLED]
+# ===============================================================================
+
+client_archetypes:
+  
+  # ============================================================================
+  # STABLE EMPLOYMENT SEEKER
+  # Low complexity clients with primary focus on employment services
+  # ============================================================================
+  stable_employment_seeker:
+    description: "Clients with stable housing seeking employment or skills training"
+    demographics:
+      age_range: [25, 45]
+      education_level: 
+        - "high_school": 0.40
+        - "some_post_secondary": 0.35  
+        - "trade_certificate": 0.25
+      family_composition:
+        - "single": 0.45
+        - "single_parent": 0.30
+        - "couple": 0.25
+      geographic_distribution:
+        - "urban": 0.65
+        - "rural": 0.35
+    
+    risk_factors:
+      housing_instability: 0.10
+      substance_use: 0.05
+      mental_health_challenges: 0.15
+      criminal_history: 0.08
+      recent_hospital_stays: 0.05
+      has_dependents: 0.35
+      transportation_barriers: 0.25
+    
+    service_characteristics:
+      typical_duration_months: [3, 8]
+      primary_services: ["employment_counseling", "skills_training", "job_search_support"]
+      case_complexity: "low"
+      expected_outcomes: ["employment_placement", "skills_upgrade", "program_completion"]
+
+  # ============================================================================
+  # MODERATE COMPLEXITY MULTI-BARRIER
+  # Clients with multiple challenges requiring coordinated support
+  # ============================================================================
+  moderate_complexity_multi_barrier:
+    description: "Clients with 2-3 significant barriers requiring integrated support"
+    demographics:
+      age_range: [28, 50]
+      education_level:
+        - "less_than_high_school": 0.30
+        - "high_school": 0.45
+        - "some_post_secondary": 0.25
+      family_composition:
+        - "single_parent": 0.50
+        - "single": 0.35
+        - "couple_with_dependents": 0.15
+      geographic_distribution:
+        - "urban": 0.75
+        - "rural": 0.25
+    
+    risk_factors:
+      housing_instability: 0.40
+      substance_use: 0.25
+      mental_health_challenges: 0.45
+      criminal_history: 0.20
+      recent_hospital_stays: 0.15
+      has_dependents: 0.65
+      transportation_barriers: 0.40
+      debt_or_financial_crisis: 0.35
+    
+    service_characteristics:
+      typical_duration_months: [8, 18]
+      primary_services: ["case_management", "income_support", "employment_services", "housing_support"]
+      case_complexity: "moderate"
+      expected_outcomes: ["stabilization", "barrier_reduction", "partial_employment"]
+
+  # ============================================================================
+  # HIGH COMPLEXITY INTENSIVE SUPPORT
+  # Clients with multiple severe barriers requiring intensive case management
+  # ============================================================================
+  high_complexity_intensive:
+    description: "Clients with severe, multiple barriers requiring intensive ongoing support"
+    demographics:
+      age_range: [30, 55]
+      education_level:
+        - "less_than_high_school": 0.50
+        - "high_school": 0.35
+        - "some_post_secondary": 0.15
+      family_composition:
+        - "single_parent": 0.45
+        - "single": 0.40
+        - "couple_with_dependents": 0.15
+      geographic_distribution:
+        - "urban": 0.80
+        - "rural": 0.20
+    
+    risk_factors:
+      housing_instability: 0.70
+      substance_use: 0.45
+      mental_health_challenges: 0.60
+      criminal_history: 0.35
+      recent_hospital_stays: 0.40
+      has_dependents: 0.65
+      transportation_barriers: 0.50
+      debt_or_financial_crisis: 0.55
+      domestic_violence_history: 0.25
+    
+    service_characteristics:
+      typical_duration_months: [12, 36]
+      primary_services: ["intensive_case_management", "income_support", "housing_support", "mental_health_referrals", "addiction_treatment"]
+      case_complexity: "high"
+      expected_outcomes: ["crisis_stabilization", "harm_reduction", "incremental_progress"]
+
+  # ============================================================================
+  # ELDERLY SUPPORT NEEDS
+  # Older clients (65-80) with age-related support requirements
+  # ============================================================================
+  elderly_support_needs:
+    description: "Older adults requiring income support and age-appropriate services"
+    demographics:
+      age_range: [65, 80]
+      education_level:
+        - "less_than_high_school": 0.40
+        - "high_school": 0.45
+        - "some_post_secondary": 0.15
+      family_composition:
+        - "single": 0.60
+        - "couple": 0.35
+        - "living_with_adult_children": 0.05
+      geographic_distribution:
+        - "urban": 0.55
+        - "rural": 0.45
+    
+    risk_factors:
+      housing_instability: 0.20
+      substance_use: 0.10
+      mental_health_challenges: 0.25
+      criminal_history: 0.05
+      recent_hospital_stays: 0.35
+      has_dependents: 0.05
+      transportation_barriers: 0.60
+      social_isolation: 0.45
+      health_deterioration: 0.40
+    
+    service_characteristics:
+      typical_duration_months: [6, 24]
+      primary_services: ["income_support", "health_coordination", "transportation_assistance", "social_connection"]
+      case_complexity: "low_to_moderate"
+      expected_outcomes: ["maintained_independence", "health_stability", "social_engagement"]
+
+# ===============================================================================
+# POPULATION DISTRIBUTION GUIDELINES
+# Controls the relative frequency of different client archetypes
+# ===============================================================================
+population_distribution:
+  stable_employment_seeker: 0.35
+  moderate_complexity_multi_barrier: 0.40
+  high_complexity_intensive: 0.20
+  elderly_support_needs: 0.05
+
+# ===============================================================================
+# VALIDATION PARAMETERS
+# Quality checks to ensure realistic synthetic populations
+# ===============================================================================
+validation_rules:
+  age_distribution:
+    min_age: 18
+    max_age: 80
+    typical_range: [25, 55]
+  
+  risk_factor_co_occurrence:
+    housing_and_substance: 0.65  # Housing instability often co-occurs with substance use
+    mental_health_and_housing: 0.55
+    criminal_history_and_substance: 0.60
+    hospital_stays_and_mental_health: 0.45
+  
+  geographic_realism:
+    urban_centers: ["Calgary", "Edmonton", "Red Deer", "Lethbridge"]
+    rural_regions: ["Northern Alberta", "Central Alberta", "Southern Alberta"]
+    urban_service_intensity: 1.2  # Urban areas have higher service density
+
+# ===============================================================================
+# EXPERT NOTES
+# Domain expert observations and calibration guidance
+# ===============================================================================
+expert_calibration_notes: |
+  These specifications are based on [DOMAIN EXPERT TO FILL]:
+  - Historical caseload analysis from [DATE RANGE]
+  - Risk factor prevalence rates from [DATA SOURCE]
+  - Service engagement patterns from [PROGRAM EVALUATION]
+  
+  Key calibration decisions:
+  - Risk factor probabilities reflect observed co-occurrence patterns
+  - Age distributions weighted toward working-age population
+  - Service duration based on program completion statistics
+  - Geographic distribution reflects Alberta urban/rural split
+  
+  Validation against real data:
+  - Compare generated risk factor distributions to historical patterns
+  - Verify service engagement duration matches program averages
+  - Ensure demographic realism while maintaining fictional status

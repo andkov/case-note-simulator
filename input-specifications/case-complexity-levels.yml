@@ -1,0 +1,243 @@
+# Case Complexity Level Specifications
+# ===============================================================================
+# Expert-authored specifications for controlling case complexity in synthetic data
+# Defines intervention intensity, contact frequency, and crisis event patterns
+# based on client support needs and service requirements
+# 
+# Last updated: 2025-10-15
+# Domain expert: [TO BE FILLED]
+# ===============================================================================
+
+complexity_levels:
+  
+  # ============================================================================
+  # LOW COMPLEXITY - ROUTINE SUPPORT
+  # Clients with minimal barriers requiring standard service delivery
+  # ============================================================================
+  low:
+    description: "Routine support for clients with minimal barriers"
+    
+    contact_patterns:
+      initial_assessment_duration: [45, 60]  # minutes
+      regular_contact_frequency: "monthly"
+      contact_duration_range: [15, 30]  # minutes
+      missed_appointment_rate: 0.10
+      client_initiated_contact_rate: 0.05  # calls/month
+    
+    note_characteristics:
+      average_note_length: [50, 150]  # words
+      note_frequency: "monthly"
+      note_types:
+        - "routine_check_in": 0.60
+        - "service_update": 0.25
+        - "administrative": 0.15
+      
+      content_focus:
+        - "employment_progress": 0.40
+        - "program_participation": 0.30
+        - "goal_achievement": 0.20
+        - "administrative_updates": 0.10
+    
+    crisis_and_escalation:
+      crisis_event_probability: 0.05  # per month
+      emergency_contact_rate: 0.02
+      service_escalation_rate: 0.08
+      case_closure_rate: 0.15  # per year
+    
+    caseworker_characteristics:
+      caseload_size_range: [80, 120]
+      intervention_intensity: "minimal"
+      documentation_style: "efficient"
+
+  # ============================================================================
+  # MODERATE COMPLEXITY - ACTIVE SUPPORT
+  # Clients with multiple barriers requiring coordinated interventions
+  # ============================================================================
+  moderate:
+    description: "Active support for clients with multiple barriers"
+    
+    contact_patterns:
+      initial_assessment_duration: [60, 90]  # minutes
+      regular_contact_frequency: "bi_weekly"
+      contact_duration_range: [25, 45]  # minutes
+      missed_appointment_rate: 0.20
+      client_initiated_contact_rate: 0.15  # calls/month
+    
+    note_characteristics:
+      average_note_length: [100, 300]  # words
+      note_frequency: "bi_weekly"
+      note_types:
+        - "case_management": 0.40
+        - "barrier_assessment": 0.25
+        - "service_coordination": 0.20
+        - "crisis_response": 0.10
+        - "administrative": 0.05
+      
+      content_focus:
+        - "barrier_mitigation": 0.30
+        - "service_coordination": 0.25
+        - "progress_monitoring": 0.20
+        - "crisis_management": 0.15
+        - "goal_adjustment": 0.10
+    
+    crisis_and_escalation:
+      crisis_event_probability: 0.20  # per month
+      emergency_contact_rate: 0.08
+      service_escalation_rate: 0.25
+      case_closure_rate: 0.10  # per year
+    
+    caseworker_characteristics:
+      caseload_size_range: [40, 60]
+      intervention_intensity: "moderate"
+      documentation_style: "detailed"
+
+  # ============================================================================
+  # HIGH COMPLEXITY - INTENSIVE CASE MANAGEMENT
+  # Clients with severe barriers requiring intensive, frequent intervention
+  # ============================================================================
+  high:
+    description: "Intensive case management for clients with severe, multiple barriers"
+    
+    contact_patterns:
+      initial_assessment_duration: [90, 120]  # minutes
+      regular_contact_frequency: "weekly"
+      contact_duration_range: [45, 75]  # minutes
+      missed_appointment_rate: 0.35
+      client_initiated_contact_rate: 0.30  # calls/month
+      home_visit_frequency: "monthly"
+    
+    note_characteristics:
+      average_note_length: [200, 500]  # words
+      note_frequency: "weekly_or_more"
+      note_types:
+        - "intensive_case_management": 0.35
+        - "crisis_intervention": 0.25
+        - "multi_agency_coordination": 0.20
+        - "safety_assessment": 0.10
+        - "family_dynamics": 0.05
+        - "administrative": 0.05
+      
+      content_focus:
+        - "crisis_stabilization": 0.30
+        - "safety_concerns": 0.20
+        - "multi_system_coordination": 0.20
+        - "harm_reduction": 0.15
+        - "incremental_progress": 0.10
+        - "setback_management": 0.05
+    
+    crisis_and_escalation:
+      crisis_event_probability: 0.45  # per month
+      emergency_contact_rate: 0.20
+      service_escalation_rate: 0.40
+      case_closure_rate: 0.05  # per year (longer engagement)
+      multi_agency_involvement: 0.70
+    
+    caseworker_characteristics:
+      caseload_size_range: [15, 25]
+      intervention_intensity: "intensive"
+      documentation_style: "comprehensive"
+      supervision_frequency: "weekly"
+
+# ===============================================================================
+# SERVICE COORDINATION PATTERNS
+# How complexity levels affect inter-agency and multi-service coordination
+# ===============================================================================
+service_coordination:
+  low_complexity:
+    typical_services: 1-2
+    external_referrals_per_case: [0, 1]
+    case_conferences_per_year: 0
+    
+  moderate_complexity:
+    typical_services: 2-4
+    external_referrals_per_case: [1, 3]
+    case_conferences_per_year: [1, 2]
+    
+  high_complexity:
+    typical_services: 4-8
+    external_referrals_per_case: [3, 6]
+    case_conferences_per_year: [2, 4]
+    multi_disciplinary_team: true
+
+# ===============================================================================
+# CRISIS EVENT SPECIFICATIONS
+# Defines types and frequencies of crisis events by complexity level
+# ===============================================================================
+crisis_event_types:
+  housing_crisis:
+    low_complexity_probability: 0.02
+    moderate_complexity_probability: 0.08
+    high_complexity_probability: 0.20
+    typical_duration_days: [3, 14]
+    
+  hospitalization:
+    low_complexity_probability: 0.01
+    moderate_complexity_probability: 0.05
+    high_complexity_probability: 0.15
+    typical_duration_days: [1, 7]
+    
+  legal_issues:
+    low_complexity_probability: 0.005
+    moderate_complexity_probability: 0.03
+    high_complexity_probability: 0.12
+    typical_duration_weeks: [2, 12]
+    
+  family_emergency:
+    low_complexity_probability: 0.01
+    moderate_complexity_probability: 0.06
+    high_complexity_probability: 0.18
+    typical_duration_days: [1, 10]
+
+# ===============================================================================
+# CASE PROGRESSION PATTERNS
+# How cases typically evolve over time based on initial complexity
+# ===============================================================================
+case_progression:
+  complexity_transitions:
+    # Probability of moving between complexity levels (monthly)
+    low_to_moderate: 0.03
+    low_to_high: 0.005
+    moderate_to_low: 0.08
+    moderate_to_high: 0.05
+    high_to_moderate: 0.12
+    high_to_low: 0.02
+    
+  case_closure_patterns:
+    low_complexity:
+      successful_closure: 0.70
+      administrative_closure: 0.20
+      transfer_to_other_service: 0.10
+      
+    moderate_complexity:
+      successful_closure: 0.50
+      administrative_closure: 0.25
+      transfer_to_other_service: 0.15
+      ongoing_support_needed: 0.10
+      
+    high_complexity:
+      successful_closure: 0.30
+      administrative_closure: 0.15
+      transfer_to_other_service: 0.25
+      ongoing_support_needed: 0.30
+
+# ===============================================================================
+# EXPERT CALIBRATION NOTES
+# Domain expert observations for realistic complexity modeling
+# ===============================================================================
+expert_calibration_notes: |
+  Complexity level specifications based on:
+  - Caseload analysis from [INSERT DATA SOURCE]
+  - Service delivery standards from [INSERT POLICY REFERENCE]
+  - Caseworker time allocation studies from [INSERT STUDY]
+  
+  Key calibration decisions:
+  - Contact frequencies based on program standards and capacity constraints
+  - Crisis event probabilities reflect observed patterns in historical data
+  - Note length and frequency calibrated to realistic documentation practices
+  - Caseload sizes reflect current staffing and service delivery models
+  
+  Validation recommendations:
+  - Compare generated contact patterns to actual service delivery data
+  - Verify crisis event frequencies match historical incident rates
+  - Ensure note characteristics reflect authentic caseworker documentation
+  - Validate case progression patterns against longitudinal case tracking

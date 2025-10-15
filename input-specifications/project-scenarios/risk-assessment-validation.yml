@@ -1,0 +1,219 @@
+# Risk Assessment Algorithm Validation Scenario
+# ===============================================================================
+# Project-specific synthetic data configuration for testing SDA risk flagging
+# algorithms and sentiment analysis workflows
+# 
+# Project: Risk Assessment Algorithm Validation
+# SDA Team: [TO BE FILLED]
+# Created: 2025-10-15
+# Purpose: Generate synthetic data with known risk patterns to benchmark 
+#          algorithm performance in sda-casenote-reader workflows
+# ===============================================================================
+
+scenario_metadata:
+  scenario_name: "Risk Assessment Algorithm Validation"
+  project_code: "SDA-RISK-001"
+  created_date: "2025-10-15"
+  created_by: "[DOMAIN_EXPERT_NAME]"
+  purpose: "Test risk flagging accuracy and sentiment analysis with controlled synthetic patterns"
+  target_algorithms: ["housing_risk_detector", "substance_use_classifier", "crisis_predictor"]
+
+# ===============================================================================
+# SYNTHETIC POPULATION SPECIFICATIONS
+# Controlled population with known risk characteristics for algorithm testing
+# ===============================================================================
+population_parameters:
+  total_clients: 500
+  observation_period_months: 24
+  
+  risk_distribution:
+    # Deliberately structured for algorithm validation
+    low_risk: 0.35          # 175 clients - baseline for comparison
+    moderate_risk: 0.40     # 200 clients - primary testing population
+    high_risk: 0.25        # 125 clients - intensive validation cases
+  
+  archetype_override:
+    # Force specific distributions for testing purposes
+    stable_employment_seeker: 0.35  # Should be correctly classified as low risk
+    moderate_complexity_multi_barrier: 0.40  # Algorithm accuracy test cases
+    high_complexity_intensive: 0.25  # Should trigger all risk flags
+
+# ===============================================================================
+# ALGORITHM VALIDATION TARGETS
+# Expected performance benchmarks for synthetic data with known characteristics
+# ===============================================================================
+validation_targets:
+  
+  risk_flag_accuracy:
+    housing_instability_detection: 0.95  # Algorithm should identify 95% of housing-risk cases
+    substance_use_flagging: 0.88        # 88% accuracy on substance-related risk
+    mental_health_identification: 0.92   # 92% accuracy on mental health indicators
+    criminal_history_detection: 0.90     # 90% accuracy on criminal justice involvement
+    crisis_prediction: 0.85             # 85% accuracy on predicting crisis events
+    
+  sentiment_analysis_targets:
+    positive_progress_identification: 0.90  # Detect positive case progression
+    crisis_language_detection: 0.93        # Identify crisis-related language
+    frustration_sentiment_recognition: 0.82 # Detect client or caseworker frustration
+    
+  false_positive_tolerance:
+    housing_risk_false_positive: 0.08    # Max 8% false positive rate
+    substance_use_false_positive: 0.12   # Max 12% false positive rate
+    crisis_false_positive: 0.05         # Max 5% false positive rate for crisis
+
+# ===============================================================================
+# SYNTHETIC DATA REQUIREMENTS
+# Specific patterns needed for thorough algorithm testing
+# ===============================================================================
+required_patterns:
+  
+  # Known positive cases - should trigger risk flags
+  confirmed_risk_indicators:
+    housing_crisis_language: 50  # Cases with explicit housing crisis terminology  
+    substance_use_terminology: 60  # Cases with substance-related language
+    mental_health_indicators: 70   # Cases with mental health terminology
+    crisis_escalation_patterns: 40  # Cases with documented crisis progression
+    
+  # Control cases - should NOT trigger risk flags
+  stable_cases_without_risk: 100  # Clients with no risk factors for baseline comparison
+  successful_outcomes: 80         # Cases with documented positive outcomes
+  
+  # Edge cases for algorithm robustness
+  subtle_risk_indicators: 30      # Indirect or implied risk factors
+    
+  ambiguous_language_cases: 25    # Cases where risk indicators are unclear
+
+# ===============================================================================
+# CASE NOTE REQUIREMENTS
+# Specific documentation patterns needed for algorithm training and validation
+# ===============================================================================
+note_generation_requirements:
+  
+  crisis_documentation_patterns:
+    # Generate realistic crisis escalation sequences
+    crisis_buildup_notes: 20        # Notes showing gradual crisis development
+    acute_crisis_documentation: 40  # Notes during active crisis periods
+    crisis_resolution_notes: 35     # Notes showing crisis intervention outcomes
+    
+  risk_factor_documentation:
+    # Ensure risk factors appear in realistic documentation contexts
+    explicit_risk_mentions: 0.40    # Direct statements about risk factors
+    implied_risk_indicators: 0.35   # Indirect references requiring interpretation
+    contextual_risk_clues: 0.25     # Risk factors embedded in broader narratives
+    
+  sentiment_variation_requirements:
+    positive_progress_notes: 120     # Notes documenting positive developments
+    neutral_routine_notes: 200       # Standard check-in documentation
+    concerning_development_notes: 80  # Notes indicating emerging problems
+    crisis_intervention_notes: 60    # Emergency response documentation
+
+# ===============================================================================
+# TEMPORAL PATTERNS
+# Time-based patterns needed for longitudinal algorithm validation
+# ===============================================================================
+temporal_requirements:
+  
+  case_progression_patterns:
+    stable_throughout: 150           # Cases maintaining consistent status
+    gradual_improvement: 100         # Cases showing slow positive progress  
+    gradual_deterioration: 80        # Cases showing slow negative progression
+    crisis_with_recovery: 60         # Cases with crisis followed by improvement
+    recurring_crisis_pattern: 40     # Cases with multiple crisis episodes
+    
+  note_frequency_validation:
+    # Test algorithm performance across different documentation frequencies
+    weekly_documentation_cases: 100   # High-frequency note generation
+    monthly_documentation_cases: 200  # Standard frequency documentation
+    irregular_documentation_cases: 50 # Inconsistent note timing patterns
+
+# ===============================================================================
+# EXPORT SPECIFICATIONS
+# Format requirements for sda-casenote-reader integration
+# ===============================================================================
+export_requirements:
+  
+  ground_truth_labels:
+    include_risk_factor_labels: true     # Include known risk factors for validation
+    include_crisis_event_labels: true    # Label crisis events with timing
+    include_outcome_labels: true         # Label case outcomes for training
+    
+  data_format:
+    client_id_format: "SYNTH_[5_digit_number]"  # e.g., SYNTH_00123
+    note_id_format: "NOTE_[client_id]_[sequence]"  # e.g., NOTE_SYNTH_00123_001
+    date_range: ["2022-01-01", "2024-12-31"]      # Realistic but displaced dates
+    
+  validation_datasets:
+    training_split: 0.60             # 60% for algorithm training
+    validation_split: 0.20           # 20% for validation during development
+    testing_split: 0.20              # 20% for final algorithm testing
+
+# ===============================================================================
+# QUALITY ASSURANCE REQUIREMENTS
+# Validation checks to ensure synthetic data meets testing needs
+# ===============================================================================
+quality_checks:
+  
+  risk_factor_distribution_validation:
+    # Verify synthetic data contains expected risk factor patterns
+    housing_instability_prevalence: [0.35, 0.45]  # Expected range
+    substance_use_prevalence: [0.20, 0.30]
+    mental_health_prevalence: [0.30, 0.40]
+    criminal_history_prevalence: [0.15, 0.25]
+    
+  linguistic_authenticity_checks:
+    terminology_appropriateness: true    # Verify realistic social services language
+    writing_style_variation: true        # Ensure diverse caseworker styles
+    error_pattern_realism: true         # Check for authentic human errors
+    
+  temporal_pattern_validation:
+    case_duration_realism: true         # Verify realistic case engagement periods
+    crisis_timing_authenticity: true    # Check crisis event timing patterns
+    note_frequency_accuracy: true       # Validate documentation frequency patterns
+
+# ===============================================================================
+# SUCCESS CRITERIA
+# Benchmarks for determining if synthetic data meets project needs  
+# ===============================================================================
+success_criteria:
+  
+  algorithm_performance_benchmarks:
+    overall_risk_classification_accuracy: 0.90  # 90% overall accuracy target
+    precision_recall_balance: true              # No single metric dominance
+    consistent_performance_across_demographics: true  # No bias in performance
+    
+  synthetic_data_quality_benchmarks:
+    indistinguishable_from_real_notes: true     # Pass human review test
+    complete_fictional_status_maintained: true  # No real-world correlation
+    sufficient_pattern_diversity: true          # Rich enough for robust testing
+
+# ===============================================================================
+# EXPERT NOTES AND CALIBRATION
+# Domain expert guidance for realistic synthetic data generation
+# ===============================================================================
+expert_notes: |
+  This scenario is designed to rigorously test SDA risk assessment algorithms using
+  controlled synthetic data with known characteristics. Key considerations:
+  
+  Algorithm Testing Strategy:
+  - Population deliberately structured with known risk distributions
+  - Ground truth labels enable precise accuracy measurement
+  - Edge cases included to test algorithm robustness
+  - Temporal patterns provide longitudinal validation opportunities
+  
+  Realism Requirements:
+  - All synthetic patterns must reflect authentic social services documentation
+  - Risk factors should co-occur at realistic rates
+  - Case progression patterns should match observed clinical patterns
+  - Writing styles must vary authentically across caseworkers
+  
+  Validation Approach:
+  - Compare algorithm performance on synthetic vs. anonymized real data
+  - Verify that known positive cases trigger appropriate risk flags
+  - Ensure control cases do not generate false positives
+  - Test algorithm stability across different synthetic data generations
+  
+  Next Steps:
+  1. Generate initial synthetic dataset using these specifications
+  2. Run SDA algorithms on synthetic data to establish baseline performance
+  3. Compare results to validation targets and adjust as needed
+  4. Iterate on synthetic data generation based on algorithm performance gaps
