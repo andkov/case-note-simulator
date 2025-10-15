@@ -1,0 +1,154 @@
+{
+  "workflow": {
+    "name": "Expert-Guided Synthetic Case Note Generator",
+    "description": "Multi-stage workflow for generating realistic synthetic case notes with expert-defined parameters",
+    "version": "1.0",
+    "stages": [
+      {
+        "stage_id": 1,
+        "name": "Population Architecture",
+        "description": "Define demographic parameters and risk factor models",
+        "execution_mode": "parallel",
+        "cards": [
+          {
+            "card_id": "demo_architect",
+            "type": "agent",
+            "name": "Demographics Architect",
+            "model": "gpt-4",
+            "system_prompt": "You are a demographic modeling expert specializing in Alberta-like social services populations. Guide users through realistic population parameter decisions.",
+            "user_prompt": "Based on the user input: {input}\n\nHelp define demographic parameters for synthetic case note generation:\n1. Age distribution patterns (18-64 primary, 65-80 secondary)\n2. Gender distribution and family structures\n3. Geographic spread (urban/rural patterns)\n4. Employment status distributions\n5. Housing stability patterns\n\nProvide realistic Alberta-like demographic foundations while maintaining complete fictional status.",
+            "connections": []
+          },
+          {
+            "card_id": "risk_modeler",
+            "type": "agent",
+            "name": "Risk Factor Modeler",
+            "model": "gpt-4",
+            "system_prompt": "You are an expert in social services risk assessment and client complexity modeling. Focus on realistic co-occurrence patterns of client challenges.",
+            "user_prompt": "Using the context: {input}\n\nDefine risk factor combinations and patterns:\n1. Mental health challenge prevalence\n2. Substance use patterns and co-occurrence\n3. Housing instability factors\n4. Medical complexity and hospital utilization\n5. Justice system involvement patterns\n6. Dependent care responsibilities\n7. Employment barriers and gaps\n\nEnsure realistic co-occurrence rates that mirror real social services populations.",
+            "connections": []
+          },
+          {
+            "card_id": "reference_data",
+            "type": "function",
+            "name": "Excel Input",
+            "function_type": "excel_input",
+            "parameters": {
+              "file_path": "",
+              "sheet_name": "",
+              "description": "Load any existing population templates, reference distributions, or baseline data"
+            },
+            "connections": []
+          }
+        ]
+      },
+      {
+        "stage_id": 2,
+        "name": "Client Profile Assembly",
+        "description": "Create distinct client archetypes with realistic variation",
+        "execution_mode": "sequential",
+        "cards": [
+          {
+            "card_id": "archetype_designer",
+            "type": "agent",
+            "name": "Archetype Designer",
+            "model": "gpt-4",
+            "system_prompt": "You are a client profiling specialist who creates realistic, diverse client archetypes for social services contexts. Combine demographic and risk factor inputs into coherent client profiles.",
+            "user_prompt": "Synthesize the demographic parameters and risk factors from previous stage: {input}\n\nCreate distinct client archetypes that:\n1. Combine demographics with realistic risk factor patterns\n2. Represent the full spectrum of client complexity\n3. Include both typical and edge cases\n4. Maintain internal consistency within each profile\n5. Enable targeted scenario testing\n\nGenerate 8-12 distinct archetypes covering the complexity range.",
+            "connections": ["demo_architect", "risk_modeler", "reference_data"]
+          },
+          {
+            "card_id": "complexity_calibrator",
+            "type": "agent",
+            "name": "Complexity Calibrator",
+            "model": "gpt-4",
+            "system_prompt": "You are a case complexity assessment expert. Assign realistic adversity levels and intervention intensity patterns to client profiles.",
+            "user_prompt": "Based on the client archetypes: {input}\n\nCalibrate complexity levels for each archetype:\n1. Low complexity: Minimal barriers, straightforward interventions\n2. Moderate complexity: Multiple interacting challenges\n3. High complexity: Crisis-level, multi-system involvement\n4. Variable complexity: Profiles that can fluctuate\n\nEnsure complexity assignments drive realistic case note patterns and intervention frequencies.",
+            "connections": ["archetype_designer"]
+          }
+        ]
+      },
+      {
+        "stage_id": 3,
+        "name": "Case Note Synthesis",
+        "description": "Generate diverse case notes with controlled characteristics",
+        "execution_mode": "parallel",
+        "cards": [
+          {
+            "card_id": "primary_writer",
+            "type": "agent",
+            "name": "Primary Note Writer",
+            "model": "gpt-4",
+            "system_prompt": "You are an experienced social services caseworker who writes professional, realistic case notes. Use authentic social services terminology and documentation patterns.",
+            "user_prompt": "Generate case notes for the client profiles: {input}\n\nCreate case notes that:\n1. Follow professional social work documentation standards\n2. Include client situation, background, current issue, and desired outcomes\n3. Use authentic terminology from Alberta social services context\n4. Vary in length and detail appropriately\n5. Reflect the complexity level of each client profile\n\nGenerate multiple notes per archetype to show realistic variation.",
+            "connections": ["complexity_calibrator"]
+          },
+          {
+            "card_id": "variation_writer",
+            "type": "agent",
+            "name": "Variation Writer",
+            "model": "gpt-4",
+            "system_prompt": "You are a documentation style specialist who creates realistic variation in caseworker writing approaches, from experienced professionals to newer staff, rushed vs thorough documentation.",
+            "user_prompt": "Create alternative writing styles for the same client profiles: {input}\n\nGenerate variations representing:\n1. Experienced vs newer caseworker documentation\n2. Rushed vs thorough note-taking\n3. Different organizational documentation cultures\n4. Varying levels of detail and completeness\n5. Different caseworker personalities and approaches\n\nMaintain factual consistency while varying style and depth.",
+            "connections": ["complexity_calibrator"]
+          },
+          {
+            "card_id": "scenario_encoder",
+            "type": "agent",
+            "name": "Scenario Encoder",
+            "model": "gpt-4",
+            "system_prompt": "You are a testing scenario specialist who embeds specific, measurable conditions into case notes for algorithm validation purposes.",
+            "user_prompt": "Embed testable scenarios into subset of case notes: {input}\n\nCreate targeted scenarios for:\n1. Specific sentiment patterns (positive/negative/mixed)\n2. Risk flags (safety concerns, crisis indicators)\n3. Service coordination needs\n4. Outcome prediction challenges\n5. Edge cases for algorithm testing\n\nEnsure scenarios are realistic but clearly identifiable for validation purposes.",
+            "connections": ["complexity_calibrator"]
+          }
+        ]
+      },
+      {
+        "stage_id": 4,
+        "name": "Quality Assurance & Export",
+        "description": "Validate realism and format final dataset",
+        "execution_mode": "sequential",
+        "cards": [
+          {
+            "card_id": "realism_validator",
+            "type": "agent",
+            "name": "Realism Validator",
+            "model": "gpt-4",
+            "system_prompt": "You are a quality assurance specialist for synthetic social services data. Validate authenticity while ensuring complete fictional status.",
+            "user_prompt": "Validate the generated case notes: {input}\n\nCheck for:\n1. Authentic social services terminology usage\n2. Realistic client presentation patterns\n3. Appropriate complexity-to-documentation alignment\n4. Consistency across related notes\n5. Absence of identifiable real-world references\n6. Professional documentation standards compliance\n\nProvide quality metrics and improvement recommendations.",
+            "connections": ["primary_writer", "variation_writer", "scenario_encoder"]
+          },
+          {
+            "card_id": "dataset_assembler",
+            "type": "agent",
+            "name": "Dataset Assembler",
+            "model": "gpt-4",
+            "system_prompt": "You are a data formatting specialist who creates structured datasets ready for analytical processing. Format synthetic case note data according to SDA specifications.",
+            "user_prompt": "Assemble the final dataset from validated components: {input}\n\nCreate structured output with columns:\n1. person_oid (unique identifier)\n2. first_name (fictional)\n3. last_name (fictional)\n4. gender\n5. age\n6. case_note (full text)\n7. complexity_level\n8. archetype_id\n9. writer_style\n10. embedded_scenarios (if any)\n\nEnsure format compatibility with text analysis tools and maintain traceability to generation parameters.",
+            "connections": ["realism_validator"]
+          },
+          {
+            "card_id": "export_function",
+            "type": "function",
+            "name": "Dataset Export",
+            "function_type": "file_export",
+            "parameters": {
+              "format": "csv",
+              "filename": "synthetic_case_notes_{timestamp}",
+              "include_metadata": true,
+              "description": "Export final dataset ready for text analysis pipeline"
+            },
+            "connections": ["dataset_assembler"]
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created_by": "GitHub Copilot",
+      "creation_date": "2025-10-15",
+      "purpose": "Synthetic case note generation for SDA text analysis validation",
+      "target_domain": "Alberta-like social services",
+      "output_format": "Structured CSV with case note text column"
+    }
+  }
+}
