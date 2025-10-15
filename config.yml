@@ -1,0 +1,21 @@
+default:
+  project_name: "aim-2025-sandbox"
+  
+  # !!! This is an example !!! Replace with project-specific details
+  # Database Configuration - Access to prepared data from books-of-ukraine
+  # Available databases:
+  # - main: Final analytical database (optimized for analysts)
+  # - stage_2: Comprehensive database with custom additions
+  database:
+    books_of_ukraine:
+      main: "./data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite"
+      stage_2: "./data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+
+  # Basic project configuration
+  directories:
+    ai: "./ai/"
+    data_private: "./data-private/"
+    data_public: "./data-public/"
+    analysis: "./analysis/"
+    derived: "./data-private/derived/"
+    raw: "./data-private/raw/"
