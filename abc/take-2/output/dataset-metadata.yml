@@ -1,0 +1,29 @@
+dataset_name: synthetic_case_notes
+export_timestamp: '2025-10-16T20:17:55.162817Z'
+generation_date: '2025-10-16T20:17:55.156820Z'
+generation_parameters:
+  age_focus: 18-64 primary
+  complexity_distribution:
+    level_1: 25%
+    level_2: 45%
+    level_3: 25%
+    level_4: 5%
+  target_population: Alberta-like social services clients
+quality_metrics:
+  average_age: 39.418
+  complexity_distribution:
+    1: 0.134
+    2: 0.358
+    3: 0.4
+    4: 0.108
+  gender_distribution:
+    Female: 0.564
+    Male: 0.436
+  location_distribution:
+    Rural: 0.27
+    Urban: 0.73
+total_cases: 500
+validation_targets:
+  housing_crisis_indicators: 75 cases (15.0%)
+  mental_health_deterioration: 40 cases (8.0%)
+  successful_service_connections: 60 cases (12.0%)
