@@ -11,7 +11,7 @@
 # Updated: 2025-08-15 - Modernized based on SDA-CEIS-Impact implementation
 
 update_copilot_instructions <- function(file_list) {
-  # Map friendly names to actual file paths (Books of Ukraine - updated)
+  # Map friendly names to actual file paths
   file_map <- list(
     "onboarding-ai" = "./ai/onboarding-ai.md",
     "mission" = "./ai/mission.md", 
@@ -26,10 +26,14 @@ update_copilot_instructions <- function(file_list) {
     "memory-ai" = "./ai/memory-ai.md",
     "project-map" = "./ai/project-map.md",
     "input-manifest" = "./data-public/metadata/INPUT-manifest.md",
-    "ua-admin-manifest" = "./data-public/metadata/ua-admin-manifest.md",
-    # Generic agent persona - dynamically loaded
-    "agent-persona" = get_active_persona_file()
+    "ua-admin-manifest" = "./data-public/metadata/ua-admin-manifest.md"
   )
+  
+  # Add agent persona if one is active
+  active_persona_file <- get_active_persona_file()
+  if (!is.null(active_persona_file)) {
+    file_map[["agent-persona"]] <- active_persona_file
+  }
   
   instructions_path <- ".github/copilot-instructions.md"
   
@@ -117,10 +121,14 @@ add_to_instructions <- function(...) {
       "memory-ai" = "./ai/memory-ai.md",
       "project-map" = "./ai/project-map.md",
       "input-manifest" = "./ai/INPUT-manifest.md",
-      "ua-admin-manifest" = "./ai/ua-admin-manifest.md",
-      # Generic agent persona - dynamically loaded
-      "agent-persona" = get_active_persona_file()
+      "ua-admin-manifest" = "./ai/ua-admin-manifest.md"
     )
+    
+    # Add agent persona if one is active
+    active_persona_file <- get_active_persona_file()
+    if (!is.null(active_persona_file)) {
+      file_map[["agent-persona"]] <- active_persona_file
+    }
     for (alias in names(file_map)) {
       exists_marker <- if (file.exists(file_map[[alias]])) "✓" else "✗"
       message("  ", exists_marker, " ", alias, " -> ", file_map[[alias]])
