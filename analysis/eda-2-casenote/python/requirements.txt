@@ -1,0 +1,6 @@
+﻿# Python dependencies for NLP processing
+transformers
+torch
+pandas
+numpy
+scikit-learn

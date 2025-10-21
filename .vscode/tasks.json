@@ -12,6 +12,16 @@
       "options": { "cwd": "${workspaceFolder}" }
     },
     {
+      "label": "Render EDA-2 Case Note Report (Quarto)",
+      "type": "shell",
+      "command": "quarto",
+      "args": ["render", "analysis/eda-2-casenote/eda-2-casenote.qmd", "--to", "html", "--embed-resources", "--standalone"],
+      "group": { "kind": "build", "isDefault": false },
+      "presentation": { "echo": true, "reveal": "always", "panel": "shared" },
+      "problemMatcher": [],
+      "options": { "cwd": "${workspaceFolder}" }
+    },
+    {
       "label": "Check Quarto Availability",
       "type": "shell",
       "command": "quarto",
