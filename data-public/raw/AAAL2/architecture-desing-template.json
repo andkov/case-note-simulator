@@ -1,0 +1,281 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# ➡️ Inputs\nItems that will provide information or direction for the workflow",
+        "height": 304,
+        "width": 304,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1344,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "4d741d4f-a20d-40fa-8944-2f5d28d18ae9",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# 💾 Data Sources\nSystems where your information is coming from",
+        "height": 256,
+        "width": 384,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1024,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "a9217eab-3891-4516-9b52-c803f58328e6",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# ⬅️ Outputs\nWhat you want to get out of the workflow",
+        "height": 304,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        224,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "024ff239-894d-4b0c-a346-6c69eaffa9a8",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# 🤖 Sub-Agents\nOther workflows or agents that are being used",
+        "height": 256,
+        "width": 432,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -624,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "161fba50-df1b-4610-bae7-c92988c015bd",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# 🔨 Tools\nExternal tools or systems that you are using to assist with this agent",
+        "height": 256,
+        "width": 384,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -176,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "eab04f82-5a0a-4950-8c0d-8bb0f17d4ec0",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "# 📋 Assumptions\nThings that you are assuming\n1. Assumption",
+        "height": 496,
+        "width": 304,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1344,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "7c6684a6-6b26-416f-b05d-60479c33f2e6",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "# 💣 Potential Risks\nAnything that could potentially go wrong. Remember, Murphy was an optimist!\n1. Risk",
+        "height": 512,
+        "width": 352,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        224,
+        160
+      ],
+      "typeVersion": 1,
+      "id": "3780a739-9f99-4102-814b-e1ff07f08e5e",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "# 🟩 Program Flow\nHow the workflow will actually work",
+        "height": 304,
+        "width": 1232,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1024,
+        -176
+      ],
+      "typeVersion": 1,
+      "id": "565b9b5f-ab1c-4514-96ab-68e988d10af7",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1296,
+        -48
+      ],
+      "id": "d9d0575d-2709-4d74-a1bf-96b211351d47",
+      "name": "Start Here"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        -48
+      ],
+      "id": "911a8e26-95af-4f3f-83c4-dc9abe4ec147",
+      "name": "Action 1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        272
+      ],
+      "id": "524b4724-f669-4299-bfcc-d173cf9784cf",
+      "name": "My Database"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        272
+      ],
+      "id": "f6e7f14c-0ca6-466b-b71c-7557fcf01085",
+      "name": "Workflow 1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -48
+      ],
+      "id": "3fcd1208-ea23-4e09-99be-05b3f390c1d4",
+      "name": "Action 2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        288
+      ],
+      "id": "8f42a953-65da-4eae-98b4-6a360041bf2a",
+      "name": "Tool 1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        336,
+        -48
+      ],
+      "id": "d831b698-7185-4c94-addd-2715728d60e5",
+      "name": "Final Output",
+      "notesInFlow": true,
+      "notes": "These are notes that you can see on the canvas"
+    }
+  ],
+  "connections": {
+    "Start Here": {
+      "main": [
+        [
+          {
+            "node": "Action 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action 1": {
+      "main": [
+        [
+          {
+            "node": "Workflow 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Tool 1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Action 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "My Database": {
+      "main": [
+        [
+          {
+            "node": "Action 1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow 1": {
+      "main": [
+        [
+          {
+            "node": "Action 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action 2": {
+      "main": [
+        [
+          {
+            "node": "Final Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "cd6287d4a549561653241eb855dc55370b02d244e2dd60c4f136ae0760fa6c4b"
+  }
+}
