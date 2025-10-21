@@ -1,7 +1,7 @@
-# AI Memory Functions (Streamlined) - Books of Ukraine Project
+# AI Memory Functions (Streamlined) - Case Note Simulator Project
 # Simplified, essential functions for human-friendly memory management
 # Optimized for VS Code workflow and reduced cognitive load
-# Adapted from mature sda-ceis-impact implementation
+# Supports persona-aware AI assistance for synthetic case note analysis
 
 #' Quick Memory Status Check
 #' 
@@ -12,7 +12,13 @@ memory_status <- function(project_root = ".") {
   memory_human_file <- file.path(project_root, "ai", "memory-human.md")
   memory_hub_file <- file.path(project_root, "ai", "memory-hub.md")
   
-  cat("📊 **Memory System Status** (Books of Ukraine)\n")
+  cat("📊 **Memory System Status** (Case Note Simulator)\n")
+  
+  # Show current persona if function exists
+  if (exists("get_current_persona")) {
+    current_persona <- get_current_persona()
+    cat("🎭 **Active Persona**: ", current_persona, "\n")
+  }
   
   if (file.exists(memory_ai_file)) {
     mtime <- file.info(memory_ai_file)$mtime
@@ -106,7 +112,7 @@ quick_intent_scan <- function(pattern = "TODO|FIXME|XXX|NOTE:") {
     return(invisible(TRUE))
   }
   
-  cat("🔍 **Quick Intent Scan** (Books of Ukraine)\n")
+  cat("🔍 **Quick Intent Scan** (Case Note Simulator)\n")
   
   found_items <- 0
   for (file in all_files) {
@@ -138,7 +144,7 @@ quick_intent_scan <- function(pattern = "TODO|FIXME|XXX|NOTE:") {
 #' Main function - simplified and focused for Books of Ukraine project
 ai_memory_check <- function() {
   
-  cat("🧠 **AI Memory System** (Books of Ukraine - Streamlined)\n\n")
+  cat("🧠 **AI Memory System** (Case Note Simulator - Streamlined)\n\n")
   
   # Quick status
   memory_status()
@@ -182,8 +188,9 @@ context_refresh <- function() {
 }
 
 # Simple initialization
-cat("🧠 AI Memory Functions Loaded (Books of Ukraine - Streamlined)\n")
+cat("🧠 AI Memory Functions Loaded (Case Note Simulator - Streamlined)\n")
 cat("📚 Main Functions: ai_memory_check(), memory_status()\n")
 cat("📝 Update Functions: simple_memory_update(), human_memory_update()\n")
 cat("🔄 Utility Functions: quick_intent_scan(), context_refresh()\n")
+cat("🎭 Persona Support: Integrates with persona management system\n")
 cat("💡 Focus: Human-friendly, VS Code integrated, 5-component architecture\n")

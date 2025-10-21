@@ -26,7 +26,9 @@ update_copilot_instructions <- function(file_list) {
     "memory-ai" = "./ai/memory-ai.md",
     "project-map" = "./ai/project-map.md",
     "input-manifest" = "./data-public/metadata/INPUT-manifest.md",
-    "ua-admin-manifest" = "./data-public/metadata/ua-admin-manifest.md"
+    "ua-admin-manifest" = "./data-public/metadata/ua-admin-manifest.md",
+    # Generic agent persona - dynamically loaded
+    "agent-persona" = get_active_persona_file()
   )
   
   instructions_path <- ".github/copilot-instructions.md"
@@ -115,7 +117,9 @@ add_to_instructions <- function(...) {
       "memory-ai" = "./ai/memory-ai.md",
       "project-map" = "./ai/project-map.md",
       "input-manifest" = "./ai/INPUT-manifest.md",
-      "ua-admin-manifest" = "./ai/ua-admin-manifest.md"
+      "ua-admin-manifest" = "./ai/ua-admin-manifest.md",
+      # Generic agent persona - dynamically loaded
+      "agent-persona" = get_active_persona_file()
     )
     for (alias in names(file_map)) {
       exists_marker <- if (file.exists(file_map[[alias]])) "✓" else "✗"
@@ -202,6 +206,10 @@ context_refresh <- function() {
   message("🔍 DYNAMIC CONTEXT SCAN")
   message(paste(rep("=", 50), collapse = ""))
   
+  # Check current persona
+  current_persona <- get_current_persona()
+  message("🎭 Active persona: ", current_persona)
+  
   # Check current context
   instructions_path <- ".github/copilot-instructions.md"
   
@@ -235,6 +243,12 @@ context_refresh <- function() {
     message("    Missing directories: ", paste(missing_dirs, collapse = ", "))
   }
 
+  message("\n🎭 PERSONA MANAGEMENT (Dynamic):")
+  message("👤  Load persona: set_persona('path/to/persona.md', 'name')")
+  message("📋  List personas: list_personas()")
+  message("🔧  Quick switches: activate_casenote_analyst()")
+  message("🔄  Deactivate: deactivate_persona()")
+  
   message("\n🚀 QUICK REFRESH OPTIONS:")
   message("1️⃣  Core context: add_core_context()")
   message("2️⃣  Data context: add_data_context()")  
@@ -692,6 +706,181 @@ get_command_help <- function(command_name = NULL) {
 }
 
 # ==============================================================================
+# PERSONA MANAGEMENT SYSTEM
+# ==============================================================================
+
+# Get the currently active persona file path
+get_active_persona_file <- function() {
+  persona_config <- "./.copilot-persona"
+  
+  if (file.exists(persona_config)) {
+    config_lines <- readLines(persona_config, warn = FALSE)
+    # Look for a line starting with "file:"
+    file_line <- config_lines[grepl("^file:", config_lines)]
+    if (length(file_line) > 0) {
+      persona_file <- trimws(gsub("^file:", "", file_line[1]))
+      if (file.exists(persona_file)) {
+        return(persona_file)
+      }
+    }
+  }
+  
+  # Default: no agent persona active
+  return(NULL)
+}
+
+# Get current persona info
+get_current_persona <- function() {
+  persona_config <- "./.copilot-persona"
+  
+  if (file.exists(persona_config)) {
+    config_lines <- readLines(persona_config, warn = FALSE)
+    
+    # Extract persona name
+    name_line <- config_lines[grepl("^name:", config_lines)]
+    persona_name <- if (length(name_line) > 0) {
+      trimws(gsub("^name:", "", name_line[1]))
+    } else {
+      "unnamed-persona"
+    }
+    
+    return(persona_name)
+  }
+  
+  return("default")
+}
+
+# Set current persona with flexible file path
+set_persona <- function(persona_file_path, persona_name = NULL, additional_context = c("mission", "method")) {
+  persona_config <- "./.copilot-persona"
+  
+  # Validate persona file exists
+  if (!file.exists(persona_file_path)) {
+    message("❌ Persona file not found: ", persona_file_path)
+    return(invisible(FALSE))
+  }
+  
+  # Auto-generate persona name if not provided
+  if (is.null(persona_name)) {
+    persona_name <- tools::file_path_sans_ext(basename(persona_file_path))
+    persona_name <- gsub("system-prompt-|prompt-", "", persona_name)
+  }
+  
+  # Create persona configuration
+  config_content <- c(
+    paste("name:", persona_name),
+    paste("file:", persona_file_path),
+    paste("created:", format(Sys.time(), "%Y-%m-%d %H:%M:%S")),
+    paste("additional_context:", paste(additional_context, collapse = ", "))
+  )
+  
+  writeLines(config_content, persona_config)
+  
+  # Load the persona context
+  context_components <- c("agent-persona", additional_context)
+  
+  message("🎭 Activating persona: ", persona_name)
+  message("📁 Persona file: ", persona_file_path)
+  message("📚 Loading context: ", paste(context_components, collapse = ", "))
+  
+  # Load the context
+  do.call(add_to_instructions, as.list(context_components))
+  
+  message("✅ Persona activated: ", persona_name)
+  return(invisible(TRUE))
+}
+
+# Show available personas and current status
+list_personas <- function(scan_directory = NULL) {
+  current <- get_current_persona()
+  current_file <- get_active_persona_file()
+  
+  message("🎭 PERSONA SYSTEM STATUS")
+  message("=" %r% 50)
+  
+  if (!is.null(current_file)) {
+    message("🎯 ACTIVE PERSONA: ", current)
+    message("   File: ", current_file)
+    message("   Status: ✅ Loaded")
+  } else {
+    message("🎯 ACTIVE PERSONA: default (no agent persona loaded)")
+    message("   Status: 🔄 Using general context only")
+  }
+  
+  message("")
+  message("📁 DISCOVERED PERSONA FILES:")
+  
+  # Scan for potential persona files
+  persona_dirs <- c(
+    "./analysis/eda-2-casenote/",
+    "./ai/",
+    "./guides/",
+    if (!is.null(scan_directory)) scan_directory
+  )
+  
+  found_personas <- c()
+  
+  for (dir in persona_dirs) {
+    if (dir.exists(dir)) {
+      # Look for system-prompt-*.md, prompt-*.md, or *-persona.md files
+      persona_files <- list.files(dir, 
+        pattern = "(system-prompt-.*\\.md|prompt-.*\\.md|.*-persona\\.md)", 
+        full.names = TRUE, recursive = FALSE
+      )
+      
+      for (file in persona_files) {
+        persona_name <- tools::file_path_sans_ext(basename(file))
+        persona_name <- gsub("system-prompt-|prompt-|-persona", "", persona_name)
+        
+        active_marker <- if (identical(file, current_file)) " (ACTIVE)" else ""
+        message("   🤖 ", persona_name, active_marker)
+        message("      📁 ", file)
+        
+        found_personas <- c(found_personas, file)
+      }
+    }
+  }
+  
+  if (length(found_personas) == 0) {
+    message("   📭 No persona files found in standard locations")
+  }
+  
+  message("")
+  message("💡 USAGE:")
+  message("   set_persona('path/to/persona-file.md', 'optional-name')")
+  message("   activate_casenote_analyst()  # Quick shortcut")
+  message("   deactivate_persona()         # Switch back to default")
+  message("   list_personas('custom/dir')  # Scan specific directory")
+}
+
+# Deactivate current persona (return to default)
+deactivate_persona <- function() {
+  persona_config <- "./.copilot-persona"
+  
+  if (file.exists(persona_config)) {
+    file.remove(persona_config)
+    message("🎭 Persona deactivated - returning to default context")
+    
+    # Load default context
+    add_to_instructions("onboarding-ai", "mission", "method")
+    return(invisible(TRUE))
+  } else {
+    message("ℹ️ No active persona to deactivate")
+    return(invisible(FALSE))
+  }
+}
+
+# Quick persona switching shortcuts
+activate_casenote_analyst <- function() {
+  set_persona("./analysis/eda-2-casenote/system-prompt-casenote-analyst.md", "casenote-analyst")
+}
+
+# Generic persona loader for any file
+load_persona_from_file <- function(file_path, persona_name = NULL) {
+  set_persona(file_path, persona_name)
+}
+
+# ==============================================================================
 # FILE CHANGE LOGGING FUNCTION
 # ==============================================================================
 
@@ -796,6 +985,14 @@ if (!exists("copilot_context_initialized")) {
   cat("  - add_to_instructions() # manual component selection\n")
   cat("  - remove_all_dynamic_instructions() # reset dynamic content\n")
   cat("  - check_cache_manifest()   # 🆕 Check CACHE manifest status & update if needed\n")
+  cat("🎭 PERSONA SYSTEM (Dynamic):\n")
+  cat("  - list_personas()       # 🆕 Show available persona files & status\n")
+  cat("  - set_persona('file.md', 'name') # 🆕 Load any persona file\n")
+  cat("  - get_current_persona() # 🆕 Check active persona\n")
+  cat("  - deactivate_persona()  # 🆕 Return to default context\n")
+  cat("  - activate_casenote_analyst() # 🆕 Quick shortcut\n")
+  cat("  - load_persona_from_file()    # 🆕 Generic persona loader\n")
+  cat("🧠 MEMORY SYSTEM:\n")
   cat("  - ai_memory_check()     # 🧠 Project memory & intent detection\n")
   cat("  - memory_status()       # Quick memory status\n")
   cat("  - log_file_change()     # 📝 Log file modifications to logbook\n")
