@@ -126,3 +126,6 @@ analysis/*/*/*/*.html
 !.vscode/launch.json
 !.vscode/settings.json.example
 case-note-simulator.code-workspace
+analysis/M365-take-1/agent-instructions.md
+analysis/M365-take-1/system-prompt.md
+analysis/M365-take-1/user-prompt.md
