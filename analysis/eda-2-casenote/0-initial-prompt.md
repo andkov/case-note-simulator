@@ -204,3 +204,7 @@ eda-2-casenote/
 - Python NLP preparation
 
 **Rest Point Established** - Layer 1 production-ready demographic analysis confirmed working 
+
+# Feedback
+
+I like the overall shape of things, but the R script is lacking. Let's focus on these three layers. They should be stages of adding the new columns to the input data table and describing it. So for example, for Layer 1, I want  the description of the input data, univariate distributions of available non-text columns (except ids), before we proceed. Make sure that you generate ggplots that describe these distributions and actually output them into the html.
