@@ -11,7 +11,7 @@ test_developer_integration <- function() {
   
   # Test 1: Check persona file exists
   cat("📁 Test 1: Persona file existence...\n")
-  persona_file <- "./ai/system-prompt-developer.md"
+  persona_file <- "./ai/personas/developer.md"
   if (file.exists(persona_file)) {
     cat("✅ Developer persona file found\n")
   } else {
@@ -72,6 +72,7 @@ test_developer_integration <- function() {
   cat("   list_personas()              # See all personas\n") 
   cat("   deactivate_persona()         # Return to basic context\n")
   cat("   See: ./guides/developer-persona-guide.md\n")
+  cat("   Advanced: ./ai/personas/persona-system-guide.md\n")
   
   return(TRUE)
 }

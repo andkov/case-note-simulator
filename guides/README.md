@@ -10,7 +10,8 @@ The `guides/` folder contains instructional materials reflecting the current sta
 - **`custom-data-guide.md`** - Complete guide for adding custom data sources to Ellis Pipeline
 
 ### AI Persona System
-- **`repo-guardian-persona-guide.md`** - Repository Guardian: Backend & reproducible research specialist
+- **`developer-persona-guide.md`** - Developer: Default backend & reproducible research specialist
+- **Advanced**: See `../ai/personas/persona-system-guide.md` for comprehensive persona system documentation
 
 ### Command References  
 - **`command-guide.md`** - Essential commands for project operations

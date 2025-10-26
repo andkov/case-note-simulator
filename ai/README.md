@@ -4,7 +4,12 @@ This folder contains the **project-specific**  documents that build on the found
 
 This document overviews the **project-specific implementation** of FIDES (Framework for Interpretive Dialogue and Epistemic Symbiosis) - an extensible framework for the practical components of **human–AI collaborative data analysis**, where the human serves as **philosopher–scientist** and the AI functions as a **modal translator and analytic executor**.
 
-The folder also offers guidance for engaging memory and project management (MPM) system, explains file architecture specific to the project, and other project-specific nuances  instrumental for directing the scope of AI assistance.
+The folder contains a comprehensive AI system including specialized personas, memory management, and project-specific guidance instrumental for directing the scope of AI assistance.
+
+## 🚀 Quick Start
+- **Default Ready**: Developer persona loads automatically for backend/infrastructure work
+- **Domain Switch**: Use `activate_casenote_analyst()` for specialized case note analysis  
+- **Full Guide**: See `./personas/persona-system-guide.md` for comprehensive documentation
 
 
 ## Project-specific implementation 
@@ -17,11 +22,13 @@ The folder also offers guidance for engaging memory and project management (MPM)
 | `vscode-tasks-reference.md` | Reference for VS Code task automation |
 
 ## AI Persona System
-| File in `./ai/`         | Function                                          |
+| Directory/File         | Function                                          |
 |---------------------------|---------------------------------------------|
-| `system-prompt-repo-guardian.md` | **Repository Guardian** - Backend systems and reproducible research specialist |
-
-Additional specialized personas are located in analysis directories (e.g., `./analysis/eda-2-casenote/system-prompt-casenote-analyst.md`).
+| `personas/`             | **Complete AI Persona System** - Specialized AI assistants for different work contexts |
+| `personas/developer.md` | **Developer** [DEFAULT] - Backend systems and reproducible research specialist |
+| `personas/casenote-analyst.md` | **Case Note Analyst** - Social services data analysis and risk stratification |
+| `personas/README.md`    | Persona system overview and quick reference |
+| `personas/persona-system-guide.md` | Comprehensive guide for humans and AI agents |
 
 ## Memory & Project Management (MPM) System
 | File in `./ai/`         | Function                                          |

@@ -1,11 +1,11 @@
-# Repository Guardian Persona Guide
+# Developer Persona Guide
 
 ## Overview
-The **Repository Guardian** persona is a specialized AI assistant designed for backend development and reproducible research infrastructure. This persona serves as the primary technical steward for research repositories, combining expertise in reproducible research methodologies with robust backend development practices.
+The **Developer** persona is the **default** AI assistant designed for backend development and reproducible research infrastructure. This persona serves as the primary technical steward for research repositories, combining expertise in reproducible research methodologies with robust backend development practices.
 
-## When to Use Repository Guardian
+## When to Use Developer
 
-Activate the Repository Guardian persona when you need help with:
+The Developer persona is loaded **by default** when you start working. You may want to explicitly activate it when you need help with:
 
 ### 🏗️ Infrastructure & Backend Systems
 - Setting up and maintaining research data pipelines
@@ -41,8 +41,8 @@ Activate the Repository Guardian persona when you need help with:
 # Load the context management system
 source('./scripts/update-copilot-context.R')
 
-# Activate Repository Guardian persona
-activate_repo_guardian()
+# Activate Developer persona (though it's loaded by default)
+activate_developer()
 ```
 
 ### Using VS Code Tasks
@@ -75,7 +75,7 @@ Type "**context refresh**" in chat to see all available personas and activation 
 
 ### Setting Up a New Research Pipeline
 ```r
-activate_repo_guardian()
+activate_developer()
 # Then ask: "Help me design a robust data pipeline for importing 
 # survey data from multiple sources into our SQLite database with 
 # proper validation and error handling."
@@ -83,37 +83,37 @@ activate_repo_guardian()
 
 ### Debugging Flow.R Issues
 ```r
-activate_repo_guardian()  
+activate_developer()  
 # Then ask: "Our flow.R script is failing during the Quarto rendering 
 # phase. Can you help diagnose and fix the issue with better error handling?"
 ```
 
 ### Performance Optimization
 ```r
-activate_repo_guardian()
+activate_developer()
 # Then ask: "Our analysis scripts are running slowly on large datasets. 
 # Can you review the code and suggest performance improvements?"
 ```
 
 ### System Architecture Review
 ```r
-activate_repo_guardian()
+activate_developer()
 # Then ask: "Please review our current repository structure and suggest 
 # improvements for better maintainability and reproducibility."
 ```
 
 ## Integration with Other Personas
 
-The Repository Guardian works well in combination with:
+The Developer persona (default) works well in combination with:
 
 - **Case Note Analyst** (`activate_casenote_analyst()`): For domain-specific analysis requirements that need robust backend support
-- **Default Context**: For general research questions that don't require specialized technical focus
+- **Default Context**: Since Developer IS the default, deactivating returns to basic context
 
 You can switch between personas as needed:
 ```r
-activate_repo_guardian()    # For backend/infrastructure work
+activate_developer()        # Default backend/infrastructure persona (auto-loaded)
 activate_casenote_analyst() # For domain-specific analysis
-deactivate_persona()        # Return to general context
+deactivate_persona()        # Return to basic context (no agent persona)
 ```
 
 ## Persona Management Commands
@@ -127,7 +127,7 @@ deactivate_persona()                         # Return to default context
 
 ## Best Practices
 
-1. **Activate Early**: Switch to Repository Guardian before starting any backend or infrastructure work
+1. **Already Active**: Developer persona loads automatically - you're ready for backend work immediately
 2. **Be Specific**: Provide clear context about your technical requirements and constraints  
 3. **Include Error Details**: When troubleshooting, include full error messages and relevant code snippets
 4. **Think Systems**: Frame questions in terms of overall system architecture and long-term maintainability
@@ -138,7 +138,7 @@ deactivate_persona()                         # Return to default context
 For detailed help on any command:
 ```r
 source('./scripts/update-copilot-context.R')
-get_command_help('activate_repo_guardian')
+get_command_help('activate_developer')
 ```
 
 For a complete overview of the persona system:

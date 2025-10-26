@@ -254,7 +254,7 @@ context_refresh <- function() {
   message("\n🎭 PERSONA MANAGEMENT (Dynamic):")
   message("👤  Load persona: set_persona('path/to/persona.md', 'name')")
   message("📋  List personas: list_personas()")
-  message("🔧  Quick switches: activate_casenote_analyst(), activate_repo_guardian()")
+  message("🔧  Quick switches: activate_casenote_analyst(), activate_developer() [DEFAULT]")
   message("🔄  Deactivate: deactivate_persona()")
   
   message("\n🚀 QUICK REFRESH OPTIONS:")
@@ -818,8 +818,9 @@ list_personas <- function(scan_directory = NULL) {
   message("")
   message("📁 DISCOVERED PERSONA FILES:")
   
-  # Scan for potential persona files
-  persona_dirs <- c(
+  # Scan for personas in the dedicated personas directory
+  personas_dir <- "./ai/personas/"
+  legacy_dirs <- c(
     "./analysis/eda-2-casenote/",
     "./ai/",
     "./guides/",
@@ -828,7 +829,30 @@ list_personas <- function(scan_directory = NULL) {
   
   found_personas <- c()
   
-  for (dir in persona_dirs) {
+  # First, scan the main personas directory
+  if (dir.exists(personas_dir)) {
+    # Look for .md files (excluding README and guide files)
+    all_files <- list.files(personas_dir, 
+      pattern = "\\.md$", 
+      full.names = TRUE, recursive = FALSE
+    )
+    
+    # Filter out README and guide files
+    persona_files <- all_files[!grepl("README|guide", basename(all_files), ignore.case = TRUE)]
+    
+    for (file in persona_files) {
+      persona_name <- tools::file_path_sans_ext(basename(file))
+      
+      active_marker <- if (identical(file, current_file)) " (ACTIVE)" else ""
+      message("   🤖 ", persona_name, active_marker)
+      message("      📁 ", file)
+      
+      found_personas <- c(found_personas, file)
+    }
+  }
+  
+  # Then scan legacy directories for any remaining personas
+  for (dir in legacy_dirs) {
     if (dir.exists(dir)) {
       # Look for system-prompt-*.md, prompt-*.md, or *-persona.md files
       persona_files <- list.files(dir, 
@@ -841,7 +865,7 @@ list_personas <- function(scan_directory = NULL) {
         persona_name <- gsub("system-prompt-|prompt-|-persona", "", persona_name)
         
         active_marker <- if (identical(file, current_file)) " (ACTIVE)" else ""
-        message("   🤖 ", persona_name, active_marker)
+        message("   🤖 ", persona_name, " [LEGACY]", active_marker)
         message("      📁 ", file)
         
         found_personas <- c(found_personas, file)
@@ -880,11 +904,11 @@ deactivate_persona <- function() {
 
 # Quick persona switching shortcuts
 activate_casenote_analyst <- function() {
-  set_persona("./analysis/eda-2-casenote/system-prompt-casenote-analyst.md", "casenote-analyst")
+  set_persona("./ai/personas/casenote-analyst.md", "casenote-analyst", c("mission", "method"))
 }
 
-activate_repo_guardian <- function() {
-  set_persona("./ai/system-prompt-repo-guardian.md", "repo-guardian")
+activate_developer <- function() {
+  set_persona("./ai/personas/developer.md", "developer", character(0))  # Only loads agent-persona
 }
 
 # Generic persona loader for any file
@@ -986,6 +1010,13 @@ if (file.exists("./scripts/ai-memory-functions-core.R")) {
 # Auto-export functions for easy access
 if (!exists("copilot_context_initialized")) {
   cat("🤖 Copilot Context Management System Loaded\n")
+  
+  # Auto-load Developer persona as default
+  if (!file.exists("./.copilot-persona")) {
+    cat("🔧 Auto-loading default Developer persona...\n")
+    activate_developer()
+  }
+  
   cat("📚 Available functions:\n")
   cat("  - analyze_project_status() # 🆕 COMPREHENSIVE project analysis + recommendations\n")
   cat("  - context_refresh()     # Quick status + refresh options\n")
@@ -1003,7 +1034,7 @@ if (!exists("copilot_context_initialized")) {
   cat("  - get_current_persona() # 🆕 Check active persona\n")
   cat("  - deactivate_persona()  # 🆕 Return to default context\n")
   cat("  - activate_casenote_analyst() # 🆕 Quick shortcut\n")
-  cat("  - activate_repo_guardian()    # 🆕 Repository guardian persona\n")
+  cat("  - activate_developer()        # 🆕 Default developer persona\n")
   cat("  - load_persona_from_file()    # 🆕 Generic persona loader\n")
   cat("🧠 MEMORY SYSTEM:\n")
   cat("  - ai_memory_check()     # 🧠 Project memory & intent detection\n")

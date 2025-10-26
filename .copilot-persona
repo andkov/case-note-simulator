@@ -1,4 +1,4 @@
-name: repo-guardian
-file: ./ai/system-prompt-repo-guardian.md
-created: 2025-10-26 08:44:35
-additional_context: mission, method
+name: developer
+file: ./ai/personas/developer.md
+created: 2025-10-26 09:45:21
+additional_context: 
