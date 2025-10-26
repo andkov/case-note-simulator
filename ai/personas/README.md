@@ -22,11 +22,18 @@ This directory contains the complete AI persona system for the case-note-simulat
 **Dynamic Content**: `agent-persona` only (streamlined)  
 **When to Use**: Default for all backend development, system architecture, infrastructure work
 
-### 📊 Case Note Analyst  
+### � Project Manager
+**File**: `project-manager.md`  
+**Activation**: `activate_project_manager()`  
+**Specialization**: Strategic oversight, project alignment, requirements analysis, stakeholder coordination  
+**Dynamic Content**: `agent-persona`, `project/mission`, `project/method`, `project/glossary`  
+**When to Use**: Strategic planning, project oversight, ensuring alignment with research objectives
+
+### �📊 Case Note Analyst  
 **File**: `casenote-analyst.md`  
 **Activation**: `activate_casenote_analyst()`  
 **Specialization**: Social services data analysis, risk stratification, case note interpretation  
-**Dynamic Content**: `agent-persona`, `mission`, `method`  
+**Dynamic Content**: `agent-persona` only (focused domain expertise)  
 **When to Use**: Domain-specific analysis of case notes, social services research
 
 ## 🚀 Quick Start
@@ -40,8 +47,9 @@ source('./scripts/update-copilot-context.R')
 list_personas()
 
 # Switch between personas
-activate_developer()          # Default backend/infrastructure
-activate_casenote_analyst()   # Domain analysis
+activate_developer()          # Default backend/infrastructure (minimal context)
+activate_project_manager()    # Strategic oversight (full project context)
+activate_casenote_analyst()   # Domain analysis (focused expertise)
 deactivate_persona()          # Basic context only
 ```
 

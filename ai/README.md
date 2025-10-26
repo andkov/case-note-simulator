@@ -12,13 +12,14 @@ The folder contains a comprehensive AI system including specialized personas, me
 - **Full Guide**: See `./personas/persona-system-guide.md` for comprehensive documentation
 
 
-## Project-specific implementation 
-| File in `./ai/`         | Function                                          |
+## Project-Level FIDES Framework
+| Directory/File         | Function                                          |
 |---------------------------|---------------------------------------------|
-| `mission.md`            | Declares synthetic data generation mission and epistemic aims |
-| `method.md`             | Articulates data generation methods and reproducibility standards |
-| `glossary.md`           | Defines key terms and domain-specific constructs |
-| `onboarding-ai.md`      | AI agent onboarding and project context |
+| `project/`              | **Project Context Directory** - Strategic FIDES framework components |
+| `project/mission.md`    | Project mission, research objectives, and strategic goals |
+| `project/method.md`     | Research methodology and analytical frameworks |
+| `project/glossary.md`   | Domain terminology and shared vocabulary |
+| `onboarding-ai.md`      | AI agent onboarding and general project context |
 | `vscode-tasks-reference.md` | Reference for VS Code task automation |
 
 ## AI Persona System
@@ -26,6 +27,7 @@ The folder contains a comprehensive AI system including specialized personas, me
 |---------------------------|---------------------------------------------|
 | `personas/`             | **Complete AI Persona System** - Specialized AI assistants for different work contexts |
 | `personas/developer.md` | **Developer** [DEFAULT] - Backend systems and reproducible research specialist |
+| `personas/project-manager.md` | **Project Manager** - Strategic oversight and project alignment |
 | `personas/casenote-analyst.md` | **Case Note Analyst** - Social services data analysis and risk stratification |
 | `personas/README.md`    | Persona system overview and quick reference |
 | `personas/persona-system-guide.md` | Comprehensive guide for humans and AI agents |
