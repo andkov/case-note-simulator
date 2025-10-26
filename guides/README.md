@@ -9,6 +9,9 @@ The `guides/` folder contains instructional materials reflecting the current sta
 - **`flow-usage.md`** - How to use the analysis flow system
 - **`custom-data-guide.md`** - Complete guide for adding custom data sources to Ellis Pipeline
 
+### AI Persona System
+- **`repo-guardian-persona-guide.md`** - Repository Guardian: Backend & reproducible research specialist
+
 ### Command References  
 - **`command-guide.md`** - Essential commands for project operations
 - **`command-reference.md`** - Comprehensive command reference

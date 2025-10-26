@@ -10,12 +10,26 @@ The folder also offers guidance for engaging memory and project management (MPM)
 ## Project-specific implementation 
 | File in `./ai/`         | Function                                          |
 |---------------------------|---------------------------------------------|
-| `teleology-mission-why.md`      | Declares purpose and impact goals                 |
-| `ontology-glossary-what.md`     | Defines key terms and constructs                  |
-| `epistemology-method-how.md`    | Articulates valid methods and inference rules     |
-| `axiology-values-should.md`     | Surfaces ethical commitments and consequences     |
-| `praxeology-action-who.md`      | Clarifies actor roles and responsibilities        |
-| `metaphysics-context-where.md`  | Situates analysis in time, place, and institution |
+| `mission.md`            | Declares synthetic data generation mission and epistemic aims |
+| `method.md`             | Articulates data generation methods and reproducibility standards |
+| `glossary.md`           | Defines key terms and domain-specific constructs |
+| `onboarding-ai.md`      | AI agent onboarding and project context |
+| `vscode-tasks-reference.md` | Reference for VS Code task automation |
+
+## AI Persona System
+| File in `./ai/`         | Function                                          |
+|---------------------------|---------------------------------------------|
+| `system-prompt-repo-guardian.md` | **Repository Guardian** - Backend systems and reproducible research specialist |
+
+Additional specialized personas are located in analysis directories (e.g., `./analysis/eda-2-casenote/system-prompt-casenote-analyst.md`).
+
+## Memory & Project Management (MPM) System
+| File in `./ai/`         | Function                                          |
+|---------------------------|---------------------------------------------|
+| `memory-hub.md`         | Central memory coordination and project state |
+| `memory-ai.md`          | AI agent memory and context tracking |
+| `memory-human.md`       | Human decision logbook and project intentions |
+| `memory-guide.md`       | Guide to using the memory system effectively |
 
 
 ## Project-generic philosophy 

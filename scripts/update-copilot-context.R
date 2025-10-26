@@ -254,7 +254,7 @@ context_refresh <- function() {
   message("\n🎭 PERSONA MANAGEMENT (Dynamic):")
   message("👤  Load persona: set_persona('path/to/persona.md', 'name')")
   message("📋  List personas: list_personas()")
-  message("🔧  Quick switches: activate_casenote_analyst()")
+  message("🔧  Quick switches: activate_casenote_analyst(), activate_repo_guardian()")
   message("🔄  Deactivate: deactivate_persona()")
   
   message("\n🚀 QUICK REFRESH OPTIONS:")
@@ -883,6 +883,10 @@ activate_casenote_analyst <- function() {
   set_persona("./analysis/eda-2-casenote/system-prompt-casenote-analyst.md", "casenote-analyst")
 }
 
+activate_repo_guardian <- function() {
+  set_persona("./ai/system-prompt-repo-guardian.md", "repo-guardian")
+}
+
 # Generic persona loader for any file
 load_persona_from_file <- function(file_path, persona_name = NULL) {
   set_persona(file_path, persona_name)
@@ -999,6 +1003,7 @@ if (!exists("copilot_context_initialized")) {
   cat("  - get_current_persona() # 🆕 Check active persona\n")
   cat("  - deactivate_persona()  # 🆕 Return to default context\n")
   cat("  - activate_casenote_analyst() # 🆕 Quick shortcut\n")
+  cat("  - activate_repo_guardian()    # 🆕 Repository guardian persona\n")
   cat("  - load_persona_from_file()    # 🆕 Generic persona loader\n")
   cat("🧠 MEMORY SYSTEM:\n")
   cat("  - ai_memory_check()     # 🧠 Project memory & intent detection\n")

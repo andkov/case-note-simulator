@@ -1,4 +1,4 @@
-name: casenote-analyst
-file: ./analysis/eda-2-casenote/system-prompt-casenote-analyst.md
-created: 2025-10-21 17:00:38
+name: repo-guardian
+file: ./ai/system-prompt-repo-guardian.md
+created: 2025-10-26 08:44:35
 additional_context: mission, method
