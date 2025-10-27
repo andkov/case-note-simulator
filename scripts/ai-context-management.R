@@ -44,6 +44,14 @@ activate_casenote_analyst <- function() {
   cat("✅ Switched to Case Note Analyst persona with domain context\n")
 }
 
+# Function to activate prompt engineer persona with specialized context
+activate_prompt_engineer <- function() {
+  cat("🔄 Switching to Prompt Engineer persona...\n")
+  source("scripts/update-copilot-context.R")
+  set_persona_with_defaults("prompt-engineer")
+  cat("✅ Switched to Prompt Engineer persona with RICECO framework context\n")
+}
+
 # Function to activate default persona (minimal context)
 activate_default <- function() {
   cat("🔄 Switching to Default persona...\n")
@@ -93,6 +101,7 @@ show_context_status <- function() {
   cat("  activate_developer()       - Technical focus (minimal context)\n")
   cat("  activate_project_manager() - Strategic oversight (full context)\n")
   cat("  activate_casenote_analyst() - Domain expertise (specialized context)\n")
+  cat("  activate_prompt_engineer() - RICECO framework specialist (specialized context)\n")
   cat("  show_context_status()      - Show this status\n")
 }
 
