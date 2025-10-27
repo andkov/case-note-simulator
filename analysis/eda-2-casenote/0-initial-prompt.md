@@ -207,4 +207,7 @@ eda-2-casenote/
 
 # Feedback
 
-I like the overall shape of things, but the R script is lacking. Let's focus on these three layers. They should be stages of adding the new columns to the input data table and describing it. So for example, for Layer 1, I want  the description of the input data, univariate distributions of available non-text columns (except ids), before we proceed. Make sure that you generate ggplots that describe these distributions and actually output them into the html.
+I like the overall shape of things, but the R script is lacking. It should be more convenient for the human user to interact with R script, so that they can play with it before committing to publish. 
+ Let's focus on these three layers. They should be stages of adding the new columns to the input data table and describing it. So for example, for Layer 1, I want  the description of the input data, univariate distributions of available non-text columns (except ids), before we proceed. Make sure that you generate ggplots that describe these distributions and actually output them into the html. Then, in Layer 2, we can leverage newly clarified understanding of the input data to inform transformations that would add new variabels to the table, forming Layer 2. 
+
+ 

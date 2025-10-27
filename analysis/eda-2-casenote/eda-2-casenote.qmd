@@ -5,132 +5,596 @@ author: "Strategic Data Analytics Unit"
 date: "`r Sys.Date()`"
 format:
   html:
-    theme: cosmo
+    page-layout: full
     toc: true
+    toc-location: right
     toc-depth: 3
     code-fold: show
     code-tools: true
+    theme: cosmo
+    highlight-style: breeze
+    code-line-numbers: true
     df-print: paged
     embed-resources: true
     standalone: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-knitr::read_chunk("eda-2-casenote.R")
+```{r}
+#| code-summary: Reconciles working directory between execution modes
+#| echo: false
+#| results: hide
+#| message: false 
+#| warning: false
+cat("Working directory: ", getwd())
+library(knitr)
+opts_knit$set(root.dir='../../') # keep this chunk isolated  
 ```
 
-# Executive Summary
-
-This report presents a three-layer analytical framework for examining synthetic case notes from social services clients. The analysis progresses from population-level demographic patterns through individual risk assessment to contextual interpretation within reference groups.
-
-**Key Findings Preview:**
-- Population characteristics and risk stratification patterns
-- Individual case note risk flagging capabilities  
-- Contextual benchmarking against relevant comparison groups
-
-# Analytical Framework
-
-## Layer 1: Demographic Analysis
-Population-level profiling focusing on risk stratification across client characteristics.
-
-## Layer 2: Individual Case Analysis  
-Note-level examination with NLP-enhanced risk flagging for substance use, housing instability, and mental health indicators.
-
-## Layer 3: Contextual Interpretation
-Comparative analysis positioning individual cases within meaningful reference groups.
-
-# Data Overview
-
-```{r environment}
+```{r}
+#| label: set_options
+#| code-summary: report-wide formatting options
+#| echo: false
+#| results: hide
+#| message: false 
+cat("Working directory: ", getwd()) # turn on to test the location
+report_render_start_time <- Sys.time()
+# set options shared by all chunks
+opts_chunk$set(
+  results      = 'show',
+  message      = FALSE,
+  warning      = FALSE,
+  comment      = NA,
+  tidy         = FALSE,
+  out.width  = "960px", # pixels, this affects only the markdown, not the underlying png file.  The height will be scaled appropriately.
+  fig.width    = 12, # inches - wider for multiple panels
+  fig.height   = 8, # inches - taller for complex visualizations
+  fig.path     = 'figure-png-iso/' # where figures are stored
+)
+echo_chunks    <- FALSE #Toggle for debugging.
+message_chunks <- FALSE #Toggle for debugging.
+options(width=120) # number of characters to display in the output (dflt = 80)
+ggplot2::theme_set(ggplot2::theme_bw()) # common theme for all graphs
+read_chunk("./analysis/eda-2-casenote/eda-2-casenote.R") #This allows knitr to call chunks from R script
 ```
 
-```{r load-data}
+# Mission
+
+This document explores a **comprehensive three-layer analytical framework** for synthetic social services case notes, progressing from basic demographic profiling through advanced risk assessment to contextual interpretation within reference groups.
+
+**Primary Objectives:**
+- **Layer 1**: Establish demographic baseline and univariate distributions  
+- **Layer 2**: Create analytical variables and risk flagging systems
+- **Layer 3**: Position individual cases within contextual reference frameworks
+
+The analysis supports evidence-based decision making in social services through structured risk assessment and comparative benchmarking.
+
+# Definition of Terms
+
+**Three-Layer Framework**: Progressive analytical approach moving from descriptive to predictive to contextual analysis.
+
+**Risk Flags**: Binary indicators for key intervention areas:
+- **Crisis**: Emergency language, urgent intervention needs
+- **Housing**: Eviction, homelessness, housing instability  
+- **Substance**: Alcohol, drugs, addiction references
+- **Mental Health**: Depression, anxiety, suicidal ideation
+- **Employment**: Job loss, unemployment concerns
+- **Family**: Custody, domestic issues, family separation
+
+**Risk Score**: Composite measure (0-1 scale) representing proportion of risk flags present per case.
+
+**Reference Groups**: Demographic and contextual cohorts used for benchmarking individual cases against relevant baselines.
+
+# Environment
+
+> Reviews the components of the working environment of the report. Non-technical readers are welcomed to skip. Come back if you need to understand the origins of custom functions, scripts, or data objects.
+
+```{r}
+#| label: load-packages
+#| code-summary: Packages used in the current report
+#| echo: true
+#| results: hide
+#| message: false
+#| code-fold: true
 ```
 
-```{r inspect-data}
+```{r}
+#| label: load-sources
+#| code-summary: Collection of custom functions used in current repository  
+#| echo: true
+#| results: hide
+#| message: false
+#| code-fold: true
 ```
 
-# Layer 1: Population Demographics
-
-```{r layer-1-demographics}
+```{r}
+#| label: declare-globals
+#| code-summary: Values used throughout the report.
+#| echo: true
+#| results: hide
+#| message: false
+#| code-fold: true
+#| eval: true
 ```
 
-The demographic analysis reveals the composition and risk profile of our synthetic client population. Key stratification factors include age distribution, geographic location, and baseline complexity levels.
-
-**Risk Stratification Insights:**
-- Distribution across complexity levels provides framework for resource allocation
-- Geographic patterns may indicate service accessibility challenges
-- Age demographics inform service delivery approaches
-
-# Layer 2: Individual Case Analysis
-
-```{r layer-2-individual}
+```{r}
+#| label: declare-functions
+#| code-summary: Custom functions defined for use in this report.
+#| echo: true
+#| results: hide
+#| message: false
+#| code-fold: true
+#| eval: true
 ```
 
-Individual case note analysis combines basic text characteristics with NLP-ready preparation for advanced risk flagging.
+# Data
 
-**Risk Flag Development:**
-- Crisis indicators: Emergency language and urgent intervention needs
-- Housing stability: Eviction notices, homelessness references  
-- Substance use: Direct mentions and related terminology
-- Mental health: Depression, anxiety, suicidal ideation indicators
+This report operates with **synthetic case notes** generated by the case-note-simulator project, designed to replicate realistic social services documentation while maintaining complete privacy protection.
 
-**Note:** Advanced sentiment analysis and nuanced risk scoring will be implemented via Python NLP models in subsequent processing stages.
-
-# Layer 3: Contextual Interpretation  
-
-```{r layer-3-contextual}
+```{r }
+#| label: load-data
+#| code-summary: Load synthetic case notes dataset from project output
+#| warning: false
+#| code-fold: true
+#| cache: true
 ```
 
-Contextual analysis positions individual cases within appropriate reference frameworks, enabling meaningful comparison and benchmarking.
-
-**Reference Group Framework:**
-- **Overall Population**: Baseline rates for all risk indicators
-- **Complexity Cohorts**: Comparison within similar case complexity levels
-- **Geographic Context**: Regional patterns and service environment factors
-
-# Visualizations
-
-## Demographic Patterns
-
-```{r visualization}
+```{r}
+#| label: inspect-data
+#| code-summary: High-level overview of synthetic case notes dataset
+#| code-fold: false
+#| eval: true
+#| cache: true
 ```
 
-## Risk Flag Analysis
+# Layer 1: Input Data Description & Basic Demographics
 
-The risk flagging system provides structured approach to identifying key intervention needs across the client population.
+> **Layer 1 Mission**: Establish comprehensive understanding of input data through systematic univariate analysis of all non-text variables, creating the foundation for subsequent analytical transformations.
 
-**Interpretation Guidelines:**
-- Higher complexity levels should show elevated risk flag prevalence
-- Geographic differences may indicate regional service gaps
-- Individual cases can be benchmarked against appropriate reference groups
+## Data Preparation & Overview
 
-# Methodological Notes
+```{r}
+#| label: layer-1-data-preparation
+#| code-summary: Prepare dataset with standardized variables and age groups
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
 
-## Data Quality Considerations
-- Synthetic data maintains realistic variation while ensuring complete privacy protection
-- Generated notes reflect authentic caseworker writing patterns and terminology
-- Controlled complexity distributions enable systematic analysis validation
+## Q1.1: Age Distribution Analysis
 
-## Analytical Limitations
-- Basic keyword detection pending enhancement with sophisticated NLP models
-- Sentiment analysis capabilities require Python integration
+> Q1.1: What is the age distribution of our synthetic case note population?
+
+```{r}
+#| label: layer-1-univariate-age
+#| code-summary: Age distribution analysis with summary statistics and visualization
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q1.2: Gender Distribution Analysis
+
+> Q1.2: How is gender distributed across the population?
+
+```{r}
+#| label: layer-1-univariate-gender
+#| code-summary: Gender distribution analysis with proportions
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q1.3: Geographic Distribution Analysis
+
+> Q1.3: What is the geographic spread of cases across locations?
+
+```{r}
+#| label: layer-1-univariate-location
+#| code-summary: Location distribution analysis
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q1.4: Case Note Characteristics
+
+> Q1.4: What are the length and complexity characteristics of case notes?
+
+```{r}
+#| label: layer-1-univariate-notes
+#| code-summary: Case note length and word count analysis
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q1.5: Demographic Relationships
+
+> Q1.5: How do demographic variables relate to each other?
+
+```{r}
+#| label: layer-1-bivariate-demographics
+#| code-summary: Cross-tabulations and relationships between demographic variables
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Layer 1 Summary
+
+```{r}
+#| label: layer-1-summary
+#| code-summary: Layer 1 completion summary and data export
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+# Layer 2: Adding Analytical Variables & Transformations
+
+> **Layer 2 Mission**: Transform the input data by adding analytical variables, risk flags, and composite measures that enable advanced case assessment and risk stratification.
+
+## Q2.1: Risk Flag Creation
+
+> Q2.1: What risk patterns can we identify through systematic text analysis of case notes?
+
+```{r}
+#| label: layer-2-risk-flags
+#| code-summary: Create risk flags and analytical variables from case note content
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q2.2: Risk Flag Analysis
+
+> Q2.2: What is the prevalence of different risk types across the population and demographic groups?
+
+```{r}
+#| label: layer-2-risk-flag-analysis
+#| code-summary: Analyze prevalence of risk flags across population and demographic segments
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q2.3: Risk Flag Visualizations
+
+> Q2.3: How can we visualize risk patterns across demographic groups?
+
+```{r}
+#| label: layer-2-visualizations
+#| code-summary: Create visualizations for risk flag patterns and distributions
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q2.4: Composite Risk Scoring
+
+> Q2.4: How do individual cases score on our composite risk measures?
+
+```{r}
+#| label: layer-2-risk-score-analysis
+#| code-summary: Analyze composite risk score distribution and demographic patterns
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q2.5: Note Complexity & Writing Patterns
+
+> Q2.5: What writing style patterns and note complexity indicators can we identify?
+
+```{r}
+#| label: layer-2-note-complexity
+#| code-summary: Analyze note writing patterns and complexity indicators
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Layer 2 Summary
+
+```{r}
+#| label: layer-2-summary
+#| code-summary: Layer 2 completion summary with key analytical variables added
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+# Layer 3: Contextual Interpretation & Reference Groups
+
+> **Layer 3 Mission**: Position individual cases within meaningful contextual frameworks by establishing population baselines and enabling comparative analysis across demographic and geographic reference groups.
+
+## Q3.1: Population Baseline Establishment
+
+> Q3.1: What are the population-wide baseline rates for all risk indicators?
+
+```{r}
+#| label: layer-3-baseline-establishment
+#| code-summary: Establish population baselines for contextual comparison
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.2: Age Group Context Analysis
+
+> Q3.2: How do different age groups compare to the population baseline for risk indicators?
+
+```{r}
+#| label: layer-3-age-group-context
+#| code-summary: Compare each age group to overall baseline risk patterns
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.3: Geographic Context Analysis
+
+> Q3.3: What geographic variations exist in risk patterns across locations?
+
+```{r}
+#| label: layer-3-geographic-context
+#| code-summary: Analyze geographic variation in risk patterns
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.4: Gender Context Analysis
+
+> Q3.4: How do risk patterns differ by gender relative to population baseline?
+
+```{r}
+#| label: layer-3-gender-context
+#| code-summary: Analyze gender-based risk profile differences
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.5: Contextual Visualizations
+
+> Q3.5: How can we visualize contextual patterns and baseline comparisons?
+
+```{r}
+#| label: layer-3-visualizations
+#| code-summary: Create baseline comparison visualizations and heatmaps
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.6: Risk Stratification Framework
+
+> Q3.6: How can we create a systematic risk stratification system for operational use?
+
+```{r}
+#| label: layer-3-risk-stratification
+#| code-summary: Create risk tier classification and stratification framework
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Q3.7: Individual Case Positioning
+
+> Q3.7: How do high-risk cases position within their reference groups?
+
+```{r}
+#| label: layer-3-individual-positioning
+#| code-summary: Position individual cases within reference groups
+#| echo: true  
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Layer 3 Summary
+
+```{r}
+#| label: layer-3-summary
+#| code-summary: Layer 3 completion summary with contextual framework established
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+# Comprehensive Analysis Summary
+
+## Final Results Overview
+
+```{r}
+#| label: comprehensive-summary
+#| code-summary: Comprehensive summary of all three layers with key metrics
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+## Export for Advanced Processing
+
+This analysis prepares the enhanced dataset for subsequent Python NLP processing, enabling advanced sentiment analysis, topic modeling, and machine learning applications.
+
+```{r}
+#| label: export-for-python-nlp
+#| code-summary: Prepare enhanced dataset for Python NLP processing
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+## Analysis Recommendations & Next Steps
+
+```{r}
+#| label: analysis-recommendations
+#| code-summary: Generate specific recommendations based on analysis findings
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+## Files Created & Interactive Functions
+
+```{r}
+#| label: files-created-summary
+#| code-summary: Summary of all files and visualizations created during analysis
+#| echo: false
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: false
+#| cache: true
+```
+
+## Interactive Exploration Tools
+
+The analysis creates several interactive functions for ongoing data exploration:
+
+```{r}
+#| label: interactive-functions
+#| code-summary: Helper functions for interactive exploration of results
+#| echo: true
+#| results: show
+#| message: false
+#| warning: false
+#| code-fold: true
+#| cache: true
+```
+
+# Methodological Framework
+
+## Three-Layer Analytical Approach
+
+This analysis demonstrates a **progressive analytical methodology** that moves systematically from descriptive through analytical to contextual interpretation:
+
+### **Layer 1: Foundation**
+- **Purpose**: Establish comprehensive understanding of input data
+- **Method**: Systematic univariate analysis of all variables
+- **Output**: Demographic baselines and distributional understanding
+- **Value**: Ensures analytical decisions are grounded in data reality
+
+### **Layer 2: Transformation**  
+- **Purpose**: Create analytical variables enabling advanced assessment
+- **Method**: Text analysis, risk flagging, composite measure creation
+- **Output**: Enhanced dataset with risk indicators and behavioral flags
+- **Value**: Transforms raw data into actionable analytical framework
+
+### **Layer 3: Contextualization**
+- **Purpose**: Position findings within meaningful reference frameworks
+- **Method**: Baseline comparison, reference group analysis, individual positioning
+- **Output**: Contextual interpretation enabling comparative benchmarking
+- **Value**: Enables evidence-based decision making through relative assessment
+
+## Technical Implementation
+
+**R Environment**: Comprehensive statistical analysis and visualization using tidyverse ecosystem, with structured chunk-based organization supporting reproducible research.
+
+**Python Integration**: Analysis prepares enhanced datasets for advanced NLP processing including sentiment analysis, topic modeling, and machine learning applications.
+
+**Quarto Reporting**: Dynamic document generation enabling both technical documentation and stakeholder communication through flexible output formatting.
+
+## Data Quality & Limitations
+
+**Synthetic Data Benefits**:
+- Complete privacy protection while maintaining analytical utility
+- Controlled distributions enabling systematic validation
+- Realistic variation reflecting authentic caseworker patterns
+
+**Analytical Considerations**:
+- Basic keyword detection provides foundation for advanced NLP enhancement
+- Risk scoring methodology balances simplicity with meaningful differentiation  
 - Contextual interpretation depends on appropriate reference group selection
 
-## Next Steps
+## Operational Applications
 
-1. **NLP Enhancement**: Integration with Python models for advanced text analysis
-2. **Risk Scoring**: Development of composite risk indicators
-3. **Longitudinal Analysis**: Temporal patterns in case progression
-4. **Intervention Mapping**: Connection between risk profiles and service recommendations
+This framework supports:
+- **Strategic Planning**: Population-level risk assessment and resource allocation
+- **Case Management**: Individual risk flagging and intervention prioritization
+- **Quality Assurance**: Systematic assessment of case documentation patterns
+- **Policy Development**: Evidence-based service delivery optimization
 
-# Technical Implementation
+---
 
-This analysis demonstrates the integration of:
-- R-based statistical analysis and visualization
-- Structured approach to multi-layer analytical frameworks  
-- Preparation for Python NLP model integration
-- Reproducible reporting via Quarto
+**Report Generation Complete**: `r Sys.time()`\
+**Processing Time**: `r round(difftime(Sys.time(), report_render_start_time, units = "mins"), 1)` minutes\
+**Framework**: Three-layer analytical approach with comprehensive risk assessment capabilities\
 
-The framework supports both exploratory research needs and operational decision-making requirements for social services analytics.
+This three-layer framework provides a replicable methodology for systematic analysis of social services case documentation, supporting both research objectives and operational decision-making requirements.
