@@ -1035,6 +1035,10 @@ generate_context_overview <- function(persona_name, additional_context,
 # Available personas with their context loading configurations
 get_persona_configs <- function() {
   list(
+    "default" = list(
+      file = "./ai/personas/default.md",
+      default_context = c()  # No default additional context
+    ),
     "developer" = list(
       file = "./ai/personas/developer.md",
       default_context = c()  # No default additional context
@@ -1046,6 +1050,10 @@ get_persona_configs <- function() {
     "casenote-analyst" = list(
       file = "./ai/personas/casenote-analyst.md",
       default_context = c("onboarding-ai")
+    ),
+    "prompt-engineer" = list(
+      file = "./ai/personas/prompt-engineer.md",
+      default_context = c()  # Minimal context for focused prompt work
     )
   )
 }
@@ -1473,6 +1481,10 @@ activate_developer <- function() {
 
 activate_project_manager <- function() {
   set_persona_with_defaults("project-manager")
+}
+
+activate_prompt_engineer <- function() {
+  set_persona_with_defaults("prompt-engineer")
 }
 
 # Generic persona loader for any file

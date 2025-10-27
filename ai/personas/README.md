@@ -29,12 +29,19 @@ This directory contains the complete AI persona system for the case-note-simulat
 **Dynamic Content**: `agent-persona`, `project/mission`, `project/method`, `project/glossary`  
 **When to Use**: Strategic planning, project oversight, ensuring alignment with research objectives
 
-### �📊 Case Note Analyst  
+### 📊 Case Note Analyst  
 **File**: `casenote-analyst.md`  
 **Activation**: `activate_casenote_analyst()`  
 **Specialization**: Social services data analysis, risk stratification, case note interpretation  
 **Dynamic Content**: `agent-persona` only (focused domain expertise)  
 **When to Use**: Domain-specific analysis of case notes, social services research
+
+### 🎯 Prompt Engineer
+**File**: `prompt-engineer.md`  
+**Activation**: `activate_prompt_engineer()`  
+**Specialization**: RICECO framework implementation, prompt optimization, AI interaction design  
+**Dynamic Content**: `agent-persona` only (focused prompt optimization)  
+**When to Use**: Transforming prompts into RICECO-compliant versions, prompt template creation, AI response optimization
 
 ## 🚀 Quick Start
 
@@ -49,6 +56,8 @@ list_personas()
 # Switch between personas
 activate_developer()          # Default backend/infrastructure (minimal context)
 activate_project_manager()    # Strategic oversight (full project context)
+activate_casenote_analyst()   # Domain expertise (focused context)
+activate_prompt_engineer()    # RICECO prompt optimization (minimal context)
 activate_casenote_analyst()   # Domain analysis (focused expertise)
 deactivate_persona()          # Basic context only
 ```

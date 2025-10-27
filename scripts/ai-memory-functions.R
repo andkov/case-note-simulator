@@ -3,6 +3,9 @@
 # Optimized for VS Code workflow and reduced cognitive load
 # Supports persona-aware AI assistance for synthetic case note analysis
 
+# Load AI context management functions
+source("scripts/ai-context-management.R", local = TRUE)
+
 #' Quick Memory Status Check
 #' 
 #' Lightweight function to show current project memory state

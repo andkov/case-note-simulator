@@ -53,6 +53,30 @@ output-datasets/
 └── validation-reports/       # Quality metrics and authenticity checks
 ```
 
+## 🤖 **AI Assistant System**
+
+This project includes a dynamic AI assistant with specialized personas for different types of work:
+
+### 🎭 **Available Personas**
+- **Default** - General assistance with minimal context (activated by default)
+- **Developer** - Technical implementation focus with minimal context
+- **Project Manager** - Strategic oversight with full project context
+- **Case Note Analyst** - Domain expertise with specialized social services context
+
+### 🔄 **Persona Management**
+```r
+# Switch between personas
+activate_default()              # General assistance
+activate_developer()            # Technical focus
+activate_project_manager()      # Strategic oversight
+activate_casenote_analyst()     # Domain expertise
+
+# Check current status
+show_context_status()
+```
+
+The AI assistant automatically loads with the **Default persona** when you open the project in VS Code, providing helpful general assistance while keeping specialized context available on demand.
+
 ## 🚀 **Quick Start**
 
 ### 1. Setup Environment

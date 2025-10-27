@@ -32,6 +32,12 @@ The folder contains a comprehensive AI system including specialized personas, me
 | `personas/README.md`    | Persona system overview and quick reference |
 | `personas/persona-system-guide.md` | Comprehensive guide for humans and AI agents |
 
+### Automation: Persona Switching updates Context Overview
+- Using the VS Code tasks (e.g., "Activate Developer Persona", "Activate Project Manager Persona", "Activate Case Note Analyst Persona", or "Activate Default Persona") not only switches the active persona but also updates the top CONTEXT OVERVIEW in `.github/copilot-instructions.md` so the "Active Persona" line reflects the current persona.
+- If you switch personas via R directly, prefer:
+	- `source('scripts/ai-context-management.R'); activate_developer();` (or other `activate_*()`), which performs the same update automatically.
+	- `show_context_status()` to verify the active persona and loaded project context.
+
 ## Memory & Project Management (MPM) System
 | File in `./ai/`         | Function                                          |
 |---------------------------|---------------------------------------------|

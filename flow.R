@@ -85,8 +85,10 @@ if(file.exists("config.yml") && requireNamespace("config", quietly = TRUE)) {
   use_logging <- TRUE
 } else {
   cat("Note: Using simplified configuration (config.yml or config package not available)\n")
+  # Create logs directory if it doesn't exist
+  if (!dir.exists("logs")) dir.create("logs", recursive = TRUE)
   config <- list(path_log_flow = paste0("logs/flow-", Sys.Date(), ".log"))
-  use_logging <- FALSE
+  use_logging <- TRUE  # Enable logging even in simplified mode
 }
 
 # open log
@@ -340,4 +342,13 @@ if( sink_log ) {
 if (file.exists("scripts/update-copilot-context.R")) {
   source("scripts/update-copilot-context.R")
   message("✓ Copilot context automation loaded. Use: add_to_instructions('mission', 'glossary', ...)")
+}
+
+# Load AI context management functions
+if (file.exists("scripts/ai-context-management.R")) {
+  source("scripts/ai-context-management.R")
+  # Automatically switch to default persona when project opens
+  activate_default()
+  message("✓ AI context management loaded. Default persona activated.")
+  message("  Available: activate_default(), activate_developer(), activate_project_manager(), activate_casenote_analyst()")
 }
