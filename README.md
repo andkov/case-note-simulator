@@ -23,20 +23,20 @@ This repository generates completely fictional but realistic social services cas
 Domain experts define synthetic data parameters through human-readable YAML files:
 
 ```
-input-specifications/
+simulation/input-specifications/
 ├── client-profiles.yml          # Client demographic patterns & risk factors
 ├── case-complexity-levels.yml   # Service intensity & documentation patterns  
 ├── writing-style-guides.yml     # Caseworker writing style variations
 └── project-scenarios/           # Project-specific testing configurations
-    ├── risk-assessment-validation.yml
-    └── template-scenario.yml
+  ├── risk-assessment-validation.yml
+  └── template-scenario.yml
 ```
 
 ### Generation Engine
 Modular R scripts handle different aspects of synthetic data generation:
 
 ```
-generation-engine/
+simulation/generation-engine/
 ├── client-generator.R          # ✅ Demographic profile generation with risk factors
 ├── note-generator.R           # 🚧 Case note text synthesis (planned)
 ├── complexity-controller.R    # 🚧 Case complexity orchestration (planned)
@@ -47,7 +47,7 @@ generation-engine/
 Generated synthetic data organized for easy access and validation:
 
 ```
-output-datasets/
+simulation/output-datasets/
 ├── client-profiles/           # Generated demographic data
 ├── case-notes/               # Generated case note text
 └── validation-reports/       # Quality metrics and authenticity checks
@@ -88,7 +88,7 @@ install.packages(c("yaml", "dplyr", "purrr", "lubridate", "stringr", "jsonlite")
 ### 2. Generate Your First Synthetic Population
 ```r
 # Load the client generator
-source("./generation-engine/client-generator.R")
+source("./simulation/generation-engine/client-generator.R")
 
 # Generate a test population
 test_clients <- generate_client_population(n_clients = 50)
@@ -104,7 +104,7 @@ print(validation)
 # Export to CSV for use in analytical workflows
 export_client_population(
   test_clients, 
-  "./output-datasets/client-profiles/test_population.csv"
+  "./simulation/output-datasets/client-profiles/test_population.csv"
 )
 ```
 
@@ -154,7 +154,7 @@ validation_targets:
   crisis_prediction: 0.85
 ```
 
-See [`risk-assessment-validation.yml`](input-specifications/project-scenarios/risk-assessment-validation.yml) for complete example.
+See [`risk-assessment-validation.yml`](simulation/input-specifications/project-scenarios/risk-assessment-validation.yml) for complete example.
 
 ## 🔐 **Privacy Protection**
 
@@ -173,13 +173,13 @@ Designed for seamless integration with [`sda-casenote-reader`](https://github.co
 # Generate data for specific SDA project
 scenario_clients <- generate_client_population(
   n_clients = 500,
-  scenario_file = "./input-specifications/project-scenarios/risk-assessment-validation.yml"
+  scenario_file = "./simulation/input-specifications/project-scenarios/risk-assessment-validation.yml"
 )
 
 # Export in SDA-compatible format
 export_client_population(
   scenario_clients,
-  "./testing-harness/sda_test_data.csv"
+  "./simulation/testing-harness/sda_test_data.csv"
 )
 ```
 
@@ -204,7 +204,7 @@ export_client_population(
 ## 🤝 **Contributing**
 
 ### For Domain Experts
-1. Review and customize YAML specifications in `input-specifications/`
+1. Review and customize YAML specifications in `simulation/input-specifications/`
 2. Create new project scenarios using `template-scenario.yml`
 3. Validate generated synthetic data for realism and authenticity
 

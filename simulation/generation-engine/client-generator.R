@@ -22,7 +22,7 @@ library(stringr)
 #' Load Client Profile Specifications
 #' @param spec_file Path to YAML specification file
 #' @return List containing client archetype specifications
-load_client_specifications <- function(spec_file = "./input-specifications/client-profiles.yml") {
+load_client_specifications <- function(spec_file = "./simulation/input-specifications/client-profiles.yml") {
   if (!file.exists(spec_file)) {
     stop("Client profile specifications not found: ", spec_file)
   }
@@ -51,7 +51,7 @@ load_scenario_requirements <- function(scenario_file) {
 #' @return Data frame of synthetic client profiles
 generate_client_population <- function(
   n_clients = 100,
-  spec_file = "./input-specifications/client-profiles.yml", 
+  spec_file = "./simulation/input-specifications/client-profiles.yml", 
   scenario_file = NULL,
   seed = 12345
 ) {
@@ -376,19 +376,19 @@ if (FALSE) {  # Set to TRUE to run examples
   # Export to CSV
   export_client_population(
     clients, 
-    "./output-datasets/client-profiles/synthetic_clients_2025-10-15.csv"
+  "./simulation/output-datasets/client-profiles/synthetic_clients_2025-10-15.csv"
   )
   
   # Generate population for specific project scenario
   scenario_clients <- generate_client_population(
     n_clients = 500,
-    scenario_file = "./input-specifications/project-scenarios/risk-assessment-validation.yml"
+  scenario_file = "./simulation/input-specifications/project-scenarios/risk-assessment-validation.yml"
   )
   
   # Export scenario-specific population
   export_client_population(
     scenario_clients,
-    "./output-datasets/client-profiles/risk_validation_clients_2025-10-15.csv"
+  "./simulation/output-datasets/client-profiles/risk_validation_clients_2025-10-15.csv"
   )
 }
 
