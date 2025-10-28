@@ -14,8 +14,9 @@ This analysis system implements a comprehensive approach to case note analysis t
 
 ```
 eda-2-casenote/
-├── eda-2-casenote.R           # Main R analysis script
-├── eda-2-casenote.qmd         # Quarto report template
+├── eda-2-casenote.R           # Main R analysis script (13 visualizations)
+├── eda-2-casenote.qmd         # Quarto report template  
+├── eda-2-dashboard.R          # Print-ready dashboard generator
 ├── setup-structure.ps1        # Directory setup script
 ├── system-prompt-casenote-analyst.md  # ROTRISE system prompt
 ├── temp/                      # R-Python data exchange
@@ -23,6 +24,7 @@ eda-2-casenote/
 │   ├── nlp_processing.py      # Advanced text analysis
 │   └── requirements.txt       # Python dependencies
 ├── output/                    # Analysis results and visualizations
+├── prints/                    # Dashboard outputs (PNG/PDF)
 └── reports/                   # Generated HTML/PDF reports
 ```
 
@@ -45,6 +47,41 @@ eda-2-casenote/
    ```r
    quarto::quarto_render("eda-2-casenote.qmd")
    ```
+
+4. **Generate Print Dashboard**:
+   ```r
+   source("eda-2-dashboard.R")
+   # Outputs: PNG and PDF files in prints/ directory
+   ```
+
+### Dashboard Generation
+
+The `eda-2-dashboard.R` script creates a professional 6-panel dashboard optimized for 11" × 8.5" printing at 300 DPI:
+
+**Quick Generation**:
+```bash
+Rscript analysis/eda-2-casenote/eda-2-dashboard.R
+```
+
+**Outputs**:
+- `case-note-dashboard_YYYYMMDD_HHMM.png` (digital use)
+- `case-note-dashboard_YYYYMMDD_HHMM.pdf` (high-quality printing)
+- Location: `./analysis/eda-2-casenote/prints/`
+
+**Dashboard Panels**:
+1. **Population Demographics** - Age/gender distribution with stacked bars
+2. **Risk Factor Prevalence** - Horizontal bar chart of 6 risk categories  
+3. **Geographic Distribution** - Location breakdown with percentages
+4. **Risk Patterns by Age** - Heatmap showing age-specific risk prevalence
+5. **Case Complexity Distribution** - Risk tier classification bars
+6. **Documentation vs Risk** - Scatter plot with trend analysis
+
+**Key Features**:
+- Print-optimized color palette (colorblind-friendly)
+- Black borders on bars for enhanced clarity
+- Horizontal axis labels for readability
+- Professional styling with consistent fonts
+- Comprehensive interpretation guide included
 
 ### Python NLP Integration
 
@@ -106,10 +143,56 @@ This framework is designed to work with the synthetic case note datasets generat
 
 ## Technical Implementation
 
-- **R Environment**: tidyverse, ggplot2, scales, plotly, DT
-- **Python NLP**: transformers, pandas, numpy, scikit-learn
+### R Dependencies
+- **Core Analysis**: tidyverse, ggplot2, dplyr, tidyr, stringr
+- **Dashboard**: patchwork, scales, lubridate, magrittr
+- **Reporting**: quarto, plotly, DT
+
+### Python Dependencies  
+- **NLP Processing**: transformers, pandas, numpy, scikit-learn
+- **Installation**: `pip install -r python/requirements.txt`
+
+### Data Exchange
+- **R-Python**: CSV files for integrated analysis
 - **Reporting**: Quarto with HTML output
-- **Data Exchange**: CSV files for R-Python integration
+- **Dashboard**: PNG/PDF for distribution
+
+## Dashboard Customization Guide
+
+### Modifying Colors
+```r
+# Edit color palettes in eda-2-dashboard.R:
+colors_demographic <- c(
+  "18-24" = "#2c7fb8",    # Change these hex codes
+  "25-34" = "#41b6c4",    # for different colors
+  # ... etc
+)
+```
+
+### Adjusting Layout
+```r
+# Dashboard dimensions (lines 32-34):
+dashboard_width <- 11     # inches (change for different sizes)
+dashboard_height <- 8.5   # inches
+dpi_setting <- 300        # print quality
+
+# Font sizes (line 35):
+base_font_size <- 10      # increase for larger text
+```
+
+### Adding New Panels
+1. Create new plot object: `p7_newplot <- ds_input %>% ggplot(...)`
+2. Add to layout: `(p1 + p2 + p3) / (p4 + p5 + p6) / (p7 + plot_spacer() + plot_spacer())`
+3. Update dimensions for new layout
+
+### Modifying Titles
+```r
+# Main title (line 318):
+title = "CASE NOTE POPULATION DASHBOARD"  # Change here
+
+# Panel titles in individual plot sections:
+labs(title = "Your New Title Here")
+```
 
 ## Methodological Notes
 
@@ -118,12 +201,57 @@ This framework is designed to work with the synthetic case note datasets generat
 - Synthetic data treated with the same analytical rigor as real case documentation
 - Reproducible workflow with documented methodology and limitations
 
+## Troubleshooting
+
+### Common Issues
+
+**File Not Found Error**:
+```r
+# Error: cannot open file './data-public/derived/synthetic-case-notes-for-input.csv'
+# Solution: Update input_file path in eda-2-dashboard.R (line 27)
+input_file <- "./abc/take-2/output/synthetic-case-notes-for-input.csv"
+```
+
+**Missing Packages**:
+```r
+# Install required packages:
+install.packages(c("tidyverse", "ggplot2", "patchwork", "scales", "lubridate"))
+```
+
+**Dashboard Generation Fails**:
+- Check that `prints/` directory exists (created automatically)
+- Verify input data file path is correct
+- Ensure all required packages are installed
+
+**Labels Cut Off**:
+- Increase `dashboard_height` for more vertical space
+- Adjust `expansion(mult = c(0, 0.15))` for more label padding
+- Reduce font sizes if text doesn't fit
+
+**Memory Issues**:
+- Large datasets may require more RAM
+- Use `rm()` to clear unused objects
+- Restart R session if needed
+
+### Quick Fixes
+```r
+# Test dashboard generation:
+file.exists("./abc/take-2/output/synthetic-case-notes-for-input.csv")  # Should be TRUE
+
+# Check package availability:
+library(tidyverse); library(ggplot2); library(patchwork)
+
+# Manual directory creation:
+dir.create("./analysis/eda-2-casenote/prints/", recursive = TRUE)
+```
+
 ## Future Enhancements
 
 1. **Advanced NLP Models**: Custom domain-specific language models
 2. **Longitudinal Analysis**: Temporal patterns in case progression
 3. **Intervention Mapping**: Connection between risk profiles and service recommendations
 4. **Real-time Integration**: Streaming analysis capabilities for operational use
+5. **Interactive Dashboards**: Shiny-based dynamic filtering and exploration
 
 ## Contact
 
