@@ -60,6 +60,22 @@ activate_research_scientist <- function() {
   cat("✅ Switched to Research Scientist persona with analytical focus\n")
 }
 
+# Function to activate devops engineer persona with minimal context
+activate_devops_engineer <- function() {
+  cat("🔄 Switching to DevOps Engineer persona...\n")
+  source("scripts/update-copilot-context.R")
+  set_persona_with_defaults("devops-engineer")
+  cat("✅ Switched to DevOps Engineer persona with production focus\n")
+}
+
+# Function to activate frontend architect persona with visualization focus
+activate_frontend_architect <- function() {
+  cat("🔄 Switching to Frontend Architect persona...\n")
+  source("scripts/update-copilot-context.R")
+  set_persona_with_defaults("frontend-architect")
+  cat("✅ Switched to Frontend Architect persona with visualization and UI focus\n")
+}
+
 # Function to activate prompt engineer persona with specialized context
 activate_prompt_engineer <- function() {
   cat("🔄 Switching to Prompt Engineer persona...\n")
@@ -125,6 +141,7 @@ show_context_status <- function() {
   cat("  activate_developer()       - Technical focus (minimal context)\n")
   cat("  activate_data_engineer()   - Data pipeline & quality specialist (minimal context)\n")
   cat("  activate_research_scientist() - Statistical analysis & methodology specialist (minimal context)\n")
+  cat("  activate_devops_engineer() - Production deployment & operations specialist (minimal context)\n")
   cat("  activate_project_manager() - Strategic oversight (full context)\n")
   cat("  activate_casenote_analyst() - Domain expertise (specialized context)\n")
   cat("  activate_prompt_engineer() - RICECO framework specialist (specialized context)\n")
