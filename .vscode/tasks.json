@@ -195,6 +195,18 @@
       "problemMatcher": []
     },
     {
+      "label": "Activate Reporter Persona",
+      "type": "process",
+      "command": "Rscript",
+      "args": [
+        "-e",
+        "source('scripts/ai-context-management.R'); activate_reporter(); show_context_status()"
+      ],
+      "group": "build",
+      "presentation": { "echo": true, "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
       "label": "Show AI Context Status",
       "type": "process",
       "command": "Rscript",

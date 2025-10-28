@@ -1054,6 +1054,10 @@ get_persona_configs <- function() {
     "prompt-engineer" = list(
       file = "./ai/personas/prompt-engineer.md",
       default_context = c()  # Minimal context for focused prompt work
+    ),
+    "reporter" = list(
+      file = "./ai/personas/reporter.md",
+      default_context = c()  # On-demand context loading as needed
     )
   )
 }

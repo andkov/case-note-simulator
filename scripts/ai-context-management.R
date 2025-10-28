@@ -52,6 +52,14 @@ activate_prompt_engineer <- function() {
   cat("✅ Switched to Prompt Engineer persona with RICECO framework context\n")
 }
 
+# Function to activate reporter persona with on-demand context
+activate_reporter <- function() {
+  cat("🔄 Switching to Reporter persona...\n")
+  source("scripts/update-copilot-context.R")
+  set_persona_with_defaults("reporter")
+  cat("✅ Switched to Reporter persona with analytical storytelling focus\n")
+}
+
 # Function to activate default persona (minimal context)
 activate_default <- function() {
   cat("🔄 Switching to Default persona...\n")
@@ -96,12 +104,13 @@ show_context_status <- function() {
   content_size <- sum(nchar(instructions)) / 1024
   cat("📊 Content Size:", round(content_size, 1), "KB\n")
   
-  cat("\n🔧 Available Commands:\n")
+  cat("🔧 Available Commands:\n")
   cat("  activate_default()         - General assistance (minimal context)\n")
   cat("  activate_developer()       - Technical focus (minimal context)\n")
   cat("  activate_project_manager() - Strategic oversight (full context)\n")
   cat("  activate_casenote_analyst() - Domain expertise (specialized context)\n")
   cat("  activate_prompt_engineer() - RICECO framework specialist (specialized context)\n")
+  cat("  activate_reporter()        - Analytical storytelling (on-demand context)\n")
   cat("  show_context_status()      - Show this status\n")
 }
 
