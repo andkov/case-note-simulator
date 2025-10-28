@@ -159,6 +159,18 @@
       "problemMatcher": []
     },
     {
+      "label": "Activate Data Engineer Persona",
+      "type": "process",
+      "command": "Rscript",
+      "args": [
+        "-e",
+        "source('scripts/ai-context-management.R'); activate_data_engineer(); show_context_status()"
+      ],
+      "group": "build",
+      "presentation": { "echo": true, "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
       "label": "Activate Project Manager Persona",
       "type": "process",
       "command": "Rscript",

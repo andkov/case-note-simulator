@@ -1043,6 +1043,10 @@ get_persona_configs <- function() {
       file = "./ai/personas/developer.md",
       default_context = c()  # No default additional context
     ),
+    "data-engineer" = list(
+      file = "./ai/personas/data-engineer.md",
+      default_context = c()  # No default additional context for focused data work
+    ),
     "project-manager" = list(
       file = "./ai/personas/project-manager.md", 
       default_context = c("project/mission", "project/method", "project/glossary")
