@@ -2,12 +2,6 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../../GitHub/RAnalysisSkeleton"
-		},
-		{
-			"path": "../aim-2025-sandbox"
 		}
 	],
 	"settings": {}

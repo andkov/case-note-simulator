@@ -6,8 +6,8 @@
 # Detects the AI support system configuration in the current project
 
 detect_ai_config <- function(project_root = ".") {
-  # Look for ai-support-system configuration
-  config_path <- file.path(project_root, "ai-support-system", "ai-support-config.yml")
+  # Look for ai configuration (updated path)
+  config_path <- file.path(project_root, "ai", "ai-support-config.yml")
   legacy_config <- file.path(project_root, "config.yml")
   
   if (file.exists(config_path)) {
@@ -26,7 +26,7 @@ get_available_personas <- function(project_root = ".") {
   config <- detect_ai_config(project_root)
   
   if (config$type == "ai-support-system") {
-    persona_dir <- file.path(project_root, "ai-support-system", "personas")
+    persona_dir <- file.path(project_root, "ai", "personas")
   } else {
     persona_dir <- file.path(project_root, "ai", "personas")
   }
@@ -56,7 +56,7 @@ set_persona_with_autodetect <- function(persona_name, project_root = ".") {
   writeLines(persona_name, persona_file)
   
   # Source the context update script if available
-  context_script <- file.path(project_root, "ai-support-system", "scripts", "update-copilot-context.R")
+  context_script <- file.path(project_root, "ai", "scripts", "update-copilot-context.R")
   if (!file.exists(context_script)) {
     context_script <- file.path(project_root, "scripts", "update-copilot-context.R")
   }
@@ -274,9 +274,9 @@ generate_migration_assessment <- function(source_path = ".", target_path, compon
   
   # Files to be created
   new_files <- c()
-  if ("personas" %in% components) new_files <- c(new_files, "ai-support-system/personas/")
+  if ("personas" %in% components) new_files <- c(new_files, "ai/personas/")
   if ("context" %in% components) new_files <- c(new_files, ".github/copilot-instructions.md", ".copilot-persona")
-  if ("memory" %in% components) new_files <- c(new_files, "ai-support-system/scripts/ai-memory-functions.R")
+  if ("memory" %in% components) new_files <- c(new_files, "ai/scripts/ai-memory-functions.R")
   if ("vscode" %in% components) new_files <- c(new_files, ".vscode/tasks.json (additions)")
   
   cat("New files/directories:\n")

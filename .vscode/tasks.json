@@ -272,7 +272,7 @@
       "command": "Rscript",
       "args": [
         "-e",
-        "source('ai-support-system/scripts/tests/run-all-tests.R')"
+        "source('ai/scripts/tests/run-all-tests.R')"
       ],
       "group": "test",
       "presentation": { "echo": true, "reveal": "always", "panel": "shared" },

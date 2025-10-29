@@ -7,8 +7,8 @@
 # === MEMORY SYSTEM DETECTION ===
 
 detect_memory_system <- function(project_root = ".") {
-  # Look for ai-support-system memory configuration
-  new_memory_dir <- file.path(project_root, "ai-support-system", "memory")
+  # Look for ai memory configuration
+  new_memory_dir <- file.path(project_root, "ai", "memory")
   legacy_memory_dir <- file.path(project_root, "ai")
   
   if (dir.exists(new_memory_dir)) {
@@ -230,7 +230,7 @@ ai_memory_check <- function(project_root = ".") {
 #' Creates basic memory system structure for new projects
 initialize_memory_system <- function(project_root = ".", system_type = "ai-support-system") {
   if (system_type == "ai-support-system") {
-    memory_dir <- file.path(project_root, "ai-support-system", "memory")
+    memory_dir <- file.path(project_root, "ai", "memory")
   } else {
     memory_dir <- file.path(project_root, "ai")
   }
@@ -283,7 +283,7 @@ context_refresh <- function(project_root = ".") {
   
   # Look for context management scripts
   context_scripts <- c(
-    file.path(project_root, "ai-support-system", "scripts", "update-copilot-context.R"),
+    file.path(project_root, "ai", "scripts", "update-copilot-context.R"),
     file.path(project_root, "scripts", "update-copilot-context.R")
   )
   
