@@ -1,7 +1,14 @@
 # Test: write_mini_eda_json end-to-end smoke test
+# Tests the mini-EDA JSON generation functionality used in AI context system
 
 # Load helper functions from scripts
-source("./scripts/silent-mini-eda.R")
+if (file.exists("./scripts/silent-mini-eda.R")) {
+  source("./scripts/silent-mini-eda.R")
+} else if (file.exists("../../scripts/silent-mini-eda.R")) {
+  source("../../scripts/silent-mini-eda.R")
+} else {
+  stop("Cannot locate silent-mini-eda.R script")
+}
 
 # Create a small test dataframe and assign to global env
 test_df <- data.frame(
