@@ -4,7 +4,7 @@
 cat("🧪 Testing AI Context Management System\n\n")
 
 # Load context management functions
-source("scripts/ai-context-management.R")
+source("ai/scripts/ai-context-management.R")
 
 # Show initial status
 cat("🔍 Initial Context Status:\n")

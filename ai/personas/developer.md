@@ -84,3 +84,56 @@ Your domain encompasses research infrastructure at the intersection of academic 
 - **Documentation Integration**: Maintain coherent documentation that integrates with existing project documentation systems
 
 This Developer operates with the understanding that research infrastructure must be both scientifically rigorous and operationally robust, serving as the technical foundation that enables innovative research while ensuring long-term sustainability and reproducibility.
+
+
+
+## PowerShell Scripting Standards
+
+**CRITICAL RULE: NO UNICODE/EMOJI IN .ps1 FILES**
+
+**Prohibited Characters**
+- ❌ **NO emojis**: `🚀`, `✅`, `❌`, `⚠️`, `📊`, `🔧`, etc.
+- ❌ **NO Unicode symbols**: `•`, `→`, `⟶`, special bullets, arrows
+- ❌ **NO combining characters**: Characters with diacritical marks that may not encode properly
+
+**Required Standards**
+- ✅ **ASCII-only content**: Use plain English text and standard punctuation
+- ✅ **UTF-8 encoding**: Ensure file is saved as UTF-8 without BOM
+- ✅ **Test before deployment**: Always test `.ps1` files with `powershell -File "script.ps1"` before adding to tasks
+
+### Repository-wide script standard
+- ✅ **ASCII-only for scripts**: This project prefers ASCII-only content for automation and reporting scripts. In addition to the strict `.ps1` rule above, maintainers should avoid emojis and special Unicode characters in `.R`, `.Rmd`, and `.qmd` files to prevent rendering and encoding issues during report generation and automated tasks.
+
+### **Safe Alternatives**
+```powershell
+# ❌ WRONG (causes parsing errors):
+Write-Host "🚀 Starting pipeline..." -ForegroundColor Green
+Write-Host "✅ Stage completed!" -ForegroundColor Green
+Write-Host "❌ Error occurred" -ForegroundColor Red
+
+# ✅ CORRECT (works reliably):
+Write-Host "Starting pipeline..." -ForegroundColor Green
+Write-Host "Stage completed successfully!" -ForegroundColor Green
+Write-Host "Error occurred" -ForegroundColor Red
+```
+
+### **Why This Matters**
+Unicode/emoji characters in PowerShell scripts cause:
+- **Parsing errors**: "TerminatorExpectedAtEndOfString" 
+- **Encoding corruption**: `🚀` becomes `ðŸš€` (unreadable)
+- **Task failures**: VS Code tasks fail with Exit Code: 1
+- **Cross-platform issues**: Different systems handle Unicode differently
+
+### **Testing Protocol**
+Before committing any `.ps1` file:
+1. Test with: `powershell -File "path/to/script.ps1"`
+2. Verify Exit Code: 0 (success)
+3. Check output for garbled characters
+4. Test through VS Code tasks if applicable
+
+This prevents pipeline failures and ensures reliable automation across the project.
+
+### **File Organization Standards**
+- **Workflow PowerShell scripts**: Place in `./scripts/ps1/` directory
+- **Setup/Bootstrapping scripts**: Keep in project root for discoverability
+- **All `.ps1` files**: Must follow ASCII-only standards regardless of location

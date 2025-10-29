@@ -1,14 +1,15 @@
 # ==============================================================================
-# Update Copilot Instructions Context
+# Dynamic Context Builder for AI Support System
 # ==============================================================================
 # 
-# This script automates the process of updating .github/copilot-instructions.md
-# with the contents of foundational project files. It allows analysts to quickly
-# refresh the AI context by typing: add_to_instructions("glossary", "mission", ...)
+# This script automates the process of dynamically building AI context in 
+# .github/copilot-instructions.md with the contents of foundational project files. 
+# It allows users to quickly refresh the AI context by typing: add_to_instructions("glossary", "mission", ...)
 #
 # Author: GitHub Copilot (with human analyst)
 # Created: 2025-07-16
-# Updated: 2025-08-15 - Modernized based on SDA-CEIS-Impact implementation
+# Updated: 2025-10-29 - Moved to ai-support-system structure and renamed from update-copilot-context.R
+# Location: ai-support-system/scripts/dynamic-context-builder.R
 
 update_copilot_instructions <- function(file_list) {
   # Map friendly names to actual file paths
@@ -1043,6 +1044,22 @@ get_persona_configs <- function() {
       file = "./ai/personas/developer.md",
       default_context = c()  # No default additional context
     ),
+    "data-engineer" = list(
+      file = "./ai/personas/data-engineer.md",
+      default_context = c()  # No default additional context for focused data work
+    ),
+    "research-scientist" = list(
+      file = "./ai/personas/research-scientist.md",
+      default_context = c()  # No default additional context for focused analytical work
+    ),
+    "devops-engineer" = list(
+      file = "./ai/personas/devops-engineer.md",
+      default_context = c()  # No default additional context for focused operational work
+    ),
+    "frontend-architect" = list(
+      file = "./ai/personas/frontend-architect.md",
+      default_context = c()  # No default additional context for focused visualization work
+    ),
     "project-manager" = list(
       file = "./ai/personas/project-manager.md", 
       default_context = c("project/mission", "project/method", "project/glossary")
@@ -1054,6 +1071,10 @@ get_persona_configs <- function() {
     "prompt-engineer" = list(
       file = "./ai/personas/prompt-engineer.md",
       default_context = c()  # Minimal context for focused prompt work
+    ),
+    "reporter" = list(
+      file = "./ai/personas/reporter.md",
+      default_context = c()  # On-demand context loading as needed
     )
   )
 }

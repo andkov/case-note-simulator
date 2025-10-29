@@ -2,7 +2,7 @@
 
 ## Data Sources
 
-**Expert Specifications**: All synthetic data generation is controlled by domain expert-authored YAML specifications located in `./input-specifications/`:
+**Expert Specifications**: All synthetic data generation is controlled by domain expert-authored YAML specifications located in `./simulation/input-specifications/`:
 
 - **Client Archetypes** (`client-profiles.yml`): Demographic patterns, risk factor combinations, and realistic co-occurrence rates
 - **Case Complexity Levels** (`case-complexity-levels.yml`): Severity gradients based on support needs and intervention intensity
