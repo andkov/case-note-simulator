@@ -46,7 +46,7 @@ Dynamic AI context management system:
 - Portable persona switching with auto-detection
 
 **Key Files**:
-- `base-instructions.md` - Core AI behavioral guidelines
+- `core/base-instructions.md` - Core AI behavioral guidelines
 - `dynamic-context-builder.R` - Core context building engine (63KB)
 - Context management scripts in `scripts/`
 
@@ -206,5 +206,4 @@ This system embodies the principle that **AI support infrastructure should be as
 
 ---
 
-*For detailed migration instructions, see `docs/migration-guide.md`*  
-*For troubleshooting, see `docs/troubleshooting.md`*
+*This AI support system is designed for portable migration between research projects while maintaining scientific rigor.*

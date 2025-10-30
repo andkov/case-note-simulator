@@ -78,7 +78,7 @@ This [Persona Name] operates with the understanding that [key philosophical or m
 
 ## Activation Function Template
 
-Add this function to `update-copilot-context.R`:
+Add this function to `ai/scripts/dynamic-context-builder.R`:
 
 ```r
 activate_[persona_name] <- function() {
@@ -131,7 +131,7 @@ When adding a new persona:
 
 1. **Update**: `./ai/personas/README.md` - Add to persona list
 2. **Update**: `./ai/README.md` - Add to AI system overview  
-3. **Create**: User guide in `./guides/` if needed
+3. **Create**: User documentation in `ai/docs/` if needed
 4. **Update**: `persona-system-guide.md` with usage examples
 5. **Test**: Create and run integration test
 

@@ -8,7 +8,7 @@ Contains collections of scripts aimed at anticipating standard needs during anal
 ### `./ps1/` - PowerShell Workflow Scripts
 PowerShell scripts for workflow automation that assume the project is already set up.
 - **Organization Principle**: Workflow `.ps1` files go here; bootstrapping scripts stay in project root
-- **Standards**: ASCII-only (no emojis/Unicode) - see `ai/onboarding-ai.md`
+- **Standards**: ASCII-only (no emojis/Unicode) - see `.github/copilot-instructions.md` → "PowerShell Scripting Standards"
 - **Current Scripts**: `run-complete-ellis-pipeline.ps1`
 
 ### `./wrappers/` - Script Wrappers
@@ -19,10 +19,10 @@ Small wrapper scripts that bridge VS Code tasks with main project scripts.
 
 ## Key Scripts
 
-### `update-copilot-context.R`
-**🆕 Enhanced with CACHE Manifest Management**
+### `ai/scripts/dynamic-context-builder.R`
+**🆕 Enhanced 3-Section Context Management System**
 
-This script now includes comprehensive project management functions:
+This script provides comprehensive AI context and project management functions:
 
 #### Context Management Functions:
 - `set_persona_with_defaults()` - Switch AI persona with appropriate context
@@ -45,7 +45,7 @@ This script now includes comprehensive project management functions:
 - `log_file_change()` - Log file modifications to project logbook
 - `log_change()` - Short alias for file change logging
 
-**Usage**: Source this script to access all project management functions.
+**Usage**: Source this script to access all AI context and project management functions.
 
 ### Other Important Scripts
 - `google-auth-helper.R` - Google Sheets authentication

@@ -283,8 +283,8 @@ context_refresh <- function(project_root = ".") {
   
   # Look for context management scripts
   context_scripts <- c(
-    file.path(project_root, "ai", "scripts", "update-copilot-context.R"),
-    file.path(project_root, "scripts", "update-copilot-context.R")
+    file.path(project_root, "ai", "scripts", "dynamic-context-builder.R"),
+    file.path(project_root, "ai", "scripts", "ai-context-management.R")
   )
   
   available_script <- NULL

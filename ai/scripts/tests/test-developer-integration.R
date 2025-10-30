@@ -78,7 +78,7 @@ test_developer_integration <- function() {
   cat("   activate_developer()         # Quick activation (default)\n")
   cat("   list_personas()              # See all personas\n") 
   cat("   deactivate_persona()         # Return to basic context\n")
-  cat("   See: ./guides/developer-persona-guide.md\n")
+  cat("   See: ./ai/docs/commands.md\n")
   cat("   Advanced: ./ai/personas/persona-system-guide.md\n")
   
   return(TRUE)

@@ -19,7 +19,7 @@ The persona system provides **specialized AI assistants** tailored for different
 
 ```r
 # Essential Commands
-source('./scripts/update-copilot-context.R')   # Load the system
+source('./ai/scripts/dynamic-context-builder.R')   # Load the system
 list_personas()                                # See all available personas  
 activate_developer()                           # Backend/infrastructure focus
 activate_casenote_analyst()                    # Domain analysis focus
@@ -72,7 +72,7 @@ remove_all_dynamic_instructions()              # Reset all context
 #### Typical Development Session
 ```r
 # Start working (Developer auto-loads)
-source('./scripts/update-copilot-context.R')
+source('./ai/scripts/dynamic-context-builder.R')
 # ✅ Developer persona ready for backend work
 
 # Work on infrastructure, debugging, system design...
@@ -108,7 +108,7 @@ activate_developer()
 The persona system operates through several integrated components:
 
 1. **Persona Files** (`./ai/personas/*.md`): Define specialized expertise and behavior
-2. **Activation Functions** (`update-copilot-context.R`): Handle persona loading and switching
+2. **Activation Functions** (`dynamic-context-builder.R`): Handle persona loading and switching
 3. **Dynamic Content Loading**: Automatically loads relevant context based on persona
 4. **State Management**: Maintains persona configuration across sessions
 
@@ -211,7 +211,7 @@ touch ./ai/personas/new-persona.md
 
 ### 4. Add Activation Function
 ```r
-# In update-copilot-context.R
+# In dynamic-context-builder.R
 activate_new_persona <- function() {
   set_persona("./ai/personas/new-persona.md", "new-persona", 
               c("relevant", "context", "files"))
@@ -308,7 +308,7 @@ if (file.exists(".copilot-persona")) file.remove(".copilot-persona")
 
 ## 📚 Related Documentation
 
-- **User Guides**: `../../guides/developer-persona-guide.md`
+- **User Guides**: `../docs/commands.md`
 - **AI System**: `../README.md` - Overall AI system architecture
 - **Memory System**: `../memory-guide.md` - Project memory and intent tracking
 - **Task System**: `../vscode-tasks-reference.md` - VS Code integration

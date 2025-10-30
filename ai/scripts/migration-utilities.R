@@ -147,9 +147,9 @@ export_context_management <- function(source_path, export_path) {
   # Context management script
   script_files <- c(
     "ai-support-system/scripts/ai-context-management.R",
-    "ai-support-system/scripts/update-copilot-context.R",
+    "ai-support-system/scripts/dynamic-context-builder.R",
     "scripts/ai-context-management.R",
-    "scripts/update-copilot-context.R"
+    "scripts/dynamic-context-builder.R"
   )
   
   exported_files <- character(0)

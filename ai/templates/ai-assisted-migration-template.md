@@ -127,7 +127,7 @@ analyze_target_repository <- function(target_path) {
   analysis$structure <- analyze_directory_structure(target_path)
   
   # Check for existing AI support
-  ai_indicators <- c(".copilot-persona", "ai-support-system", "ai/personas")
+  ai_indicators <- c(".copilot-persona", "ai/personas", "ai/scripts")
   for (indicator in ai_indicators) {
     if (file.exists(file.path(target_path, indicator)) || 
         dir.exists(file.path(target_path, indicator))) {
@@ -234,23 +234,23 @@ setup_adaptive_memory_system <- function(target_path, analysis) {
   
   # Determine optimal memory system structure based on target repository
   if (analysis$type == "r_analysis_skeleton") {
-    memory_path <- file.path(target_path, "ai-support-system", "memory")
+    memory_path <- file.path(target_path, "ai", "memory")
   } else if (dir.exists(file.path(target_path, "ai"))) {
-    memory_path <- file.path(target_path, "ai")
+    memory_path <- file.path(target_path, "ai", "memory")
   } else {
-    memory_path <- file.path(target_path, "ai-support-system", "memory")
+    memory_path <- file.path(target_path, "ai", "memory")
   }
   
   # Initialize memory system with detected structure
-  source("ai-support-system/scripts/ai-memory-functions.R")
+  source("ai/scripts/ai-memory-functions.R")
   initialize_memory_system(
     project_root = target_path,
-    system_type = ifelse(grepl("ai-support-system", memory_path), "ai-support-system", "legacy")
+    system_type = ifelse(grepl("ai", memory_path), "ai", "legacy")
   )
   
   return(list(
     memory_path = memory_path,
-    system_type = ifelse(grepl("ai-support-system", memory_path), "ai-support-system", "legacy"),
+    system_type = ifelse(grepl("ai", memory_path), "ai", "legacy"),
     initialized = TRUE
   ))
 }
@@ -300,7 +300,7 @@ rollback_migration <- function(backup_path, target_path) {
   
   # Remove AI support system additions
   ai_additions <- c(
-    "ai-support-system",
+    "ai",
     ".copilot-persona",
     ".github/copilot-instructions.md"
   )
@@ -401,7 +401,7 @@ analysis <- ai_assisted_migration(
 # Define repository-specific adaptation rules
 adaptation_rules <- list(
   r_analysis_skeleton = list(
-    memory_location = "ai-support-system/memory",
+    memory_location = "ai/memory",
     config_section = "ai_support",
     task_prefix = "AI:"
   ),

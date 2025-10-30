@@ -12,18 +12,11 @@ Use this to document key decisions, model revisions, and reasoning transitions a
 **Logged**: 2025-10-29 19:39:05
 
 ## File Change Log - 2025-10-29
-**File**: `guides/`  
-**Modified**: 2025-10-29 19:55:52  
+**File**: `Documentation restructure`  
+**Modified**: 2025-10-29 19:55:52 - 20:16:03  
 **Changed by**: andriy.koval  
-**Changes**: Major revision: removed 7 outdated files, renamed 2 files, created 3 new focused documents  
-**Logged**: 2025-10-29 19:57:17
-
-## File Change Log - 2025-10-29
-**File**: `guides/README.md`  
-**Modified**: 2025-10-29 20:10:46  
-**Changed by**: andriy.koval  
-**Changes**: Documentation reorganization complete: logical coupling between docs and systems  
-**Logged**: 2025-10-29 20:11:59
+**Changes**: Complete documentation reorganization: eliminated guides/ folder, moved AI docs to ai/docs/, simulation docs to simulation/, consolidated getting-started into main README  
+**Logged**: 2025-10-29 19:57:17 - 20:18:46
 
 ## File Change Log - 2025-10-29
 **File**: `README.md`  

@@ -28,25 +28,42 @@ target-repo/
 ├── .copilot-persona                    # Persona tracking
 ├── .github/
 │   └── copilot-instructions.md         # Dynamic AI context
-├── ai-support-system/                  # Main AI support directory
+├── ai/                                 # Main AI support directory
 │   ├── ai-support-config.yml          # Configuration
 │   ├── README.md                       # Documentation
+│   ├── memory-human.md                 # Human-readable project memory
 │   ├── core/
 │   │   └── base-instructions.md        # Core AI instructions
+│   ├── docs/                          # AI system documentation
+│   │   ├── commands.md                 # Essential commands reference
+│   │   ├── context-system.md           # Context management guide
+│   │   ├── testing-guide.md            # System testing procedures
+│   │   └── mcp-setup/                  # MCP integration setup
 │   ├── personas/                       # AI personas (selected)
 │   │   ├── developer.md
 │   │   ├── project-manager.md
+│   │   ├── persona-system-guide.md     # Persona usage guide
 │   │   └── [other selected personas]
+│   ├── project/                        # Project-specific context
+│   │   ├── mission.md                  # Project purpose
+│   │   ├── method.md                   # Methodology
+│   │   └── glossary.md                 # Domain terminology
 │   ├── scripts/                        # Portable logic
 │   │   ├── ai-context-management.R     # Context switching
 │   │   ├── ai-memory-functions.R       # Memory management
-│   │   └── update-copilot-context.R    # Context updates
-│   ├── memory/                         # Memory system templates
-│   │   ├── memory-hub.md
-│   │   ├── memory-ai.md
-│   │   ├── memory-human.md
-│   │   ├── memory-guide.md
-│   │   └── log/
+│   │   ├── dynamic-context-builder.R   # Context updates
+│   │   ├── migration-utilities.R       # Migration helpers
+│   │   ├── tests/                      # Test suite
+│   │   └── wrappers/                   # R script wrappers
+│   ├── memory/                         # Memory system
+│   │   ├── memory-hub.md               # Memory integration hub
+│   │   ├── memory-ai.md                # AI memory tracking
+│   │   ├── memory-human.md             # Human memory tracking
+│   │   ├── memory-guide.md             # Memory system guide
+│   │   └── log/                        # Automated memory logs
+│   ├── templates/                      # Migration templates
+│   │   ├── manual-migration-template.md
+│   │   └── ai-assisted-migration-template.md
 │   └── vscode/
 │       └── tasks-template.json         # VSCode task templates
 ```
@@ -59,7 +76,7 @@ target-repo/
 ### Potential Conflicts
 - [ ] Check for existing `.copilot-persona` file
 - [ ] Check for existing `.github/copilot-instructions.md`
-- [ ] Check for existing `ai/` or `ai-support-system/` directories
+- [ ] Check for existing `ai/` directory
 - [ ] Check for conflicting VSCode task names
 
 ## Migration Steps
@@ -67,7 +84,7 @@ target-repo/
 ### Step 1: Pre-Migration Validation
 ```r
 # In source repository
-source("ai-support-system/scripts/ai-context-management.R")
+source("ai/scripts/ai-context-management.R")
 assessment <- generate_migration_assessment(
   source_path = ".",
   target_path = "/path/to/target/repo",
@@ -83,12 +100,19 @@ assessment <- generate_migration_assessment(
 ### Step 2: Directory Structure Creation
 ```powershell
 # In target repository
-New-Item -ItemType Directory -Path "ai-support-system" -Force
-New-Item -ItemType Directory -Path "ai-support-system\core" -Force
-New-Item -ItemType Directory -Path "ai-support-system\personas" -Force
-New-Item -ItemType Directory -Path "ai-support-system\scripts" -Force
-New-Item -ItemType Directory -Path "ai-support-system\memory" -Force
-New-Item -ItemType Directory -Path "ai-support-system\vscode" -Force
+New-Item -ItemType Directory -Path "ai" -Force
+New-Item -ItemType Directory -Path "ai\core" -Force
+New-Item -ItemType Directory -Path "ai\docs" -Force
+New-Item -ItemType Directory -Path "ai\docs\mcp-setup" -Force
+New-Item -ItemType Directory -Path "ai\personas" -Force
+New-Item -ItemType Directory -Path "ai\project" -Force
+New-Item -ItemType Directory -Path "ai\scripts" -Force
+New-Item -ItemType Directory -Path "ai\scripts\tests" -Force
+New-Item -ItemType Directory -Path "ai\scripts\wrappers" -Force
+New-Item -ItemType Directory -Path "ai\memory" -Force
+New-Item -ItemType Directory -Path "ai\memory\log" -Force
+New-Item -ItemType Directory -Path "ai\templates" -Force
+New-Item -ItemType Directory -Path "ai\vscode" -Force
 New-Item -ItemType Directory -Path ".github" -Force
 ```
 
@@ -101,9 +125,16 @@ Copy these files from source to target:
 
 ```powershell
 # Configuration and documentation
-Copy-Item "ai-support-system\ai-support-config.yml" "target-repo\ai-support-system\"
-Copy-Item "ai-support-system\README.md" "target-repo\ai-support-system\"
-Copy-Item "ai-support-system\core\base-instructions.md" "target-repo\ai-support-system\core\"
+Copy-Item "ai\ai-support-config.yml" "target-repo\ai\"
+Copy-Item "ai\README.md" "target-repo\ai\"
+Copy-Item "ai\memory-human.md" "target-repo\ai\"
+Copy-Item "ai\core\base-instructions.md" "target-repo\ai\core\"
+
+# Documentation system
+Copy-Item "ai\docs\commands.md" "target-repo\ai\docs\"
+Copy-Item "ai\docs\context-system.md" "target-repo\ai\docs\"
+Copy-Item "ai\docs\testing-guide.md" "target-repo\ai\docs\"
+Copy-Item "ai\docs\mcp-setup\*" "target-repo\ai\docs\mcp-setup\" -Recurse
 ```
 
 **Verification:**
@@ -113,9 +144,16 @@ Copy-Item "ai-support-system\core\base-instructions.md" "target-repo\ai-support-
 
 ### Step 4: Persona System Migration
 ```powershell
-# Copy selected personas
-Copy-Item "ai-support-system\personas\developer.md" "target-repo\ai-support-system\personas\"
-Copy-Item "ai-support-system\personas\project-manager.md" "target-repo\ai-support-system\personas\"
+# Copy core persona system files
+Copy-Item "ai\personas\README.md" "target-repo\ai\personas\"
+Copy-Item "ai\personas\persona-system-guide.md" "target-repo\ai\personas\"
+Copy-Item "ai\personas\persona-template.md" "target-repo\ai\personas\"
+Copy-Item "ai\personas\default.md" "target-repo\ai\personas\"
+
+# Copy selected personas (choose what you need)
+Copy-Item "ai\personas\developer.md" "target-repo\ai\personas\"
+Copy-Item "ai\personas\project-manager.md" "target-repo\ai\personas\"
+Copy-Item "ai\personas\casenote-analyst.md" "target-repo\ai\personas\"
 # Add other personas as selected...
 ```
 
@@ -125,27 +163,48 @@ Copy-Item "ai-support-system\personas\project-manager.md" "target-repo\ai-suppor
 
 ### Step 5: Scripts and Logic Migration
 ```powershell
-# Copy portable logic
-Copy-Item "ai-support-system\scripts\ai-context-management.R" "target-repo\ai-support-system\scripts\"
-Copy-Item "ai-support-system\scripts\ai-memory-functions.R" "target-repo\ai-support-system\scripts\"
-Copy-Item "ai-support-system\scripts\update-copilot-context.R" "target-repo\ai-support-system\scripts\"
+# Copy core scripts
+Copy-Item "ai\scripts\ai-context-management.R" "target-repo\ai\scripts\"
+Copy-Item "ai\scripts\ai-memory-functions.R" "target-repo\ai\scripts\"
+Copy-Item "ai\scripts\dynamic-context-builder.R" "target-repo\ai\scripts\"
+Copy-Item "ai\scripts\migration-utilities.R" "target-repo\ai\scripts\"
+
+# Copy test suite and wrappers
+Copy-Item "ai\scripts\tests\*" "target-repo\ai\scripts\tests\" -Recurse
+Copy-Item "ai\scripts\wrappers\*" "target-repo\ai\scripts\wrappers\" -Recurse
+
+# Copy project context files
+Copy-Item "ai\project\*" "target-repo\ai\project\" -Recurse
+
+# Copy templates and vscode integration
+Copy-Item "ai\templates\*" "target-repo\ai\templates\" -Recurse
+Copy-Item "ai\vscode\tasks-template.json" "target-repo\ai\vscode\"
 ```
 
 **Verification:**
 - [ ] All scripts copied
 - [ ] R scripts have correct syntax
 
-### Step 6: Memory System Initialization
+### Step 6: Memory System Migration
+```powershell
+# Copy memory system files
+Copy-Item "ai\memory\memory-hub.md" "target-repo\ai\memory\"
+Copy-Item "ai\memory\memory-ai.md" "target-repo\ai\memory\"
+Copy-Item "ai\memory\memory-human.md" "target-repo\ai\memory\"
+Copy-Item "ai\memory\memory-guide.md" "target-repo\ai\memory\"
+# Note: log/ directory will be created automatically when system runs
+```
+
 ```r
-# In target repository
-source("ai-support-system/scripts/ai-memory-functions.R")
-initialize_memory_system(project_root = ".", system_type = "ai-support-system")
+# Initialize memory system in target repository
+source("ai/scripts/ai-memory-functions.R")
+initialize_memory_system(project_root = ".", system_type = "ai")
 ```
 
 **Verification:**
-- [ ] Memory directory structure created
-- [ ] Basic memory files initialized
-- [ ] Memory system functional
+- [ ] Memory system files copied
+- [ ] Memory directory structure functional
+- [ ] Memory system initialized
 
 ### Step 7: Context Management Setup
 ```powershell
@@ -156,7 +215,7 @@ New-Item -ItemType File -Path ".copilot-persona" -Force
 
 ```r
 # Initialize context system
-source("ai-support-system/scripts/ai-context-management.R")
+source("ai/scripts/ai-context-management.R")
 activate_default()  # Sets up initial context
 ```
 
@@ -181,7 +240,7 @@ Edit `config.yml` to add:
 # AI Support System Configuration
 ai_support:
   enabled: true
-  system_type: "ai-support-system"
+  system_type: "ai"
   personas_enabled: true
   memory_enabled: true
   context_management: true
@@ -197,7 +256,7 @@ ai_support:
 ### Functionality Tests
 ```r
 # Test persona system
-source("ai-support-system/scripts/ai-context-management.R")
+source("ai/scripts/ai-context-management.R")
 show_context_status()
 
 # Test different personas
@@ -214,7 +273,7 @@ activate_default()
 ### Memory System Tests
 ```r
 # Test memory system
-source("ai-support-system/scripts/ai-memory-functions.R")
+source("ai/scripts/ai-memory-functions.R")
 ai_memory_check()
 
 # Test memory updates
@@ -230,8 +289,8 @@ human_memory_update("Migration completed successfully")
 ### Integration Tests
 ```r
 # Test full system integration
-source("ai-support-system/scripts/ai-context-management.R")
-source("ai-support-system/scripts/ai-memory-functions.R")
+source("ai/scripts/ai-context-management.R")
+source("ai/scripts/ai-memory-functions.R")
 
 show_context_status()
 ai_memory_check()
@@ -249,7 +308,7 @@ If migration fails or causes issues:
 ### Quick Rollback
 ```powershell
 # Remove AI support system
-Remove-Item -Recurse -Force "ai-support-system"
+Remove-Item -Recurse -Force "ai"
 Remove-Item -Force ".copilot-persona"
 Remove-Item -Force ".github\copilot-instructions.md"
 ```
@@ -278,10 +337,10 @@ Migration is successful when:
 4. **Context updates fail**: Verify GitHub Copilot integration
 
 ### Getting Help
-- Review `ai-support-system/README.md`
+- Review `ai/README.md`
 - Check error messages in R console
 - Use `show_context_status()` for diagnostics
-- Examine log files in `ai-support-system/memory/log/`
+- Examine log files in `ai/memory/log/`
 
 ---
 

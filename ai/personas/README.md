@@ -48,7 +48,7 @@ This directory contains the complete AI persona system for the case-note-simulat
 ### For Humans
 ```r
 # Load the persona system
-source('./scripts/update-copilot-context.R')
+source('./ai/scripts/dynamic-context-builder.R')
 
 # See all available personas
 list_personas()
@@ -82,7 +82,7 @@ Each persona defines:
 
 1. Create new `.md` file in `./ai/personas/`
 2. Follow the standard persona template structure
-3. Add activation function to `update-copilot-context.R`
+3. Add activation function to `ai/scripts/dynamic-context-builder.R`
 4. Update documentation and tests
 5. Configure dynamic content loading preferences
 
@@ -100,7 +100,7 @@ The persona system integrates with:
 ## 📖 Documentation
 
 - **Complete Guide**: `persona-system-guide.md` - Comprehensive instructions for humans and AI
-- **User Guide**: `../../guides/developer-persona-guide.md` - User-focused persona usage
+- **User Guide**: `../docs/commands.md` - Essential AI system commands
 - **Technical Docs**: `../README.md` - AI system architecture overview
 
 ---
