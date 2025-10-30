@@ -1,51 +1,56 @@
-# 3-Section Context Management System Guide
+# AI Context System
 
-The enhanced context management system provides structured, flexible control over AI assistant context through three distinct sections in the copilot instructions.
+**📍 Location**: `ai/docs/` | **🏠 Home**: [`ai/README.md`](../README.md) | **📚 Main**: [`README.md`](../../README.md)
 
-## 📋 Architecture Overview
+The AI context management system provides structured control over AI assistant context through three sections in the copilot instructions.
 
-### Context Configuration Overview (Header)
+## 📋 System Architecture
+
+### Context Overview Header
 - **Purpose**: Real-time visibility into loaded context and file sizes
-- **Content**: Section breakdown with KB/line counts, file listing, management commands
-- **Updates**: Automatically regenerated each time context changes
+- **Content**: Section breakdown with KB/token counts, active files, management commands
+- **Updates**: Automatically regenerated when context changes
 - **Benefits**: Immediate understanding of current configuration and resource usage
 
 ### Section 1: Core AI Instructions (Static)
 - **Purpose**: Core AI behavior, response guidelines, and system-wide instructions
-- **Content**: Never changes, provides consistent baseline behavior
+- **Content**: Consistent baseline behavior that never changes
 - **Includes**: Universal principles, memory detection, automation triggers, response guidelines
 
-### Section 2: Active Role (Dynamic)
-- **Purpose**: Single active persona defining specialized role and behavior
+### Section 2: Active Persona (Dynamic)
+- **Purpose**: Single active persona defining specialized role and expertise
 - **Content**: One persona file loaded at a time
-- **Examples**: Developer (technical focus), Project Manager (strategic oversight), Case Note Analyst (domain expertise)
+- **Examples**: Developer (technical), Project Manager (strategic), Case Note Analyst (domain expertise)
 
 ### Section 3: Additional Context (Dynamic) 
 - **Purpose**: Flexible context files relevant to current work
-- **Content**: Persona defaults + manually added files
-- **Examples**: Project documentation, analysis guides, methodology files
+- **Content**: Persona default files + manually added files
+- **Examples**: Project documentation, analysis workflows, methodology files
 
 ## 🚀 Quick Start
 
 ### Basic Persona Switching
 ```r
 # Load system
-source('./scripts/update-copilot-context.R')
+source('ai/scripts/ai-context-management.R')
 
 # Activate personas with their defaults
-activate_developer()         # Technical focus, no additional context
+activate_developer()         # Technical focus, minimal context
 activate_project_manager()   # Strategic oversight + mission/method/glossary  
-activate_casenote_analyst()  # Domain analysis + onboarding guide
+activate_casenote_analyst()  # Domain expertise + specialized context
 
 # Check current status
 show_context_status()
 ```
 
-### Advanced Context Management
+### Context File Management
 ```r
 # Add specific context files
-add_context_file('philosophy/analysis-templatization.md')
-add_context_file('guides/custom-data-guide.md')
+add_context_file('./ai/project/mission.md')
+add_context_file('./analysis/eda-1/README.md')
+
+# Remove context files
+remove_context_file('./ai/project/mission.md')
 
 # Discover available files
 list_available_md_files()           # All .md files
@@ -91,10 +96,10 @@ show_context_status()
 - `philosophy/semiology.md` - Methodological foundations
 - `philosophy/causal-inference.md` - Causal analysis principles
 
-### Implementation Guides
-- `guides/custom-data-guide.md` - Data handling procedures
-- `guides/implementation-guide.md` - System implementation
-- `guides/flow-usage.md` - Workflow usage patterns
+### Implementation Documentation
+- `simulation/implementation.md` - System implementation and architecture
+- `simulation/README.md` - Synthetic data generation overview
+- `analysis/*/README.md` - Analysis-specific documentation
 
 ### Memory & Documentation
 - `memory-hub` - Central memory coordination
@@ -150,13 +155,13 @@ Each persona defines its default context in `get_persona_configs()`:
 ```r
 activate_casenote_analyst()  # Domain expertise
 add_context_file('philosophy/analysis-templatization.md')  # Analysis framework
-add_context_file('guides/custom-data-guide.md')  # Data procedures
+add_context_file('simulation/implementation.md')  # Implementation guidance
 ```
 
 ### System Development Session  
 ```r
 activate_developer()  # Technical focus
-add_context_file('guides/implementation-guide.md')  # Implementation guidance
+add_context_file('simulation/README.md')  # System overview
 # Keep context minimal for focused technical work
 ```
 
@@ -212,7 +217,8 @@ ai/
 └── [memory & other files]  # Available for Section 3
 
 philosophy/       # Methodological context for Section 3
-guides/          # Implementation context for Section 3  
+simulation/       # Implementation context for Section 3  
+analysis/         # Analysis workflow context for Section 3
 ```
 
 ## 📖 Next Steps

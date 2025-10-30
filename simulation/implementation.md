@@ -1,8 +1,10 @@
-# Case Note Simulator Implementation Guide
+# Case Note Simulator Implementation
+
+**📍 Location**: `simulation/` | **🏠 Home**: [`simulation/README.md`](README.md) | **📚 Main**: [`README.md`](../README.md)
 
 ## Overview
 
-The `case-note-simulator` repository is designed to generate realistic but completely fictional social services case data for testing and validating analytical workflows in the Strategic Data Analytics (SDA) unit. This guide describes the implementation approach, expert workflow, and integration with `sda-casenote-reader`.
+The `case-note-simulator` generates realistic but completely fictional social services case data for testing and validating analytical workflows in the Strategic Data Analytics (SDA) unit. This guide describes the implementation approach, expert workflow, and integration with `sda-casenote-reader`.
 
 ## Repository Architecture
 

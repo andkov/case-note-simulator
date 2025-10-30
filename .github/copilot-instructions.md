@@ -1,11 +1,14 @@
 <!-- CONTEXT OVERVIEW -->
-Total size: 27.3 KB (~6,993 tokens)
+Total size: 32.8 KB (~8,405 tokens)
 - 1: Core AI Onboarding  | 3.1 KB (~794 tokens)
 - 2: Active Persona: Project Manager | 8.1 KB (~2,084 tokens)
-- 3: Additional Context     | 16.1 KB (~4,115 tokens)
-  -- project/mission (default)  | 2.7 KB (~702 tokens)
-  -- project/method (default)  | 3.5 KB (~904 tokens)
-  -- project/glossary (default)  | 9.8 KB (~2,510 tokens)
+- 3: Additional Context     | 21.6 KB (~5,527 tokens)
+  -- ./ai/project/mission.md (default)  | 2.7 KB (~702 tokens)
+  -- ./ai/project/method.md (default)  | 3.5 KB (~904 tokens)
+  -- ./ai/project/glossary.md (default)  | 9.8 KB (~2,510 tokens)
+  -- ./pipeline.md  | 0.1 KB (~26 tokens)
+  -- ./ai/memory/memory-ai.md  | 1.9 KB (~479 tokens)
+  -- ./ai/memory/log/2025-10-29-context-system-cleanup.md  | 3.4 KB (~882 tokens)
 
 ## 🔧 Management Commands
 
@@ -189,7 +192,7 @@ This Project Manager operates with the understanding that successful research pr
 
 # Section 3: Additional Context
 
-### Project Mission (from `./ai/project/mission.md`)
+### . Ai Project Mission.md (from `./ai/project/mission.md`)
 
 # Synthetic Case Note Generation Mission
 
@@ -237,7 +240,7 @@ A collection of expert-specified synthetic data generation workflows that produc
 - Configurable scenario parameters for specific SDA project needs
 - Export compatibility with sda-casenote-reader analytical pipelines
 
-### Project Method (from `./ai/project/method.md`)
+### . Ai Project Method.md (from `./ai/project/method.md`)
 
 # Synthetic Data Generation Methods
 
@@ -297,7 +300,7 @@ A collection of expert-specified synthetic data generation workflows that produc
 - Temporal displacement preventing correlation with actual service periods
 - Demographic noise injection maintaining statistical realism while eliminating identifiability
 
-### Project Glossary (from `./ai/project/glossary.md`)
+### . Ai Project Glossary.md (from `./ai/project/glossary.md`)
 
 # Social Services Synthetic Data Glossary
 
@@ -436,6 +439,160 @@ Most of the training services fall under the umbrella of Career and Employment I
 
 
  
+
+### . Pipeline.md (from `./pipeline.md`)
+
+# ./pipeline.md
+
+Sequence of scripts tha capture data assembly, modeling and reporting. 
+
+# Data assembly
+
+### . Ai Memory Memory Ai.md (from `./ai/memory/memory-ai.md`)
+
+# AI Memory - Technical Status & Implementation Notes
+
+*AI-maintained technical status for briefing humans on project state*  
+*Recent entries first - scroll down for historical implementation contexts*
+
+---
+
+## 2025-10-29: AI Context Management System Cleanup
+
+**Status**: ✅ COMPLETED - Major refactoring and consolidation
+
+**Key Changes**:
+- **Removed dual systems**: Eliminated old DYNAMIC CONTENT START/END marker system
+- **Simplified file mapping**: Removed `get_file_map()` function with 21 hard-coded paths
+- **Direct path approach**: Users now specify file paths directly (e.g., `./ai/project/mission.md`)
+- **Streamlined codebase**: Reduced `dynamic-context-builder.R` from 1,645 to ~650 lines
+- **Fixed task integration**: All VS Code persona switching tasks now work correctly
+
+**Technical Implementation**:
+- **3-Section System**: Clean section-based approach (Core Instructions + Active Persona + Additional Context)
+- **Function Consolidation**: From 40+ functions down to 15 essential functions
+- **Path Resolution**: Simple `resolve_file_path()` that validates and normalizes paths
+- **Persona Configs**: Now use direct file paths instead of abstract mapping keys
+
+**Verified Working**:
+- ✅ All persona switching (`activate_developer()`, `activate_project_manager()`, etc.)
+- ✅ Context file management (`add_context_file()`, `remove_context_file()`)
+- ✅ VS Code task integration (all persona activation tasks)
+- ✅ File change logging system (`log_file_change()`)
+
+**Performance Impact**:
+- Reduced function complexity and memory usage
+- Eliminated dictionary lookups for file resolution
+- Faster persona switching with cleaner code paths
+
+**Maintenance Benefits**:
+- No more hard-coded file mappings to maintain
+- Can add any .md file without updating configurations
+- Clearer, more explicit file path specifications
+- Easier debugging and troubleshooting
+
+## 2025-10-01: Major Template Update
+
+
+
+---
+
+### . Ai Memory log 2025 10 29 Context System Cleanup.md (from `./ai/memory/log/2025-10-29-context-system-cleanup.md`)
+
+# Context Management System Cleanup - 2025-10-29
+
+## Overview
+Major refactoring of the AI context management system to eliminate redundancy and improve maintainability.
+
+## Problem Statement
+The system had two overlapping context management approaches:
+1. **Old System**: Used `<!-- DYNAMIC CONTENT START -->` markers with `add_to_instructions()` function
+2. **New System**: Used 3-section approach with `set_persona_with_defaults()` function
+
+This created confusion, maintenance overhead, and potential conflicts.
+
+## Solution Implemented
+
+### 1. System Consolidation
+- **Removed**: All old system functions (`update_copilot_instructions()`, `add_to_instructions()`, `add_core_context()`, etc.)
+- **Kept**: Clean 3-section system only (Section 1: Core Instructions, Section 2: Active Persona, Section 3: Additional Context)
+- **Result**: Single, reliable context management approach
+
+### 2. File Mapping Simplification
+- **Removed**: `get_file_map()` function with 21 hard-coded file paths and legacy aliases
+- **Replaced**: Direct file path approach with simple validation
+- **Benefit**: Users can reference any .md file without pre-mapping
+
+### 3. Code Reduction
+- **Before**: 1,645 lines in `dynamic-context-builder.R`
+- **After**: ~650 lines with same functionality
+- **Functions**: Reduced from 40+ to 15 essential functions
+
+## Files Modified
+
+### Primary Changes
+- `ai/scripts/dynamic-context-builder.R` - Complete rewrite to remove old system
+- `ai/scripts/ai-context-management.R` - Updated to use correct script paths
+- `.vscode/tasks.json` - Fixed all persona activation task paths
+- `flow.R` - Updated to use correct file paths
+- `scripts/README.md` - Updated function documentation
+
+### Testing Results
+✅ All persona switching functions work correctly
+✅ VS Code tasks execute without errors  
+✅ Context file management functions operational
+✅ File change logging system functional
+
+## Technical Details
+
+### New Function Signatures
+```r
+# Simplified path resolution
+resolve_file_path(file_path)  # vs old resolve_file_path(file_key, file_map)
+
+# Direct path usage in persona configs
+"project-manager" = list(
+  file = "./ai/personas/project-manager.md", 
+  default_context = c("./ai/project/mission.md", "./ai/project/method.md", "./ai/project/glossary.md")
+)
+```
+
+### Performance Improvements
+- No dictionary lookups for file resolution
+- Reduced memory footprint
+- Faster persona switching
+- Simplified debugging
+
+### Maintenance Benefits  
+- No hard-coded mappings to maintain
+- Flexible file addition without configuration updates
+- Explicit, clear file path specifications
+- Easier troubleshooting and debugging
+
+## Verification Process
+1. Tested all persona switching functions via R console
+2. Verified VS Code task integration works correctly
+3. Confirmed context file addition/removal functions
+4. Validated file change logging system
+5. Checked error handling for invalid file paths
+
+## Next Steps
+- Monitor system performance in daily usage
+- Consider adding auto-discovery for common file patterns if needed
+- Update user documentation to reflect new direct path approach
+- Evaluate need for additional convenience functions
+
+## Impact Assessment
+- **Risk**: Low - System maintains same external interface
+- **Complexity**: Significantly reduced
+- **Maintainability**: Greatly improved
+- **User Experience**: More intuitive and flexible
+- **Performance**: Improved due to code simplification
+
+---
+*Logged by: AI Developer Persona*  
+*Date: 2025-10-29*  
+*System State: Fully operational post-cleanup*
 
 <!-- END DYNAMIC CONTENT -->
 

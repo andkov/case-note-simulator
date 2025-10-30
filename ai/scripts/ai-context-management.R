@@ -55,17 +55,20 @@ set_persona_with_autodetect <- function(persona_name, project_root = ".") {
   persona_file <- file.path(project_root, ".copilot-persona")
   writeLines(persona_name, persona_file)
   
-  # Source the context update script if available
-  context_script <- file.path(project_root, "ai", "scripts", "update-copilot-context.R")
-  if (!file.exists(context_script)) {
-    context_script <- file.path(project_root, "scripts", "update-copilot-context.R")
-  }
+  # Source the context update script
+  context_script <- file.path(project_root, "ai", "scripts", "dynamic-context-builder.R")
   
   if (file.exists(context_script)) {
     source(context_script, local = TRUE)
     if (exists("set_persona_with_defaults")) {
       set_persona_with_defaults(persona_name)
+    } else {
+      cat("❌ set_persona_with_defaults function not found in context script\n")
+      return(invisible(FALSE))
     }
+  } else {
+    cat("❌ Context builder script not found:", context_script, "\n")
+    return(invisible(FALSE))
   }
   
   return(invisible(TRUE))

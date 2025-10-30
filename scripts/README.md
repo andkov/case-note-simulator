@@ -25,9 +25,9 @@ Small wrapper scripts that bridge VS Code tasks with main project scripts.
 This script now includes comprehensive project management functions:
 
 #### Context Management Functions:
-- `add_to_instructions()` - Load dynamic context into Copilot
-- `context_refresh()` - Complete project status scan
-- `analyze_project_status()` - Comprehensive project analysis
+- `set_persona_with_defaults()` - Switch AI persona with appropriate context
+- `add_context_file()` - Add specific files to AI context
+- `show_context_status()` - Display current AI context status
 
 #### 🆕 New CACHE Manifest Functions:
 - `check_cache_manifest()` - Check and update data manifest as needed

@@ -338,15 +338,10 @@ if( sink_log ) {
 # - This script is designed to be constant between projects, except for the `ds_rail`
 #   section, which should be customized for each project.
 
-# Load the copilot context automation
-if (file.exists("scripts/update-copilot-context.R")) {
-  source("scripts/update-copilot-context.R")
-  message("✓ Copilot context automation loaded. Use: add_to_instructions('mission', 'glossary', ...)")
-}
-
 # Load AI context management functions
-if (file.exists("scripts/ai-context-management.R")) {
-  source("scripts/ai-context-management.R")
+if (file.exists("ai/scripts/ai-context-management.R")) {
+  source("ai/scripts/ai-context-management.R")
+  message("✓ AI context management loaded. Use persona switching functions.")
   # Automatically switch to default persona when project opens
   activate_default()
   message("✓ AI context management loaded. Default persona activated.")

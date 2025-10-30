@@ -64,7 +64,7 @@
 **Format**: Wiki-link based navigation with minimal text  
 **Usage**: Entry point for memory exploration  
 
-### 4. **`ai/log/` - Detailed Change Documentation** 📋
+### 4. **`ai/memory/log/` - Detailed Change Documentation** 📋
 **Purpose**: Comprehensive reports of significant changes, implementations, and analyses
 **Owner**: AI systems (auto-generated) + Human documentation  
 **Organization**: **Date-keyword naming** (e.g., `2025-08-15-mpm-migration.md`)
@@ -107,7 +107,7 @@ Technical Status ────→ memory-ai.md (implementation facts, recent firs
 Navigation ──────────→ memory-hub.md (wiki-links, shortcuts)
                          │
                          ▼
-Detailed Reports ────→ ai/log/ (comprehensive documentation)
+Detailed Reports ────→ ai/memory/log/ (comprehensive documentation)
                          │
                          ▼
 Relationships ───────→ Memory MCP (dynamic connections)
@@ -243,16 +243,16 @@ Relationships ───────→ Memory MCP (dynamic connections)
 - Maintain professional tone while being concise
 
 **Rule 8: Detailed Documentation Protocol**
-- For significant changes/implementations, create comprehensive report in `ai/log/`
+- For significant changes/implementations, create comprehensive report in `ai/memory/log/`
 - Use naming convention: `YYYY-MM-DD-brief-description.md`
 - Include: Context, Implementation steps, Impact, Files modified, Dependencies
 - Link to log reports from brief entries in `memory-ai.md`
-- Use `ai/log/` for provisional documents, drafts, and technical deep-dives
+- Use `ai/memory/log/` for provisional documents, drafts, and technical deep-dives
 
 **Rule 9: Log Management**
 - Keep memory files (memory-human.md, memory-ai.md) focused on current status
-- Move detailed analysis, step-by-step processes, and comprehensive reports to `ai/log/`
-- Reference log files from memory files using format: "Detailed report: [[ai/log/YYYY-MM-DD-description]]"
+- Move detailed analysis, step-by-step processes, and comprehensive reports to `ai/memory/log/`
+- Reference log files from memory files using format: "Detailed report: [[ai/memory/log/YYYY-MM-DD-description]]"
 - Use log folder for troubleshooting documentation and methodology notes
 
 ### Performance Optimization 🚀

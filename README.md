@@ -17,6 +17,46 @@ This repository generates completely fictional but realistic social services cas
 - Government researchers and academic partners (secondary)
 - Other public service organizations requiring synthetic social services data
 
+## 📊 **Key Directories**
+
+- **`simulation/`** - Synthetic data generation engine
+  - `input-specifications/` - YAML configuration files  
+  - `generation-engine/` - R scripts for data generation
+  - `output-datasets/` - Generated synthetic datasets
+- **`analysis/`** - Analysis and reporting workflows
+- **`ai/`** - AI assistant configuration and memory
+- **`data-public/`** - Public datasets and metadata
+- **`data-private/`** - Private/derived datasets
+
+## 📝 **Basic Workflow**
+
+1. **Start session**: `show_context_status()`
+2. **Load context**: Choose appropriate persona or add specific files
+3. **Generate data**: Work with simulation specifications  
+4. **Analyze results**: Use analysis workflows
+5. **Log changes**: `log_change('file.R', 'description')`
+
+## 🔧 **Common Tasks**
+
+### Generate Synthetic Data
+```r
+# Configure specifications in simulation/input-specifications/
+# Run generation engine scripts in simulation/generation-engine/
+source('simulation/generation-engine/client-generator.R')
+```
+
+### Run Analysis
+```r
+# Execute analysis workflows
+source('analysis/eda-1/eda-1.R')
+```
+
+### Create Reports
+```bash
+# Render Quarto reports
+quarto render analysis/eda-1/eda-1.qmd --to html
+```
+
 ## 🏗️ **Architecture**
 
 ### Expert-Driven Specification System
@@ -79,13 +119,43 @@ The AI assistant automatically loads with the **Default persona** when you open 
 
 ## 🚀 **Quick Start**
 
-### 1. Setup Environment
-```r
-# Install required packages
-install.packages(c("yaml", "dplyr", "purrr", "lubridate", "stringr", "jsonlite"))
+### Prerequisites
+- **R** (4.0+)
+- **RStudio** (recommended)
+- **Git** (for version control)
+- **Quarto CLI** (for reports)
+
+### 1. Clone Repository
+```bash
+git clone https://github.com/andkov/case-note-simulator.git
+cd case-note-simulator
 ```
 
-### 2. Generate Your First Synthetic Population
+### 2. Install R Packages
+```r
+# Run the package installer
+source('utility/install-packages.R')
+```
+
+### 3. Verify Setup
+```r
+# Check project setup
+source('scripts/check-setup.R')
+```
+
+### 4. Activate AI Assistant
+```r
+# Load the AI context system
+source('ai/scripts/ai-context-management.R')
+
+# Start with full project context
+activate_project_manager()
+
+# Check status
+show_context_status()
+```
+
+### 5. Generate Your First Synthetic Population
 ```r
 # Load the client generator
 source("./simulation/generation-engine/client-generator.R")
@@ -99,7 +169,7 @@ validation <- validate_client_population(test_clients)
 print(validation)
 ```
 
-### 3. Export for Analysis
+### 6. Export for Analysis
 ```r
 # Export to CSV for use in analytical workflows
 export_client_population(
@@ -185,10 +255,19 @@ export_client_population(
 
 ## 📚 **Documentation**
 
-- **[Implementation Guide](guides/implementation-guide.md)** - Comprehensive architecture and workflow documentation
-- **[AI Mission](ai/mission.md)** - Project purpose and epistemic goals
-- **[AI Method](ai/method.md)** - Synthetic data generation methodology
-- **[Glossary](ai/glossary.md)** - Social services and technical terminology
+### 🤖 AI System Documentation
+- **[Commands Reference](ai/docs/commands.md)** - Essential AI system commands
+- **[Context System](ai/docs/context-system.md)** - AI context management and persona system
+- **[MCP Setup](ai/docs/mcp-setup/)** - Model Context Protocol setup instructions
+
+### 🎯 Simulation System Documentation  
+- **[Implementation Guide](simulation/implementation.md)** - Comprehensive architecture and workflow documentation
+- **[Simulation Overview](simulation/README.md)** - Synthetic data generation system overview
+
+### 📋 Project Context
+- **[Project Mission](ai/project/mission.md)** - Project purpose and epistemic goals
+- **[Project Method](ai/project/method.md)** - Synthetic data generation methodology
+- **[Glossary](ai/project/glossary.md)** - Social services and technical terminology
 
 ## 🛠️ **Current Status**
 
@@ -233,6 +312,16 @@ case_complexity: "moderate"
 estimated_duration_months: 14
 intake_date: "2023-03-15"
 ```
+
+## 💡 **Tips**
+
+- Use **Project Manager persona** for strategic work and planning
+- Use **Developer persona** for focused coding work  
+- Use **Case Note Analyst persona** for domain expertise work
+- Project memory system tracks decisions and intentions automatically
+- All synthetic data is completely fictional - no real client information
+- Check AI system status with `show_context_status()`
+- Log important changes with `log_change('file.R', 'description')`
 
 ## 🏛️ **Government of Alberta Context**
 

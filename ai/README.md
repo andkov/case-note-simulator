@@ -158,41 +158,46 @@ migrate_ai_support(
 4. **Install**: Execute migration with chosen method
 5. **Validate**: Confirm all components work in target environment
 
+## Documentation
+
+### 📚 User Documentation (ai/docs/)
+- **`commands.md`** - Essential commands for AI system operations
+- **`context-system.md`** - AI context management and persona system guide
+- **`mcp-setup/`** - Model Context Protocol setup instructions
+- **`testing-guide.md`** - Testing framework documentation
+
+### 🚀 Quick Start
+1. **Load system**: `source('ai/scripts/ai-context-management.R')`
+2. **Check status**: `show_context_status()`
+3. **Switch persona**: `activate_project_manager()` (or other persona)
+4. **Get help**: See `ai/docs/commands.md`
+
 ## File Structure
 
 ```
-ai-support-system/
+ai/
 ├── ai-support-config.yml      # Main configuration
 ├── README.md                  # This file
 ├── core/                      # Context management
-│   └── base-instructions.md
 ├── personas/                  # AI personas (12 specialized)
 │   ├── developer.md
-│   ├── project_manager.md
+│   ├── project-manager.md
 │   └── ...
 ├── scripts/                   # Portable logic
 │   ├── dynamic-context-builder.R   # Core context building engine
-│   ├── ai-context-management.R     # Persona switching with auto-detection
+│   ├── ai-context-management.R     # Persona switching with auto-detection  
 │   ├── ai-memory-functions.R       # Memory system with storage/logic separation
-│   ├── migration-utilities.R       # Export/import tools
 │   ├── tests/                      # Testing & verification
-│   │   ├── run-all-tests.R         # Comprehensive test runner
-│   │   ├── test-developer-integration.R     # Developer persona tests
-│   │   ├── test-project-manager-integration.R  # Project manager tests
-│   │   └── test-mini-eda-system.R  # Mini-EDA system tests
 │   └── wrappers/                   # VSCode task wrapper scripts
-│       ├── run-ai-memory-check.R
-│       ├── run-add-core-context.R
-│       └── test-context-management.R
-├── memory/                    # Memory system templates
-├── templates/                 # Migration templates
-│   ├── manual-migration/
-│   └── ai-assisted-migration/
+├── memory/                    # Project memory system
+├── project/                   # Project-specific context
+├── templates/                 # Templates and examples
 ├── vscode/                    # VSCode integration
-│   └── tasks-template.json
-└── docs/                      # Documentation
-    ├── migration-guide.md
-    └── troubleshooting.md
+└── docs/                      # User Documentation
+    ├── commands.md             # Command reference
+    ├── context-system.md       # Context management guide
+    ├── mcp-setup/             # MCP setup instructions
+    └── testing-guide.md       # Testing documentation
 ```
 
 ## Philosophy
