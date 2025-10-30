@@ -39,6 +39,29 @@
 - Clearer, more explicit file path specifications
 - Easier debugging and troubleshooting
 
+## 2025-10-29: Migration Templates Updated
+
+**Status**: ✅ COMPLETED - Templates now reflect current ai/ structure
+
+**Key Changes**:
+- **Updated manual-migration-template.md**: Changed all `ai-support-system/` paths to `ai/`
+- **Updated ai-assisted-migration-template.md**: Fixed system detection logic and memory paths
+- **Added new directories**: Included docs/, project/, scripts/tests/, scripts/wrappers/ subdirectories
+- **Fixed R script references**: All source() calls now use correct ai/scripts/ paths
+- **Updated system_type**: Changed from "ai-support-system" to "ai" throughout
+
+**Technical Implementation**:
+- Updated PowerShell Copy-Item commands for current folder structure
+- Fixed conditional logic in AI-assisted migration for ai/ detection
+- Corrected memory system initialization paths
+- Templates now accurately represent current repository structure
+
+**Dead Link Cleanup**:
+- ✅ Eliminated all references to non-existent `update-copilot-context.R`
+- ✅ Replaced with correct `dynamic-context-builder.R` references
+- ✅ Fixed obsolete `ai-support-system/` path references throughout repository
+- ✅ Verified all file references point to existing files
+
 ## 2025-10-01: Major Template Update
 
 

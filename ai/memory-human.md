@@ -1,5 +1,7 @@
 # memory-human.md
 
+**NOTE: This file is for HUMAN authors only. AI assistants should use memory-ai.md for their logs.**
+
 ## Project Logbook
 Use this to document key decisions, model revisions, and reasoning transitions across modalities.
 
@@ -31,3 +33,5 @@ Use this to document key decisions, model revisions, and reasoning transitions a
 **Changed by**: andriy.koval  
 **Changes**: Eliminated guides/ folder - consolidated getting-started into main README  
 **Logged**: 2025-10-29 20:18:46
+
+
