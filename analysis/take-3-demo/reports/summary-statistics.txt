@@ -1,0 +1,29 @@
+=== SYNTHETIC CASE NOTES - SUMMARY STATISTICS ===
+
+Generation Date: 2025-10-30T18:38:47.267576Z
+Total Cases: 500
+Analysis Date: 2025-10-30
+
+=== DEMOGRAPHICS ===
+Average Age: 42 years
+Age Range: 18 - 64 years
+Gender Distribution: Female = 267, Male = 233
+Location Distribution: Rural = 203, Urban = 297
+
+=== COMPLEXITY LEVELS ===
+Complexity Distribution: 1-Stable = 10, 2-Moderate = 189, 3-High = 299, 4-Crisis = 2
+
+=== VALIDATION SCENARIOS ===
+Housing Crisis Cases: 75 (15%)
+Mental Health Decline Cases: 40 (8%)
+Service Success Cases: 60 (12%)
+
+=== CASE NOTE CHARACTERISTICS ===
+Average Note Length: 260 characters
+Note Length Range: 65 - 696 characters
+Writer Style Distribution: experienced_worker = 235, new_worker = 152, senior_worker = 113
+
+=== ARCHETYPE DISTRIBUTION ===
+Archetype Counts: A1 = 90, A2 = 110, A3 = 97, A4 = 100, A5 = 103
+
+Report Generated: 2025-10-30 19:16:36.367319

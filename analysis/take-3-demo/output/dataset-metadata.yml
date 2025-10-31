@@ -1,0 +1,49 @@
+dataset_name: synthetic_case_notes
+export_timestamp: '2025-10-30T18:38:47.280565Z'
+generation_date: '2025-10-30T18:38:47.267576Z'
+generation_parameters:
+  age_focus: 18-64 primary
+  complexity_distribution:
+    level_1: 25%
+    level_2: 45%
+    level_3: 25%
+    level_4: 5%
+  target_population: Alberta-like social services clients
+quality_metrics:
+  average_age: 41.974
+  complexity_distribution:
+    1: 0.02
+    2: 0.378
+    3: 0.598
+    4: 0.004
+  employment_history_distribution:
+    Intermittent employment history: 0.332
+    Stable employment history: 0.352
+    Unemployed: 0.316
+  ethnicity_distribution:
+    Arab: 0.094
+    Black: 0.102
+    Caucasian: 0.096
+    Chinese: 0.08
+    Filipino: 0.102
+    Indigenous: 0.112
+    Latin American: 0.106
+    Other: 0.118
+    South Asian: 0.086
+    Southeast Asian: 0.104
+  family_structure_distribution:
+    Couple: 0.246
+    Family with children: 0.26
+    Single: 0.25
+    Single parent: 0.244
+  gender_distribution:
+    Female: 0.534
+    Male: 0.466
+  location_distribution:
+    Rural: 0.406
+    Urban: 0.594
+total_cases: 500
+validation_targets:
+  housing_crisis_indicators: 75 cases (15.0%)
+  mental_health_deterioration: 40 cases (8.0%)
+  successful_service_connections: 60 cases (12.0%)

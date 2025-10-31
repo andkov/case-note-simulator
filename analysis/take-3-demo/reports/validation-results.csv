@@ -1,0 +1,13 @@
+metric,actual_value,target_value,status,difference
+total_cases,500,500,PASS,0
+avg_age,42,42,PASS,0
+female_percentage,53.4,52,PASS,1.3999999999999986
+urban_percentage,59.4,75,REVIEW,-15.600000000000001
+complexity_1_pct,2,25,REVIEW,-23
+complexity_2_pct,37.8,45,PASS,-7.200000000000003
+complexity_3_pct,59.8,25,REVIEW,34.8
+complexity_4_pct,0.4,5,PASS,-4.6
+housing_crisis_pct,15,15,PASS,0
+mental_health_pct,8,8,PASS,0
+service_success_pct,12,12,PASS,0
+avg_note_length,260,300,PASS,-40
