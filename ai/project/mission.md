@@ -1,13 +1,10 @@
 # Synthetic Case Note Generation Mission
 
-This file serves as a compass for AI collaborators, articulating the synthetic data generation project's purpose, epistemic stance, and analytic goals. It ensures that all AI agents operate within a shared framework of understanding, aligned with the domain expert's specifications.
-
-In a human–AI creative symbiosis, the human serves not merely as an operator, but as a **domain expert–scientist**—the conductor of realistic data synthesis. Their role is to define the specifications and constraints within which the AI can generate authentic, but completely fictional, social services data.
 
 ### Epistemic Aims
-(what do we want to learn through synthetic data?)
+(what do we want to learn with this project?)
 
-Generate realistic but completely fictional social services case data to support the development and validation of analytical workflows in the Strategic Data Analytics (SDA) unit.
+We want to learn how to generate realistic but completely fictional social services case data to support the development and validation of analytical workflows in the Strategic Data Analytics (SDA) unit.
 
 **Primary Objectives:**
 1. **Validation Support**: Create synthetic datasets that mirror real-world complexity to test risk flagging, sentiment analysis, and pattern detection algorithms
