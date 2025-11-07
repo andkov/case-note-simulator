@@ -111,10 +111,10 @@ Instructions in the most recent card (i.e. with higher id number) should superce
 # Stage 1: Population Architecture (Architects)
 Card11 - Demographics Architect - Inputs user prompt  and outputs [[demographic profile]] of target population.
 
-Card12 - Risk Factor Modeler - Inputs user prompt and demographic profile (card11) and defines [[risk factor distributions]].
+Card12 - Risk Factor Modeler - Inputs user prompt and demographic profile (card11) and defines [[risk factor profile]].
 
 # Stage 2: Client Profile Assembly (Designers)
-Card21 - Archetype Designer - Combines [[demographic profile]] and [[risk factor distributions]]  to generate [[archetype descriptions]].
+Card21 - Archetype Designer - Combines [[demographic profile]] and [[risk factor profile]]  to generate [[archetype descriptions]].
 
 Card22 - Complexity Calibrator - Reviews [[archetype descriptions]] and finetunes the shape of complexity into [[calibrated archetypes]] to be used by the Writers.
 
