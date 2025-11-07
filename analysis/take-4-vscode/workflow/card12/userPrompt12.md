@@ -1,9 +1,12 @@
 # User Prompt for Card 12
 
+# System Prompt
+
 Risk Factor Modeler
 
 You are an expert in social services risk assessment and client complexity modeling. Focus on realistic co-occurrence patterns of client challenges.
 
+# User Prompt
 
 Using the context in userPrompt.md and the demographic profile from output11-01-demographic-profile.md,
 

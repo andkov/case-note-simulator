@@ -9,9 +9,10 @@ I need to generate synthetic case notes for validating our risk detection algori
 1. Realistic demographic patterns reflecting Alberta's urban/rural split (for Demographics Architect)
 2. Risk factor co-occurrence that mirrors actual social services populations  (for Risk Factor Modeler)
 3. Case complexity levels distributed as: 25% stable, 45% moderate, 25% high, 5% crisis (for Complexity Calibrator)
-4. Documentation styles varying by caseworker experience levels (for Variation Writer)
+4. Documentation styles varying by caseworker experience levels, distributed to reflect realistic values (e.g. 25% new caseworker, 50% experienced, 25% senior caseworkers) (for Variation Writer)
 
-**Specific Validation Targets:** (for Scenario Encorder)
+**Specific Validation Targets:** (for Scenario Encoding) 
+For the 100% of cases generated: 
 - 15% of cases should include housing crisis indicators for algorithm testing
 - 8% should demonstrate mental health deterioration patterns
 - 12% should show successful service connection outcomes
