@@ -1,0 +1,130 @@
+{
+  "workflow": {
+    "stages": [
+      {
+        "id": "stage-1762524399434",
+        "name": "Stage 1: Population Architecture (Architects)",
+        "nodes": [
+          {
+            "id": "agent-1762525324931",
+            "nodeType": "agent",
+            "name": "Demographics Architect",
+            "type": "researcher",
+            "systemPrompt": "You are a research assistant specializing in gathering and analyzing information from various sources.",
+            "userPrompt": "Research the following topic and provide detailed findings: {input}",
+            "tools": [],
+            "status": "idle",
+            "minimized": false
+          },
+          {
+            "id": "agent-1762525353863",
+            "nodeType": "agent",
+            "name": "Risk Factor Modeler",
+            "type": "researcher",
+            "systemPrompt": "You are a research assistant specializing in gathering and analyzing information from various sources.",
+            "userPrompt": "Research the following topic and provide detailed findings: {input}",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524486953",
+        "name": "Stage 2: Client Profile Design (Designers)",
+        "nodes": [
+          {
+            "id": "agent-1762525369201",
+            "nodeType": "agent",
+            "name": "Archetype Designer",
+            "type": "researcher",
+            "systemPrompt": "You are a research assistant specializing in gathering and analyzing information from various sources.",
+            "userPrompt": "Research the following topic and provide detailed findings: {input}",
+            "tools": [],
+            "status": "idle"
+          },
+          {
+            "id": "agent-1762525387677",
+            "nodeType": "agent",
+            "name": "Complexity Calibrator",
+            "type": "researcher",
+            "systemPrompt": "You are a research assistant specializing in gathering and analyzing information from various sources.",
+            "userPrompt": "Research the following topic and provide detailed findings: {input}",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524545122",
+        "name": "Stage 3: Case Note Composition (Writers)",
+        "nodes": [
+          {
+            "id": "agent-1762525467920",
+            "nodeType": "agent",
+            "name": "Case Note Writer",
+            "type": "analyst",
+            "systemPrompt": "You are a data analyst who provides insightful analysis and identifies patterns in data.",
+            "userPrompt": "Analyze the following data and provide insights: {input}",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524586618",
+        "name": "Stage 4: Dashboard (Engineer)",
+        "nodes": [
+          {
+            "id": "agent-1762525495267",
+            "nodeType": "agent",
+            "name": "Data Engineer",
+            "type": "analyst",
+            "systemPrompt": "You are a data analyst who provides insightful analysis and identifies patterns in data.",
+            "userPrompt": "Analyze the following data and provide insights: {input}",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-1762532311147",
+        "fromNodeId": "agent-1762525324931",
+        "toNodeId": "agent-1762525353863"
+      },
+      {
+        "id": "conn-1762532319265",
+        "fromNodeId": "agent-1762525324931",
+        "toNodeId": "agent-1762525369201"
+      },
+      {
+        "id": "conn-1762532324228",
+        "fromNodeId": "agent-1762525353863",
+        "toNodeId": "agent-1762525369201"
+      },
+      {
+        "id": "conn-1762532329704",
+        "fromNodeId": "agent-1762525369201",
+        "toNodeId": "agent-1762525387677"
+      },
+      {
+        "id": "conn-1762532340274",
+        "fromNodeId": "agent-1762525387677",
+        "toNodeId": "agent-1762525467920"
+      },
+      {
+        "id": "conn-1762532349564",
+        "fromNodeId": "agent-1762525467920",
+        "toNodeId": "agent-1762525495267"
+      }
+    ]
+  },
+  "userInput": "",
+  "workflowName": "Untitled Workflow",
+  "customAgents": [],
+  "selectedModel": "gemini-2.5-flash",
+  "responseLength": 16384,
+  "thinkingEnabled": false,
+  "thinkingBudget": 0
+}
