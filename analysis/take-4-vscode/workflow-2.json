@@ -1,0 +1,130 @@
+{
+  "workflow": {
+    "stages": [
+      {
+        "id": "stage-1762524399434",
+        "name": "Stage 1: Population Architecture (Architects)",
+        "nodes": [
+          {
+            "id": "agent-1762525324931",
+            "nodeType": "agent",
+            "name": "Demographics Architect",
+            "type": "researcher",
+            "systemPrompt": "Demographics Architect\\n\\nYou are a demographic modeling expert specializing in Alberta-like social services populations. Guide users through realistic population parameter decisions.",
+            "userPrompt": "Based on the user input in userPrompt.md,\\n\\nHelp define demographic parameters for synthetic case note generation:\\n1. Age distribution patterns (18-64 primary, 65-80 secondary)\\n2. Gender distribution and family structures\\n3. Geographic spread (urban/rural patterns)\\n4. Employment status distributions\\n5. Housing stability patterns\\n\\nProvide realistic Alberta-like demographic foundations while maintaining complete fictional status.\\n\\nStore the output in output11-01-demographic-profile.md as a structured demographic profile summary.",
+            "tools": [],
+            "status": "idle",
+            "minimized": false
+          },
+          {
+            "id": "agent-1762525353863",
+            "nodeType": "agent",
+            "name": "Risk Factor Modeler",
+            "type": "researcher",
+            "systemPrompt": "Risk Factor Modeler\\n\\nYou are an expert in social services risk assessment and client complexity modeling. Focus on realistic co-occurrence patterns of client challenges.",
+            "userPrompt": "Using the context in userPrompt.md and the demographic profile from output11-01-demographic-profile.md,\\n\\nDefine risk factor combinations and patterns:\\n1. Mental health challenge prevalence\\n2. Substance use patterns and co-occurrence\\n3. Housing instability factors\\n4. Medical complexity and hospital utilization\\n5. Justice system involvement patterns\\n6. Dependent care responsibilities\\n7. Employment barriers and gaps\\n\\nEnsure realistic co-occurrence rates that mirror real social services populations.\\n\\nStore the output in ./analysis/take-4-vscode/workflow/card12/output12-01-risk-factor-profile.md as a structured risk factor profile summary.",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524486953",
+        "name": "Stage 2: Client Profile Design (Designers)",
+        "nodes": [
+          {
+            "id": "agent-1762525369201",
+            "nodeType": "agent",
+            "name": "Archetype Designer",
+            "type": "researcher",
+            "systemPrompt": "Archetype Designer\\n\\nYou are a client profiling specialist who creates realistic, diverse client archetypes for social services contexts. Combine demographic and risk factor inputs into coherent client profiles.",
+            "userPrompt": "Using the context of userPrompt.md, and established specifics of the demographic profile from output11-01-demographic-profile.md, and the risk factor profile from output12-01-risk-factor-profile.md,\\n\\nCreate 8-12 distinct client archetypes that represent realistic population segments:\\n\\n1. **Profile Assembly**: Combine age, gender, geography, and family structure into coherent demographics\\n2. **Risk Integration**: Apply realistic risk factor combinations based on co-occurrence patterns\\n3. **Complexity Levels**: Assign appropriate complexity levels (1-4) to each archetype\\n4. **Narrative Elements**: Include brief persona descriptions that capture typical presentation patterns\\n\\nOutput Format:\\n- Archetype ID and descriptive name\\n- Core demographics (age range, gender, family structure, location type)\\n- Primary risk factors and protective factors\\n- Complexity level with rationale\\n- Brief persona narrative (2-3 sentences)\\n\\nEnsure archetypes span the full complexity spectrum while maintaining realistic proportions from the reference data.\\n\\nStore the output in ./analysis/take-4-vscode/workflow/card21/output21-01-archetype-descriptions.md",
+            "tools": [],
+            "status": "idle"
+          },
+          {
+            "id": "agent-1762525387677",
+            "nodeType": "agent",
+            "name": "Complexity Calibrator",
+            "type": "researcher",
+            "systemPrompt": "Complexity Calibrator\\n\\nYou are a case complexity assessment expert who validates and refines client archetype complexity levels. Ensure realistic distribution and appropriate intervention intensity mapping.",
+            "userPrompt": "Review the client archetypes in ./analysis/take-4-vscode/workflow/card21/output21-01-archetype-descriptions.md and calibrate complexity assignments to align with intent communicated in userPrompt.md:\\n\\n1. **Distribution Validation**: **Distribution Validation**: Verify complexity levels match target proportions supplied in userPrompt.md:\\n\\n2. **Complexity Criteria Review**: Ensure complexity levels appropriately reflect:\\n   - Number of concurrent services needed\\n   - Crisis intervention frequency\\n   - Case coordination requirements\\n   - Client engagement patterns\\n\\n3. **Intervention Mapping**: Define typical service patterns for each complexity level\\n4. **Case Note Implications**: Specify how complexity affects documentation patterns\\n\\nOutput refined archetype specifications with validated complexity distributions and clear intervention frameworks.\\n\\nStore the output in ./analysis/take-4-vscode/workflow/card21/output22-01-calibrated-archetypes.md",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524545122",
+        "name": "Stage 3: Case Note Composition (Writers)",
+        "nodes": [
+          {
+            "id": "agent-1762525467920",
+            "nodeType": "agent",
+            "name": "Case Note Writer",
+            "type": "analyst",
+            "systemPrompt": "You are an experienced R developer specializing in synthetic data generation for social services research. Create a deterministic R script using the `fabricatr` package to generate realistic case notes that 1) reflect authentic caseworker language, concerns, and observations while maintaining complete fictional status, 2) demonstrate realistic stylistic variation and human inconsistencies in documentation practices, and 3) embed specific testing scenarios and patterns.",
+            "userPrompt": "## Objective\\nCreate a comprehensive synthetic case note generator using a three mode noise injection methodology. This approach systematically introduces different types of realistic variation into synthetic case notes through controlled noise injection.\\n\\n## Three-Lane Noise Injection Methodology\\nThis approach introduces controlled variation through three specialized generation lanes, each targeting different aspects of realistic case note variation:\\n\\n### Lane 1: Professional Baseline Noise (60% = 300 cases)\\n- **Purpose**: Establish consistent professional documentation standards as baseline\\n- **Noise Type**: Minimal variation, standardized professional language patterns\\n- **Target**: Clean baseline cases for algorithm calibration and control groups\\n- **Documentation Style**: Single standard professional caseworker voice\\n\\n### Lane 2: Writer Style Noise (25% = 125 cases)\\n- **Purpose**: Inject realistic human inconsistencies in documentation practices\\n- **Noise Type**: Experience-based writing variation, quality fluctuations, stylistic differences\\n- **Target**: Test algorithm robustness against real-world documentation variability\\n- **Documentation Styles**: New caseworker (30%), experienced (50%), senior (20%) with quality variation\\n\\n### Lane 3: Scenario Embedding Noise (15% = 75 cases)\\n- **Purpose**: Embed specific algorithmic testing scenarios and patterns\\n- **Noise Type**: Targeted terminology, crisis patterns, service connection indicators\\n- **Target**: Validate specific algorithm detection capabilities\\n- **Documentation Focus**: Housing crises, mental health deterioration, successful service connections\\n\\n## Technical Requirements\\n\\n### Core Architecture\\n- **Total Cases**: 500 synthetic cases (matching existing output)\\n- **ID Range**: SYN_00001 to SYN_00500 (sequential, no gaps)\\n- **Random Seed**: Configurable base seed with consistent lane coordination\\n- **Output Schema**: Identical to existing: `person_oid,first_name,last_name,gender,age,complexity_level,archetype_id, writer_style,embedded_scenarios,case_note`\\n\\nCreate clearly documented parameter sections and implement comprehensive validation to ensure each lane achieves its intended noise injection targets. The goal is to provide a robust, reproducible methodology for controlled noise injection in synthetic case note generation, optimized for algorithm validation and testing workflows.",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      },
+      {
+        "id": "stage-1762524586618",
+        "name": "Stage 4: Dashboard (Engineer)",
+        "nodes": [
+          {
+            "id": "agent-1762525495267",
+            "nodeType": "agent",
+            "name": "Data Engineer",
+            "type": "analyst",
+            "systemPrompt": "Data Engineer\\n\\nYou are an experienced Data Engineer specializing in synthetic data generation for social services research. Your expertise includes designing modular, reproducible systems for agentic workflows in VSCode environments.",
+            "userPrompt": "Create an R script that pull the output of card 30 (R script and synthetic_cases.csv) and ingeste it for analsysis and visualization.\\n\\nStudy the script eda-2-dashboard.R to understand how to produce a single graph that summarizes key attributes across the combined dataset. Borrow from that script the style of graph delivery and data handling.\\n\\nOutput must be an R script in ./analysis/take-4-vscode/workflow/card40/output40-01-dashboard.R",
+            "tools": [],
+            "status": "idle"
+          }
+        ]
+      }
+    ],
+    "connections": [
+      {
+        "id": "conn-1762532311147",
+        "fromNodeId": "agent-1762525324931",
+        "toNodeId": "agent-1762525353863"
+      },
+      {
+        "id": "conn-1762532319265",
+        "fromNodeId": "agent-1762525324931",
+        "toNodeId": "agent-1762525369201"
+      },
+      {
+        "id": "conn-1762532324228",
+        "fromNodeId": "agent-1762525353863",
+        "toNodeId": "agent-1762525369201"
+      },
+      {
+        "id": "conn-1762532329704",
+        "fromNodeId": "agent-1762525369201",
+        "toNodeId": "agent-1762525387677"
+      },
+      {
+        "id": "conn-1762532340274",
+        "fromNodeId": "agent-1762525387677",
+        "toNodeId": "agent-1762525467920"
+      },
+      {
+        "id": "conn-1762532349564",
+        "fromNodeId": "agent-1762525467920",
+        "toNodeId": "agent-1762525495267"
+      }
+    ]
+  },
+  "userInput": "",
+  "workflowName": "Untitled Workflow",
+  "customAgents": [],
+  "selectedModel": "gemini-2.5-flash",
+  "responseLength": 16384,
+  "thinkingEnabled": false,
+  "thinkingBudget": 0
+}
