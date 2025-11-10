@@ -120,7 +120,7 @@
       }
     ]
   },
-  "userInput": "",
+  "userInput": "I need to generate synthetic case notes for validating our risk detection algorithms in Alberta's social services context. \n\n**Project Context:**\n- Target: 500 synthetic client profiles for algorithm testing\n- Focus: Adult income support clients (18-64) with realistic complexity distribution\n- Testing needs: Housing instability detection, mental health sentiment analysis, and service coordination patterns\n\n**Key Requirements:**\n1. Realistic demographic patterns reflecting Alberta's urban/rural split (for Demographics Architect)\n2. Risk factor co-occurrence that mirrors actual social services populations  (for Risk Factor Modeler)\n3. Case complexity levels distributed as: 25% stable, 45% moderate, 25% high, 5% crisis (for Complexity Calibrator)\n4. Documentation styles varying by caseworker experience levels, distributed to reflect realistic values (e.g. 25% new caseworker, 50% experienced, 25% senior caseworkers) (for Variation Writer)\n\n**Specific Validation Targets:** (for Scenario Encoding) \nFor the 100% of cases generated: \n- 15% of cases should include housing crisis indicators for algorithm testing\n- 8% should demonstrate mental health deterioration patterns\n- 12% should show successful service connection outcomes\n\nPlease help me define the population parameters and risk models that will produce realistic but completely fictional synthetic data for this validation project.",
   "workflowName": "Untitled Workflow",
   "customAgents": [],
   "selectedModel": "gemini-2.5-flash",
